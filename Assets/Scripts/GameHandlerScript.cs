@@ -14,7 +14,7 @@ public class GameHandlerScript : Singleton
     public GameObject towerManager;
     public GameObject enemyManager;
 
-    public List<Tower> availableTowers;
+    public List<GameObject> availableTowers;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

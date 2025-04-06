@@ -26,10 +26,10 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     }
     public void OnDrag(PointerEventData eventData){
         Debug.Log("OnDrag");
-        rectTransform.anchoredPosition += eventData.delta;
     }
     public void OnEndDrag(PointerEventData eventData){
         Debug.Log("OnEndDrag");
+        SpawnTower();
     }
     public void OnPointerDown(PointerEventData eventData){
         Debug.Log("OnPointerDown");
@@ -38,6 +38,16 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    void SpawnTower()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        GameObject newTower = Instantiate(towerToSpawn);
+        newTower.transform.position = (mousePos);
         
     }
 
