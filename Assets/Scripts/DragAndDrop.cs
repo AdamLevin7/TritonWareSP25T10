@@ -21,7 +21,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public void OnEndDrag(PointerEventData eventData){
         Debug.Log("OnEndDrag");
         Tower towerToBuild = BuildManager.main.GetSelectedTower();
-        tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
+        tower = Instantiate(tower, transform.position, Quaternion.identity);
     }
     public void OnPointerDown(PointerEventData eventData){
         Debug.Log("OnPointerDown");
