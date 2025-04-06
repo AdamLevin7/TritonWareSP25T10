@@ -29,7 +29,7 @@ public class UIHandlerScript : Singleton
     {
         livesTextComponent.text = "Lives: " + gameManagerClass.lives;
         moneyTextComponent.text = "Money: " + gameManagerClass.money;
-        roundWaveTextComponent.text = "Round: " + gameManagerClass.currentRound + "/" + gameManagerClass.maxRounds;
+        roundWaveTextComponent.text = "Wave: " + gameManagerClass.currentRound + "/" + gameManagerClass.maxRounds;
 
     }
 }
