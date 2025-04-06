@@ -18,6 +18,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Vector3 velocity = (NodePositionList[CurrentNodeList[idx] + 1] - NodePositionList[CurrentNodeList[idx]]).normalized;
         VelocityList[idx] = velocity;
     }
+    void CreateNewEnemy()
+    {
+        GameObject newEnemy = Instantiate(EnemyPrefab, NodePositionList[0], Quaternion.identity);
+        VelocityList.Add(new Vector3(0,0,0));
+        CurrentNodeList.Add(0);
+        EnemyList.Add(newEnemy);
+    }
 
     void Start()
     {
@@ -28,18 +35,22 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         // This should be done on event trigger for a new Enemy
-        GameObject newEnemy = Instantiate(EnemyPrefab, NodePositionList[0], Quaternion.identity);
-        VelocityList.Add(new Vector3(0,0,0));
-        CurrentNodeList.Add(0);
-        EnemyList.Add(newEnemy);
+        CreateNewEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int idx = 0; idx < EnemyList.Count; idx++)
+        for (int idx = EnemyList.Count - 1; idx >= 0; idx--)
         {
-                
+            if (EnemyList[idx] == null)
+            {
+                EnemyList.RemoveAt(idx);
+                VelocityList.RemoveAt(idx);
+                CurrentNodeList.RemoveAt(idx);
+                continue;
+            }
+
             int nodeIndex = CurrentNodeList[idx];
 
             if (nodeIndex + 1 < NodePositionList.Count)
@@ -58,14 +69,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
         }
 
-
-        if (Input.GetKey(KeyCode.J))
+        //Test of new enemy creation and or deletion
+        if (Input.GetKeyUp(KeyCode.J))
         { 
-
-            for (int idx = 0; idx < EnemyList.Count; idx++)
-            {
-                EnemyList[idx].transform.position += new Vector3(5, 0, 0);
-            }
+            CreateNewEnemy();
         }
     }
 }
