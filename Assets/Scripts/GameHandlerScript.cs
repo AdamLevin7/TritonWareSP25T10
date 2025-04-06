@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameHandlerScript : Singleton
@@ -13,7 +14,7 @@ public class GameHandlerScript : Singleton
     public GameObject towerManager;
     public GameObject enemyManager;
 
-    // public List<Tower> availableTowers;
+    public List<Tower> availableTowers;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
