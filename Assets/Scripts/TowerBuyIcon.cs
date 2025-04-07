@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
-public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public GameObject towerToSpawn;
     public InputActionReference dragAndDropReference;
+
+    private InputSystem_Actions inputActions;
 
     private bool mouseHeld;
     private bool mouseOver;
@@ -14,6 +17,7 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inputActions = new();
         mouseOver = false;
     }
 
@@ -22,17 +26,16 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
         rectTransform = GetComponent<RectTransform>();
     }
     public void OnBeginDrag(PointerEventData eventData){
-        Debug.Log("OnBeginDrag");
-    }
-    public void OnDrag(PointerEventData eventData){
-        Debug.Log("OnDrag");
-    }
-    public void OnEndDrag(PointerEventData eventData){
-        Debug.Log("OnEndDrag");
         SpawnTower();
     }
+    public void OnDrag(PointerEventData eventData){
+    }
+    public void OnEndDrag(PointerEventData eventData){
+    }
     public void OnPointerDown(PointerEventData eventData){
-        Debug.Log("OnPointerDown");
+    }
+    public void OnPointerClick(PointerEventData eventData){
+        SpawnTower();
     }
 
     // Update is called once per frame
@@ -43,12 +46,10 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     void SpawnTower()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         GameObject newTower = Instantiate(towerToSpawn);
-        newTower.transform.position = (mousePos);
-        
+        newTower.transform.position = mousePos;
     }
 
     void OnMouseEnter()
