@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 public class EnemyPathing : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class EnemyPathing : MonoBehaviour
     //References for Creating Node Path
     public Transform NodeContainer;
     public List<Vector3> NodePositionList = new List<Vector3>();
-    
+    public GameHandlerScript gameManager;
+
     void UpdateNewVelocity(GameObject enemy,int idx)
     {
         Vector3 velocity = (NodePositionList[CurrentNodeList[idx] + 1] - NodePositionList[CurrentNodeList[idx]]).normalized;
@@ -61,10 +63,22 @@ public class EnemyPathing : MonoBehaviour
                 float DistanceToNode = Vector3.Distance(EnemyList[idx].transform.position, NodePositionList[nodeIndex + 1]);
                 float reachRadius = 1f;
 
-                if (DistanceToNode < reachRadius)
+                // changed this to look a little smoother
+                if (DistanceToNode < 0.1f)
                 {
+
                     EnemyList[idx].transform.position = NodePositionList[nodeIndex+1];
                     CurrentNodeList[idx]++;
+
+                    Debug.Log(CurrentNodeList[idx]);
+                    // new code! -aiden
+                    // if hits last node, delete enemy and subtract life
+                    if (CurrentNodeList[idx] >= NodePositionList.Count - 1)
+                    {
+                        // arbitrary number for now
+                        gameManager.lives -= 5 /*EnemyList[idx].health*/;
+                        DestroyEnemy(idx);
+                    }
                 }
             }
         }
@@ -74,5 +88,14 @@ public class EnemyPathing : MonoBehaviour
         { 
             CreateNewEnemy();
         }
+
+    }
+
+    private void DestroyEnemy(int i)
+    {
+        Destroy(EnemyList[i]);
+        EnemyList.RemoveAt(i);
+        VelocityList.RemoveAt(i);
+        CurrentNodeList.RemoveAt(i);
     }
 }
