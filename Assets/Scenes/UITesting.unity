@@ -335,6 +335,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1189006038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8536453845676306958, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+  m_PrefabInstance: {fileID: 2532531500735869664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2532531500735869664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -347,6 +352,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 4133622826894393385}
+    - target: {fileID: 4248937084377422654, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4133622826894393386}
     - target: {fileID: 4431334956175403223, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -391,6 +400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayUIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6761590522234727884, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4133622826894393386}
     - target: {fileID: 8454096407431305282, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_Camera
       value: 
@@ -400,6 +413,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+--- !u!1 &2532531500735869665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1587236135558423511, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+  m_PrefabInstance: {fileID: 2532531500735869664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4133622826894393384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,6 +470,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: GameplayUI
+      value: 
+      objectReference: {fileID: 1189006038}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: LoseScreenUI
+      value: 
+      objectReference: {fileID: 2532531500735869665}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -462,6 +488,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3337977728743847909, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
   m_PrefabInstance: {fileID: 4133622826894393384}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4133622826894393386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+  m_PrefabInstance: {fileID: 4133622826894393384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4133622826894393385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821ba9fcbbc6bf2499f669e8f59a27fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
