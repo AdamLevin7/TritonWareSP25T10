@@ -478,6 +478,14 @@ PrefabInstance:
       propertyPath: LoseScreenUI
       value: 
       objectReference: {fileID: 2532531500735869665}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: activeGameUI
+      value: 
+      objectReference: {fileID: 1189006038}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: loseScreenUI
+      value: 
+      objectReference: {fileID: 2532531500735869665}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

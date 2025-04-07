@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &377397557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2994933137158071975, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+  m_PrefabInstance: {fileID: 645690993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &495679911
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +273,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2119434207}
+    - target: {fileID: 723005235617065688, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 377397557}
     - target: {fileID: 4431334956175403223, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -317,6 +326,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+--- !u!1 &672326000 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8536453845676306958, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+  m_PrefabInstance: {fileID: 645690993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &708905584
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +549,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1535996425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1192591975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1587236135558423511, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+  m_PrefabInstance: {fileID: 645690993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1392109511
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +747,30 @@ PrefabInstance:
     - target: {fileID: 4636777667480818011, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: GameplayUI
+      value: 
+      objectReference: {fileID: 672326000}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: LoseScreenUI
+      value: 
+      objectReference: {fileID: 1192591975}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: activeGameUI
+      value: 
+      objectReference: {fileID: 672326000}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: enemyManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: loseScreenUI
+      value: 
+      objectReference: {fileID: 1192591975}
+    - target: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: towerManager
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,9 +6,9 @@ public class UIHandlerScript : Singleton
 {
     [SerializeField] private GameObject canvas;
     public GameObject roundActiveComponent;
-    [SerializeField] private GameObject livesText;
-    [SerializeField] private GameObject moneyText;
-    [SerializeField] private GameObject roundWaveText;
+    [SerializeField] private GameObject livesTextObject;
+    [SerializeField] private GameObject moneyTextObject;
+    [SerializeField] private GameObject roundWaveTextObject;
     public GameObject roundLossComponent;
     [SerializeField] private GameObject restartButton;
 
@@ -22,9 +22,9 @@ public class UIHandlerScript : Singleton
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        livesTextComponent = livesText.GetComponent<Text>();
-        moneyTextComponent = moneyText.GetComponent<Text>();
-        roundWaveTextComponent = roundWaveText.GetComponent<Text>();
+        livesTextComponent = livesTextObject.GetComponent<Text>();
+        moneyTextComponent = moneyTextObject.GetComponent<Text>();
+        roundWaveTextComponent = roundWaveTextObject.GetComponent<Text>();
         gameManagerClass = gameManager.GetComponent<GameHandlerScript>();
     }
 

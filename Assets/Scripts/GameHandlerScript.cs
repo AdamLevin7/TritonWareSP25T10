@@ -17,8 +17,8 @@ public class GameHandlerScript : Singleton
 
     public List<GameObject> availableTowers;
 
-    [SerializeField] private GameObject GameplayUI;
-    [SerializeField] private GameObject LoseScreenUI;
+    [SerializeField] private GameObject activeGameUI;
+    [SerializeField] private GameObject loseScreenUI;
 
     public bool playing;
     public bool endingGame;
@@ -38,7 +38,7 @@ public class GameHandlerScript : Singleton
     {
         // testing only!
         if (Input.GetKey(KeyCode.L)) lives--;
-        if (Input.GetKey(KeyCode.M)) money--;
+        if (Input.GetKey(KeyCode.M)) money += 100;
 
         if (lives <= 0)
         {
@@ -66,8 +66,8 @@ public class GameHandlerScript : Singleton
         playing = false;
         endingGame = true;
 
-        GameplayUI.SetActive(false);
-        LoseScreenUI.SetActive(true);
+        activeGameUI.SetActive(false);
+        loseScreenUI.SetActive(true);
     }
 
     // begins new game (used in callbacks and button triggers)
@@ -77,8 +77,8 @@ public class GameHandlerScript : Singleton
         currentRound = 1;
         lives = maxLives;
         money = 0;
-        GameplayUI.SetActive(true);
-        LoseScreenUI.SetActive(false);
+        activeGameUI.SetActive(true);
+        loseScreenUI.SetActive(false);
 
         endAnimationCtr = 0.0f;
         endingGame = false;

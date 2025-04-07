@@ -1083,9 +1083,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1771762485230427842}
   roundActiveComponent: {fileID: 8536453845676306958}
-  livesText: {fileID: 4041033614464040278}
-  moneyText: {fileID: 4462921962432267465}
-  roundWaveText: {fileID: 2586764256408274109}
+  livesTextObject: {fileID: 4041033614464040278}
+  moneyTextObject: {fileID: 4462921962432267465}
+  roundWaveTextObject: {fileID: 2586764256408274109}
   roundLossComponent: {fileID: 1587236135558423511}
   restartButton: {fileID: 0}
   gameManager: {fileID: 0}
