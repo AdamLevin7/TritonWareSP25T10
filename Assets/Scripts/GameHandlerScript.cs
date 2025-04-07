@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameHandlerScript : Singleton
+public class GameHandlerScript : MonoBehaviour
 {
     public int lives;
     public int maxLives;
@@ -30,7 +30,6 @@ public class GameHandlerScript : Singleton
     {
         // arbitrary
         BeginNewGame();
-        money = 999999;
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class GameHandlerScript : Singleton
     {
         // testing only!
         if (Input.GetKey(KeyCode.L)) lives--;
-        if (Input.GetKey(KeyCode.M)) money += 100;
+        if (Input.GetKey(KeyCode.M)) money += 5;
 
         if (lives <= 0)
         {

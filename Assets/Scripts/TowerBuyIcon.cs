@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public GameObject towerToSpawn;
+    private Tower towerClass;
     public InputActionReference dragAndDropReference;
 
     private InputSystem_Actions inputActions;
@@ -13,6 +14,9 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     private bool mouseHeld;
     private bool mouseOver;
     private GameObject currentDraggableTower;
+
+    [SerializeField] private GameHandlerScript gameManagerClass; 
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,8 +28,10 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     private RectTransform rectTransform;
     private void Awake(){
         rectTransform = GetComponent<RectTransform>();
+        towerClass = towerToSpawn.GetComponent<Tower>();
     }
     public void OnBeginDrag(PointerEventData eventData){
+        if (gameManagerClass.money < towerClass.price) return;
         SpawnTower();
     }
     public void OnDrag(PointerEventData eventData){
@@ -35,6 +41,7 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     public void OnPointerDown(PointerEventData eventData){
     }
     public void OnPointerClick(PointerEventData eventData){
+        if (gameManagerClass.money < towerClass.price) return;
         SpawnTower();
     }
 

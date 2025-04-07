@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,9 @@ public class Tower : MonoBehaviour
     [SerializeField] private Color rangeIndicatorInvalidColor;
     private InputSystem_Actions inputActions;
 
+    [Header("Others")]
+    [SerializeField] GameHandlerScript gameHandlerClass;
+
     public float shootCooldown = 0.5f;
     public float range = 10;
     private float timeSinceLastShoot = 0f;
@@ -31,12 +35,18 @@ public class Tower : MonoBehaviour
     private const int UI_LAYER_NUM = 5;
     private const int TOWER_LAYER_NUM = 6;
 
+    public int price;
+
     private void Awake()
     {
         inputActions = new();
         rangeIndicator.gameObject.SetActive(true);
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         gameObject.layer = UI_LAYER_NUM;
+
+        // for some reason, direct reference does not work - aiden
+        gameHandlerClass = FindFirstObjectByType<GameHandlerScript>();
+        Debug.Log(gameHandlerClass);
     }
 
     private void OnEnable()
@@ -140,6 +150,8 @@ public class Tower : MonoBehaviour
                 rangeIndicator.gameObject.SetActive(false);
                 gameObject.layer = TOWER_LAYER_NUM;
                 isPlaced = true;
+
+                gameHandlerClass.money -= price;
             }
             else
             {

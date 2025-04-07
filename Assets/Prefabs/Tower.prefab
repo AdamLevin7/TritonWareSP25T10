@@ -149,9 +149,11 @@ MonoBehaviour:
   placingInvalidColor: {r: 1, g: 0, b: 0, a: 0.69803923}
   rangeIndicatorValidColor: {r: 0.14965291, g: 0.15732715, b: 0.1792453, a: 0.4}
   rangeIndicatorInvalidColor: {r: 0.45, g: 0, b: 0, a: 0.4}
+  gameHandler: {fileID: 3337977728743847909, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
   shootCooldown: 1
   range: 4
   target: {fileID: 0}
+  price: 100
 --- !u!58 &2942797295770748405
 CircleCollider2D:
   m_ObjectHideFlags: 0
