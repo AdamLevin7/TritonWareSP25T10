@@ -973,7 +973,7 @@ MonoBehaviour:
   EnemySpeed: 2
   NodeContainer: {fileID: 1535996425}
   NodePositionList: []
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1004881056}
 --- !u!1 &2034001015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8536453845676306958, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
