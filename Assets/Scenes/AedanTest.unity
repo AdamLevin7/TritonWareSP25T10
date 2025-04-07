@@ -676,7 +676,7 @@ MonoBehaviour:
   EnemySpeed: 2
   NodeContainer: {fileID: 1535996425}
   NodePositionList: []
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 2119434208}
 --- !u!1001 &2119434206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -739,6 +739,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3337977728743847909, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
   m_PrefabInstance: {fileID: 2119434206}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2119434208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216720945784721369, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+  m_PrefabInstance: {fileID: 2119434206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119434207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821ba9fcbbc6bf2499f669e8f59a27fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
