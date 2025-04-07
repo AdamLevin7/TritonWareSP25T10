@@ -12,12 +12,9 @@ public class UIHandlerScript : Singleton
     public GameObject roundLossComponent;
     [SerializeField] private GameObject restartButton;
 
-    [SerializeField] private GameObject gameManager;
-
     private Text livesTextComponent;
     private Text moneyTextComponent;
     private Text roundWaveTextComponent;
-    private GameHandlerScript gameManagerClass; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -25,7 +22,6 @@ public class UIHandlerScript : Singleton
         livesTextComponent = livesTextObject.GetComponent<Text>();
         moneyTextComponent = moneyTextObject.GetComponent<Text>();
         roundWaveTextComponent = roundWaveTextObject.GetComponent<Text>();
-        gameManagerClass = gameManager.GetComponent<GameHandlerScript>();
     }
 
     // Update is called once per frame
@@ -33,9 +29,9 @@ public class UIHandlerScript : Singleton
     {
         if (!gameObject.activeSelf) return;
 
-        livesTextComponent.text = "Lives: " + gameManagerClass.lives;
-        moneyTextComponent.text = "Money: " + gameManagerClass.money;
-        roundWaveTextComponent.text = "Wave: " + gameManagerClass.currentRound + "/" + gameManagerClass.maxRounds;
+        livesTextComponent.text = "Lives: " + GameManager.Instance.lives;
+        moneyTextComponent.text = "Money: " + GameManager.Instance.money;
+        roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentRound + "/" + GameManager.Instance.maxRounds;
 
     }
 }

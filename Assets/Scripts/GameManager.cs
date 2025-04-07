@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameHandlerScript : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public int lives;
     public int maxLives;
 
@@ -17,18 +19,20 @@ public class GameHandlerScript : MonoBehaviour
 
     public List<GameObject> availableTowers;
 
-    [SerializeField] private GameObject activeGameUI;
-    [SerializeField] private GameObject loseScreenUI;
+    public GameObject activeGameUI;
+    public GameObject loseScreenUI;
 
     public bool playing;
     public bool endingGame;
     [SerializeField] private float endSlowdownRate;
     [SerializeField] private float endAnimationDuration;
     private float endAnimationCtr;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Awake()
     {
-        // arbitrary
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
+
         BeginNewGame();
     }
 
@@ -37,7 +41,7 @@ public class GameHandlerScript : MonoBehaviour
     {
         // testing only!
         if (Input.GetKey(KeyCode.L)) lives--;
-        if (Input.GetKey(KeyCode.M)) money += 5;
+        if (Input.GetKey(KeyCode.M)) money += 1000;
 
         if (lives <= 0)
         {

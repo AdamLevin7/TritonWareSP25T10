@@ -2,53 +2,43 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using TMPro;
+using UnityEngine.UI;
 
-public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class TowerBuyIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerClickHandler
 {
-    public GameObject towerToSpawn;
-    private Tower towerClass;
-    public InputActionReference dragAndDropReference;
+    [SerializeField] private GameObject towerToSpawn;
+    [SerializeField] private TowerData towerData;
 
-    private InputSystem_Actions inputActions;
+    [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private Image icon;
 
-    private bool mouseHeld;
-    private bool mouseOver;
-    private GameObject currentDraggableTower;
-
-    [SerializeField] private GameHandlerScript gameManagerClass; 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        inputActions = new();
-        mouseOver = false;
+        UpdateUI();
     }
 
-    private RectTransform rectTransform;
-    private void Awake(){
-        rectTransform = GetComponent<RectTransform>();
-        towerClass = towerToSpawn.GetComponent<Tower>();
+    public void UpdateUI()
+    {
+        priceText.text = "$" + towerData.price.ToString();
+        icon.sprite = towerData.icon;
+        icon.color = Color.white;
     }
+
     public void OnBeginDrag(PointerEventData eventData){
-        if (gameManagerClass.money < towerClass.price) return;
-        SpawnTower();
-    }
-    public void OnDrag(PointerEventData eventData){
-    }
-    public void OnEndDrag(PointerEventData eventData){
-    }
-    public void OnPointerDown(PointerEventData eventData){
-    }
-    public void OnPointerClick(PointerEventData eventData){
-        if (gameManagerClass.money < towerClass.price) return;
+        if (GameManager.Instance.money < towerData.price) return;
         SpawnTower();
     }
 
-    // Update is called once per frame
-    void Update()
+    // IDragHandler is necessary for OnBeginDrag, so this is a dummy function
+    public void OnDrag(PointerEventData eventData)
     {
-        
+        int foo = 0;
+    }
+
+    public void OnPointerClick(PointerEventData eventData){
+        if (GameManager.Instance.money < towerData.price) return;
+        SpawnTower();
     }
 
     void SpawnTower()
@@ -57,15 +47,7 @@ public class TowerBuyIcon : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
         GameObject newTower = Instantiate(towerToSpawn);
         newTower.transform.position = mousePos;
-    }
-
-    void OnMouseEnter()
-    {
-        mouseOver = true;        
-    }
-
-    void OnMouseExit()
-    {
-        mouseOver = false;
+        Tower newTowerScript = newTower.GetComponent<Tower>();
+        newTowerScript.data = towerData;
     }
 }

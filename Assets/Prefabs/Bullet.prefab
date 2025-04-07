@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14de345d7b1c56a43898b4e31608170d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   range: 10
   pierces: 0
   direction: {x: 1, y: 0}

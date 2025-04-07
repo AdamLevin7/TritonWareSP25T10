@@ -13,7 +13,6 @@ public class EnemyPathing : MonoBehaviour
     //References for Creating Node Path
     public Transform NodeContainer;
     public List<Vector3> NodePositionList = new List<Vector3>();
-    public GameHandlerScript gameManager;
 
     void UpdateNewVelocity(GameObject enemy,int idx)
     {
@@ -76,7 +75,7 @@ public class EnemyPathing : MonoBehaviour
                     if (CurrentNodeList[idx] >= NodePositionList.Count - 1)
                     {
                         // arbitrary number for now
-                        gameManager.lives -= 5 /*EnemyList[idx].health*/;
+                        GameManager.Instance.lives -= 5 /*EnemyList[idx].health*/;
                         DestroyEnemy(idx);
                     }
                 }
