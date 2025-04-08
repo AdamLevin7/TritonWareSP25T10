@@ -103,8 +103,8 @@ public class EnemyPathing : MonoBehaviour
                     if (CurrentNodeList[idx] >= NodePositionList.Count - 1)
                     {
                         // arbitrary number for now
-                        GameManager.Instance.lives -= 5 /*EnemyList[idx].health*/;
                         DestroyEnemy(idx);
+                        GameManager.Instance.lives -= 5 /*EnemyList[idx].health*/;
                     }
                 }
             }
