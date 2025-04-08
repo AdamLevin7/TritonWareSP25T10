@@ -5,17 +5,25 @@ using UnityEngine.InputSystem;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform cannon;
     [SerializeField] private CapsuleCollider col;
     [SerializeField] private SpriteRenderer rangeIndicator;
     [SerializeField] private LayerMask towerLayer;
     [SerializeField] private LayerMask placementObstructionLayer;
+    public enum SynergyType{
+        Red,
+        Blue,
+        Yellow,
+        Green
+    }
+
+    public SynergyType synergyType;
+    public GameObject synergyManager;
     [Header("Colors")]
     [SerializeField] private Color rangeIndicatorValidColor;
     [SerializeField] private Color rangeIndicatorInvalidColor;
     private InputSystem_Actions inputActions;
 
+    public TowerBehavior behavior;
     public float shootCooldown = 0.5f;
     public float range = 10;
     private float timeSinceLastShoot = 0f;
@@ -40,6 +48,7 @@ public class Tower : MonoBehaviour
         rangeIndicator.gameObject.SetActive(true);
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         gameObject.layer = UI_LAYER_NUM;
+        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString());
     }
 
     private void OnEnable()
@@ -68,18 +77,11 @@ public class Tower : MonoBehaviour
         {
             timeSinceLastShoot -= dt;
 
+            GetTarget();
+
             if (timeSinceLastShoot < 0f && target != null)
             {
-                Vector2 direction = target.position - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                cannon.eulerAngles = new Vector3(0, 0, angle - 90);
-
-                GameObject newBullet = Instantiate(bulletPrefab);
-                newBullet.transform.position = transform.position;
-                newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
-                Projectile newProjectile = newBullet.GetComponent<Projectile>();
-                newProjectile.direction = direction.normalized;
+                behavior.Fire();
 
                 timeSinceLastShoot = shootCooldown;
             }
@@ -101,10 +103,8 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void GetTarget()
     {
-        if (!isPlaced) return;
-
         int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, range, inRange);
 
         target = null;
