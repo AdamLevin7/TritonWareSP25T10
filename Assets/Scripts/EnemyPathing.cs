@@ -9,6 +9,7 @@ public class EnemyPathing : MonoBehaviour
     public List<GameObject> EnemyList = new List<GameObject>();
     public List<Vector3> VelocityList = new List<Vector3>();
     public List<int> CurrentNodeList = new List<int>();
+    public List<int> EnemyHPList = new List<int>();
     public float EnemySpeed;
     //References for Creating Node Path
     public Transform NodeContainer;
@@ -19,11 +20,21 @@ public class EnemyPathing : MonoBehaviour
         Vector3 velocity = (NodePositionList[CurrentNodeList[idx] + 1] - NodePositionList[CurrentNodeList[idx]]).normalized;
         VelocityList[idx] = velocity;
     }
-    void CreateNewEnemy()
+    void DummyAddMoney()
+    {
+        Debug.Log("Money added");
+    }
+    void EnemyTakeDamage(GameObject EnemyReference, int damageHPAmount)
+    {
+        int idx = EnemyList.IndexOf(EnemyReference);
+        EnemyHPList[idx] -= damageHPAmount;
+    }
+    void CreateNewEnemy(int TotalHP)
     {
         GameObject newEnemy = Instantiate(EnemyPrefab, NodePositionList[0], Quaternion.identity);
         VelocityList.Add(new Vector3(0,0,0));
         CurrentNodeList.Add(0);
+        EnemyHPList.Add(TotalHP);
         EnemyList.Add(newEnemy);
     }
 
@@ -36,7 +47,7 @@ public class EnemyPathing : MonoBehaviour
         }
 
         // This should be done on event trigger for a new Enemy
-        CreateNewEnemy();
+        CreateNewEnemy(1);
     }
 
     // Update is called once per frame
@@ -44,11 +55,28 @@ public class EnemyPathing : MonoBehaviour
     {
         for (int idx = EnemyList.Count - 1; idx >= 0; idx--)
         {
+            //This check for deletion is done twice just as an edge case
             if (EnemyList[idx] == null)
             {
                 EnemyList.RemoveAt(idx);
                 VelocityList.RemoveAt(idx);
                 CurrentNodeList.RemoveAt(idx);
+                EnemyHPList.RemoveAt(idx);
+                continue;
+            }
+
+            if(EnemyHPList[idx] <= 0)
+            {
+                DummyAddMoney();
+                DestroyEnemy(idx);
+            }
+
+            if (EnemyList[idx] == null)
+            {
+                EnemyList.RemoveAt(idx);
+                VelocityList.RemoveAt(idx);
+                CurrentNodeList.RemoveAt(idx);
+                EnemyHPList.RemoveAt(idx);
                 continue;
             }
 
@@ -75,7 +103,7 @@ public class EnemyPathing : MonoBehaviour
                     if (CurrentNodeList[idx] >= NodePositionList.Count - 1)
                     {
                         // arbitrary number for now
-                        GameManager.Instance.lives -= 5 /*EnemyList[idx].health*/;
+                        GameManager.Instance.lives -= Mathf.Max(0,EnemyHPList[idx]);
                         DestroyEnemy(idx);
                     }
                 }
@@ -85,7 +113,12 @@ public class EnemyPathing : MonoBehaviour
         //Test of new enemy creation and or deletion
         if (Input.GetKeyUp(KeyCode.J))
         { 
-            CreateNewEnemy();
+            CreateNewEnemy(10);
+        }
+        //Test Damage and Health
+        if (Input.GetKeyUp(KeyCode.K))
+        { 
+            EnemyTakeDamage(EnemyList[0], 5);
         }
 
     }
@@ -96,5 +129,6 @@ public class EnemyPathing : MonoBehaviour
         EnemyList.RemoveAt(i);
         VelocityList.RemoveAt(i);
         CurrentNodeList.RemoveAt(i);
+        EnemyHPList.RemoveAt(i);
     }
 }
