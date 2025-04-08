@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform cannon;
     [SerializeField] private CapsuleCollider col;
     [SerializeField] private SpriteRenderer rangeIndicator;
     [SerializeField] private LayerMask towerLayer;
@@ -25,6 +23,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private Color rangeIndicatorInvalidColor;
     private InputSystem_Actions inputActions;
 
+    public TowerBehavior behavior;
     public float shootCooldown = 0.5f;
     public float range = 10;
     private float timeSinceLastShoot = 0f;
@@ -78,18 +77,11 @@ public class Tower : MonoBehaviour
         {
             timeSinceLastShoot -= dt;
 
+            GetTarget();
+
             if (timeSinceLastShoot < 0f && target != null)
             {
-                Vector2 direction = target.position - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                cannon.eulerAngles = new Vector3(0, 0, angle - 90);
-
-                GameObject newBullet = Instantiate(bulletPrefab);
-                newBullet.transform.position = transform.position;
-                newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
-                Projectile newProjectile = newBullet.GetComponent<Projectile>();
-                newProjectile.direction = direction.normalized;
+                behavior.Fire();
 
                 timeSinceLastShoot = shootCooldown;
             }
@@ -111,10 +103,8 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void GetTarget()
     {
-        if (!isPlaced) return;
-
         int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, range, inRange);
 
         target = null;
