@@ -6,15 +6,12 @@ using UnityEngine.InputSystem;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private CircleCollider2D col;
+    [SerializeField] private Transform cannon;
+    [SerializeField] private CapsuleCollider col;
     [SerializeField] private SpriteRenderer rangeIndicator;
     [SerializeField] private LayerMask towerLayer;
     [SerializeField] private LayerMask placementObstructionLayer;
     [Header("Colors")]
-    [SerializeField] private Color defaultColor;
-    [SerializeField] private Color placingValidColor;
-    [SerializeField] private Color placingInvalidColor;
     [SerializeField] private Color rangeIndicatorValidColor;
     [SerializeField] private Color rangeIndicatorInvalidColor;
     private InputSystem_Actions inputActions;
@@ -33,6 +30,9 @@ public class Tower : MonoBehaviour
     private const int TOWER_LAYER_NUM = 6;
 
     public TowerData data;
+
+    // For storing collision for detecting enemies in range
+    private readonly Collider[] inRange = new Collider[32];
 
     private void Awake()
     {
@@ -57,7 +57,7 @@ public class Tower : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(rangeIndicator.transform.position, range);
     }
 
     private void Update()
@@ -73,6 +73,8 @@ public class Tower : MonoBehaviour
                 Vector2 direction = target.position - transform.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+                cannon.eulerAngles = new Vector3(0, 0, angle - 90);
+
                 GameObject newBullet = Instantiate(bulletPrefab);
                 newBullet.transform.position = transform.position;
                 newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
@@ -84,12 +86,17 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(inputActions.Player.MousePos.ReadValue<Vector2>());
-            transform.position = worldMousePos;
+            Vector2 mousePos = inputActions.Player.MousePos.ReadValue<Vector2>();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            GameManager.Instance.groundCollider.Raycast(ray, out RaycastHit hit, Mathf.Infinity);
+            transform.position = hit.point + col.height / 2 * Vector3.back;
 
-            canBePlaced = !Physics2D.OverlapCircle(transform.position, col.radius, placementObstructionLayer);
+            Vector3 direction = new() { [col.direction] = 1 };
+            float offset = col.height / 2 - col.radius;
+            Vector3 point0 = transform.TransformPoint(col.center - direction * offset);
+            Vector3 point1 = transform.TransformPoint(col.center + direction * offset);
+            canBePlaced = Physics.OverlapCapsuleNonAlloc(point0, point1, col.radius, inRange, placementObstructionLayer) == 0;
 
-            sprite.color = canBePlaced ? placingValidColor : placingInvalidColor;
             rangeIndicator.color = canBePlaced ? rangeIndicatorValidColor : rangeIndicatorInvalidColor;
         }
     }
@@ -98,16 +105,17 @@ public class Tower : MonoBehaviour
     {
         if (!isPlaced) return;
 
-        Collider2D[] inRange = Physics2D.OverlapCircleAll(transform.position, range);
+        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, range, inRange);
 
         target = null;
         float minDistance = float.MaxValue;
 
-        foreach (Collider2D collider in inRange)
+        for (int i = 0; i < resultCount; ++i)
         {
+            Collider collider = inRange[i];
             if (collider.CompareTag("Enemy"))
             {
-                float squaredDistance = Vector2.SqrMagnitude(collider.transform.position - transform.position);
+                float squaredDistance = Vector3.SqrMagnitude(collider.transform.position - transform.position);
                 if (squaredDistance < minDistance)
                 {
                     minDistance = squaredDistance;
@@ -120,8 +128,8 @@ public class Tower : MonoBehaviour
     private void StartInteract(InputAction.CallbackContext ctx)
     {
         Vector2 mousePos = inputActions.Player.MousePos.ReadValue<Vector2>();
-        
-        wasClicked = col.OverlapPoint(Camera.main.ScreenToWorldPoint(mousePos));
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        wasClicked = col.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
     }
     
     private void Interact(InputAction.CallbackContext ctx)
@@ -129,7 +137,8 @@ public class Tower : MonoBehaviour
         if (isPlaced)
         {
             Vector2 mousePos = inputActions.Player.MousePos.ReadValue<Vector2>();
-            bool hit = col.OverlapPoint(Camera.main.ScreenToWorldPoint(mousePos));
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            bool hit = col.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
 
             if (hit && wasClicked) isSelected = !isSelected;
             else isSelected = false;
@@ -139,7 +148,6 @@ public class Tower : MonoBehaviour
         {
             if (canBePlaced)
             {
-                sprite.color = defaultColor;
                 rangeIndicator.gameObject.SetActive(false);
                 gameObject.layer = TOWER_LAYER_NUM;
                 isPlaced = true;

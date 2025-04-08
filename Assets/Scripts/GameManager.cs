@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public GameObject activeGameUI;
     public GameObject loseScreenUI;
 
+    public BoxCollider groundCollider;
+
     public bool playing;
     public bool endingGame;
     [SerializeField] private float endSlowdownRate;
