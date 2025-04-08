@@ -19,7 +19,6 @@ public class Tower : MonoBehaviour
     }
 
     public SynergyType synergyType;
-    public string synergyName;
     public GameObject synergyManager;
     [Header("Colors")]
     [SerializeField] private Color rangeIndicatorValidColor;
@@ -51,7 +50,6 @@ public class Tower : MonoBehaviour
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         gameObject.layer = UI_LAYER_NUM;
         synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString());
-        //synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyName);
     }
 
     private void OnEnable()

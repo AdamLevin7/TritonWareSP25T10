@@ -24,10 +24,10 @@ public class Synergy : MonoBehaviour
             greenTowers++;
         }
     }
-    void Update(){
+    /*void Update(){
         Debug.Log("red " + redTowers);
         Debug.Log("blue " + blueTowers);
         Debug.Log("yellow " + yellowTowers);
         Debug.Log("green " + greenTowers);
-    }
+    } */
 }
