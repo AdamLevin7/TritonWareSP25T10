@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 3832153094053922752}
   - component: {fileID: 1459948938661556982}
   m_Layer: 6
-  m_Name: Tower
+  m_Name: Tower Synergy
   m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,10 +263,10 @@ MonoBehaviour:
   placementObstructionLayer:
     serializedVersion: 2
     m_Bits: 192
-  synergyType: 0
-  synergyName: red
+  synergyType: 1
+  synergyName: blue
   synergyManager: {fileID: 5728797431126738059, guid: f5014bb3faea947ee874b48b15c5a2d8, type: 3}
-  rangeIndicatorValidColor: {r: 0.14965291, g: 0.15732715, b: 0.1792453, a: 0.4}
+  rangeIndicatorValidColor: {r: 0, g: 0.25, b: 1, a: 0.4}
   rangeIndicatorInvalidColor: {r: 0.45, g: 0, b: 0, a: 0.4}
   shootCooldown: 1
   range: 4

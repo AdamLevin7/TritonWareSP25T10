@@ -11,6 +11,16 @@ public class Tower : MonoBehaviour
     [SerializeField] private SpriteRenderer rangeIndicator;
     [SerializeField] private LayerMask towerLayer;
     [SerializeField] private LayerMask placementObstructionLayer;
+    public enum SynergyType{
+        Red,
+        Blue,
+        Yellow,
+        Green
+    }
+
+    public SynergyType synergyType;
+    public string synergyName;
+    public GameObject synergyManager;
     [Header("Colors")]
     [SerializeField] private Color rangeIndicatorValidColor;
     [SerializeField] private Color rangeIndicatorInvalidColor;
@@ -40,6 +50,8 @@ public class Tower : MonoBehaviour
         rangeIndicator.gameObject.SetActive(true);
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         gameObject.layer = UI_LAYER_NUM;
+        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString());
+        //synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyName);
     }
 
     private void OnEnable()
