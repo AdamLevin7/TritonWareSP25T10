@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int maxRounds;
 
     public int money;
+    public int starterMoney;
 
     public GameObject towerManager;
     public GameObject enemyManager;
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
         playing = true;
         currentRound = 1;
         lives = maxLives;
-        money = 0;
+        money = starterMoney;
         activeGameUI.SetActive(true);
         loseScreenUI.SetActive(false);
 
