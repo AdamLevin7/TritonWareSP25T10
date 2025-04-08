@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 758042996}
   - component: {fileID: 758042995}
   - component: {fileID: 758042997}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1198,6 +1198,7 @@ MonoBehaviour:
   EnemyList: []
   VelocityList: []
   CurrentNodeList: 
+  EnemyHPList: 
   EnemySpeed: 2
   NodeContainer: {fileID: 1535996425}
   NodePositionList: []
@@ -1495,7 +1496,7 @@ GameObject:
   - component: {fileID: 1884565697}
   - component: {fileID: 1884565696}
   - component: {fileID: 1884565695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
