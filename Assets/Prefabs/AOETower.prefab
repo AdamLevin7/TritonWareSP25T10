@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2446133724271235430, guid: d5b2f2b1e9123004c8c6ee7e5c3aea8c, type: 3}
     - target: {fileID: 7511868085723059214, guid: ec8ab9fdc7e16474d88e753791dd4c09, type: 3}
       propertyPath: range
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7511868085723059214, guid: ec8ab9fdc7e16474d88e753791dd4c09, type: 3}
       propertyPath: shootCooldown
