@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1676006455404629335}
   - component: {fileID: 6012178250135809179}
   - component: {fileID: -8034131685882588369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AOEProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2300703536499177472}
   - component: {fileID: 545341512275855810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6189537578739236308}
   - component: {fileID: 846532673309327696}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

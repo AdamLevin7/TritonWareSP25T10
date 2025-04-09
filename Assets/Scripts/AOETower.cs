@@ -5,12 +5,6 @@ public class AOETower : TowerBehavior
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform cannon;
 
-    public void Awake()
-    {
-        this.tower.shootCooldown = 1.0f;
-        this.tower.range = 2.0f;
-    }
-
     public override void Fire()
     {
         Vector2 direction = tower.target.position - transform.position;

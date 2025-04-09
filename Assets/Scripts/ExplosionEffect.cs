@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class ExplosionEffect : MonoBehaviour
@@ -10,6 +11,7 @@ public class ExplosionEffect : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
 
     private bool colliderActive;
+    [SerializeField] private LayerMask ignoreSelfMask;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,6 +19,18 @@ public class ExplosionEffect : MonoBehaviour
         Vector3 scale3D = new (explosionRadiusScaleFactor, explosionRadiusScaleFactor, 1);
         explosionCtr = 0.0f;
         transform.localScale = scale3D;
+    }
+
+    void OnEnable()
+    {
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, circleCollider.radius, ignoreSelfMask);
+        Debug.Log("enemies hit: " + hitEnemies.Length);
+
+        foreach (Collider enemy in hitEnemies)
+        {
+            return;
+            // enemy.SendMessage("TakeDamage", damage);
+        }
     }
 
     void Update()
@@ -28,19 +42,4 @@ public class ExplosionEffect : MonoBehaviour
         }   
     }
 
-    void FixedUpdate()
-    {
-        if (!colliderActive)
-        {
-            circleCollider.enabled = false;
-        }
-    }
-
-    // explosion should only hit every object once
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // collision.gameObject.GetComponent<Enemy>().hp -= dmg;
-        colliderActive = false;
-        Debug.Log("collided with object");
-    }
 }
