@@ -24,8 +24,8 @@ public class Tower : MonoBehaviour
     private InputSystem_Actions inputActions;
 
     public TowerBehavior behavior;
-    public float shootCooldown = 0.5f;
-    public float range = 10;
+    public float shootCooldown;
+    public float range;
     private float timeSinceLastShoot = 0f;
 
     private bool isPlaced = false;

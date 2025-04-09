@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 73948283689045732}
-  - component: {fileID: 5697273396965713051}
   - component: {fileID: 1676006455404629335}
   - component: {fileID: 6012178250135809179}
+  - component: {fileID: -8034131685882588369}
   m_Layer: 0
   m_Name: AOEProjectile
   m_TagString: Untagged
@@ -36,22 +36,6 @@ Transform:
   - {fileID: 2300703536499177472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5697273396965713051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2446133724271235430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14de345d7b1c56a43898b4e31608170d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  range: 10
-  pierces: 0
-  direction: {x: 1, y: 0}
 --- !u!58 &1676006455404629335
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,6 +99,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-8034131685882588369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2446133724271235430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70dc0855b9056740bfe26141d12ff0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  speed: 10
+  range: 10
+  pierces: 0
+  direction: {x: 1, y: 0}
+  explosion: {fileID: 344771678506714218, guid: 4cdc801281e0e1340ad7d35a8595216c, type: 3}
 --- !u!1 &4350233107679075523
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +194,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.113504104, g: 0.99607843, b: 0, a: 1}
+  m_Color: {r: 0.105882354, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -279,7 +281,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.274894, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.10566044, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

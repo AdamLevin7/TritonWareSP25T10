@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 22925af051fb51146917a80f2a7efc9f, type: 2}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: shootCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6310284994268039186, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

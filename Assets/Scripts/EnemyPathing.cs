@@ -121,6 +121,11 @@ public class EnemyPathing : MonoBehaviour
             EnemyTakeDamage(EnemyList[0], 5);
         }
 
+        if (Input.GetKeyUp(KeyCode.H))
+        {
+            CreateNewEnemy(1);
+        }
+
     }
 
     private void DestroyEnemy(int i)
