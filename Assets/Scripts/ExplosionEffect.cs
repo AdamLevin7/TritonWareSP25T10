@@ -11,7 +11,6 @@ public class ExplosionEffect : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
 
     private bool colliderActive;
-    [SerializeField] private LayerMask ignoreSelfMask;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,13 +22,16 @@ public class ExplosionEffect : MonoBehaviour
 
     void OnEnable()
     {
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, circleCollider.radius, ignoreSelfMask);
-        Debug.Log("enemies hit: " + hitEnemies.Length);
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, circleCollider.radius);
+        Debug.Log("collisions: " + hitEnemies.Length);
 
-        foreach (Collider enemy in hitEnemies)
+        foreach (Collider collision in hitEnemies)
         {
-            return;
-            // enemy.SendMessage("TakeDamage", damage);
+            if (collision.CompareTag("Enemy"))
+            {
+                return;
+                // enemy.SendMessage("TakeDamage", damage);
+            }
         }
     }
 
