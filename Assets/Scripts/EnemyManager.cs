@@ -44,6 +44,7 @@ public class EnemyManager : MonoBehaviour
 
     void DummyAddMoney()
     {
+        GameManager.Instance.money += 5;
         Debug.Log("Money added");
     }
 
