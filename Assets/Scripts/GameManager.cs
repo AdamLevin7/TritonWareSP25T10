@@ -79,6 +79,9 @@ public class GameManager : MonoBehaviour
     // begins new game (used in callbacks and button triggers)
     public void BeginNewGame()
     {
+        // towerManager.ClearTowers()
+        // or do it yourself here
+
         playing = true;
         currentRound = 1;
         lives = maxLives;
