@@ -56,11 +56,14 @@ public class Tower : MonoBehaviour
         inputActions.Enable();
         inputActions.Player.Interact.started += StartInteract;
         inputActions.Player.Interact.canceled += Interact;
+        inputActions.Player.Cancel.performed += Cancel;
     }
 
     private void OnDisable()
     {
+        inputActions.Player.Interact.started -= StartInteract;
         inputActions.Player.Interact.canceled -= Interact;
+        inputActions.Player.Cancel.performed -= Cancel;
         inputActions.Disable();
     }
 
@@ -77,7 +80,7 @@ public class Tower : MonoBehaviour
         {
             timeSinceLastShoot -= dt;
 
-            GetTarget();
+            SetTarget();
 
             if (timeSinceLastShoot < 0f && target != null)
             {
@@ -103,7 +106,10 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void GetTarget()
+    /// <summary>
+    /// Sets this tower's target to the nearest enemy in range;
+    /// </summary>
+    public void SetTarget()
     {
         int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, range, inRange);
 
@@ -160,5 +166,19 @@ public class Tower : MonoBehaviour
             }
 
         }
+    }
+
+    private void Cancel(InputAction.CallbackContext ctx)
+    {
+        if (isPlaced)
+        {
+            isSelected = false;
+            rangeIndicator.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float range;
     public bool pierces = false;
+    public float damage = 5f;
 
     private float maxLifetime;
     private float remainingLifetime;
@@ -34,10 +35,11 @@ public class Projectile : MonoBehaviour
         transform.position += (Vector3)(speed * fdt * direction );
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
+            EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, (int)damage);
             if (!pierces) Destroy(gameObject);
         }
     }
