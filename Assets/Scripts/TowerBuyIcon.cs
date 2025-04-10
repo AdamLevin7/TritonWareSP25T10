@@ -33,7 +33,7 @@ public class TowerBuyIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IPoi
     // IDragHandler is necessary for OnBeginDrag, so this is a dummy function
     public void OnDrag(PointerEventData eventData)
     {
-        int foo = 0;
+        return;
     }
 
     public void OnPointerClick(PointerEventData eventData){

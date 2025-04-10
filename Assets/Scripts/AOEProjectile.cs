@@ -12,6 +12,8 @@ public class AOEProjectile : MonoBehaviour
     private float maxLifetime;
     private float remainingLifetime;
 
+    private bool alreadyExploded = false;
+
     public Vector2 direction = Vector2.right;
     [SerializeField] private GameObject explosion;
 
@@ -29,11 +31,6 @@ public class AOEProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            CreateExplosion();
-        }
     }
 
     private void FixedUpdate()
@@ -43,22 +40,28 @@ public class AOEProjectile : MonoBehaviour
         transform.position += (Vector3)(speed * fdt * direction );
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             CreateExplosion();
 
-            if (!pierces) Destroy(gameObject);
+            if (!pierces)
+            {
+                Destroy(gameObject);
+            }
             // enemy.hp -= damage;
         }
     }
 
     private void CreateExplosion()
     {
-        Debug.Log("kaboom");
+        if (alreadyExploded) return;
+
         GameObject projectileExplosion = Instantiate(explosion);
-        projectileExplosion.transform.position = this.transform.position;
+        projectileExplosion.transform.position = transform.position;
         explosion.SetActive(true);
+
+        alreadyExploded = true;
     }
 }

@@ -33,6 +33,8 @@ public class PathObstructor : MonoBehaviour
             newCollider.center = Vector3.zero;
             newCollider.radius = pathWidth / 2;
 
+            colliderContainer.transform.position += newCollider.radius * Vector3.back;
+
             curr = next;
         }
     }

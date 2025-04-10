@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6468209976776054506}
   - component: {fileID: 7575858077953343098}
   - component: {fileID: 4700889916765412402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3619574029440374692}
   - component: {fileID: 5724369451736060982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyPrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}

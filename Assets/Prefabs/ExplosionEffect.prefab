@@ -51,9 +51,9 @@ MonoBehaviour:
   explosionCtr: 0
   explosionDuration: 0.5
   circleCollider: {fileID: -6942888086288977213}
-  ignoreSelfMask:
+  enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!58 &-6942888086288977213
 CircleCollider2D:
   m_ObjectHideFlags: 0
