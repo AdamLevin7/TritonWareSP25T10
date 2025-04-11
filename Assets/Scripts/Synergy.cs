@@ -19,12 +19,12 @@ public class Synergy : MonoBehaviour
 
     // Update is called once per frame
     private void Awake(){
-        /*
+        
         rbSyn.enabled = false;
         rgSyn.enabled = false;
         bgSyn.enabled = false;
         totalSyn.enabled = false;
-        */
+        
     }
     public void UpdateTowerSynergy(string type)
     {

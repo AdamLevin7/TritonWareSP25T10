@@ -25,6 +25,7 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Text selectedTowerName;
     [SerializeField] private Text selectedTowerDamage;
     [SerializeField] private Text selectedTowerValue;
+    [SerializeField] private Image selectedTowerIcon;
     private GameObject currentSelectedTower;
     private Tower currentSelectedTowerClass;
 
@@ -63,7 +64,8 @@ public class UIHandlerScript : MonoBehaviour
         currentSelectedTower = tower;
         currentSelectedTowerClass = tower.GetComponent<Tower>();
         currentSelectedTowerData = currentSelectedTowerClass.data;
-
+        
+        selectedTowerIcon.sprite = currentSelectedTowerData.icon;
         selectedTowerName.text = currentSelectedTowerData.towerName;
         selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.totalDamageDealt).ToString();
         selectedTowerValue.text = "Value: " + currentSelectedTowerClass.sellValue;
