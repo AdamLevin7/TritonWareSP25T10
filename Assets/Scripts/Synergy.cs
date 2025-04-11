@@ -78,6 +78,7 @@ public class Synergy : MonoBehaviour
             totalSyn.enabled = false;
         }
     }
+   /*
     void Update(){
         
         Debug.Log("rb " + rbSynergy + " r " + redTowers);
@@ -85,5 +86,5 @@ public class Synergy : MonoBehaviour
         Debug.Log("bg " + bgSynergy + " g " + greenTowers);
         Debug.Log("total " + totalSynergy);
         
-    } 
+    } */
 }
