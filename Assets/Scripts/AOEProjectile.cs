@@ -44,6 +44,7 @@ public class AOEProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, (int)damage);
             CreateExplosion();
 
             if (!pierces)

@@ -19,10 +19,12 @@ public class Synergy : MonoBehaviour
 
     // Update is called once per frame
     private void Awake(){
+        /*
         rbSyn.enabled = false;
         rgSyn.enabled = false;
         bgSyn.enabled = false;
         totalSyn.enabled = false;
+        */
     }
     public void UpdateTowerSynergy(string type)
     {
@@ -78,9 +80,11 @@ public class Synergy : MonoBehaviour
         }
     }
     void Update(){
+        /*
         Debug.Log("rb " + rbSynergy + " r " + redTowers);
         Debug.Log("rg " + rgSynergy + " b " + blueTowers);
         Debug.Log("bg " + bgSynergy + " g " + greenTowers);
         Debug.Log("total " + totalSynergy);
+        */
     } 
 }

@@ -1,4 +1,5 @@
 using System.Data.SqlTypes;
+using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private SpriteRenderer rangeIndicator;
     [SerializeField] private LayerMask towerLayer;
     [SerializeField] private LayerMask placementObstructionLayer;
+
     public enum SynergyType{
         Red,
         Blue,
@@ -27,6 +29,9 @@ public class Tower : MonoBehaviour
     public float shootCooldown;
     public float range;
     private float timeSinceLastShoot = 0f;
+    [Header("Upgrades")]
+    public int currentUpgradeTier;
+    public int maxUpgradeTiers;
 
     private bool isPlaced = false;
     private bool canBePlaced = false;
@@ -38,6 +43,8 @@ public class Tower : MonoBehaviour
     private const int TOWER_LAYER_NUM = 6;
 
     public TowerData data;
+    public float totalDamageDealt;
+    public int sellValue;
 
     // For storing collision for detecting enemies in range
     private readonly Collider[] inRange = new Collider[32];
@@ -48,7 +55,8 @@ public class Tower : MonoBehaviour
         rangeIndicator.gameObject.SetActive(true);
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         gameObject.layer = UI_LAYER_NUM;
-        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString());
+        // synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString());
+        // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
     }
 
     private void OnEnable()
@@ -146,9 +154,17 @@ public class Tower : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
             bool hit = col.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
 
-            if (hit && wasClicked) isSelected = !isSelected;
+            if (hit && wasClicked) 
+            {
+                isSelected = !isSelected;
+
+                // open tower selection ui
+                UIHandlerScript.Instance.UpdateTowerSelectedInformation(this.gameObject);
+                UIHandlerScript.Instance.SetTowerSelectedUIState(isSelected);
+            }
             else isSelected = false;
             rangeIndicator.gameObject.SetActive(isSelected);
+
         }
         else
         {
@@ -159,6 +175,7 @@ public class Tower : MonoBehaviour
                 isPlaced = true;
 
                 GameManager.Instance.money -= data.price;
+                sellValue = (int)((float)data.price * 0.75f);
             }
             else
             {
@@ -174,6 +191,9 @@ public class Tower : MonoBehaviour
         {
             isSelected = false;
             rangeIndicator.gameObject.SetActive(false);
+
+            // close tower selection ui
+            // UIHandlerScript.Instance.SetTowerSelectedUIState(false);
         }
         else
         {
