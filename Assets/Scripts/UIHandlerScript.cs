@@ -28,6 +28,7 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Text selectedTowerDamage;
     [SerializeField] private Text selectedTowerValue;
     [SerializeField] private Image selectedTowerIcon;
+    [SerializeField] private GameObject synergyManager;
     private GameObject currentSelectedTower;
     private Tower currentSelectedTowerClass;
 
@@ -46,6 +47,7 @@ public class UIHandlerScript : MonoBehaviour
         livesTextComponent = livesTextObject.GetComponent<Text>();
         moneyTextComponent = moneyTextObject.GetComponent<Text>();
         roundWaveTextComponent = roundWaveTextObject.GetComponent<Text>();
+        synergyManager = GameObject.FindWithTag("synergy");
         // isWaveActive = false;
     }
 
@@ -78,6 +80,7 @@ public class UIHandlerScript : MonoBehaviour
     {
         // maybe have a towermanager do this in the future, but works for now
         GameManager.Instance.money += currentSelectedTowerClass.sellValue;
+        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(currentSelectedTowerClass.synergyType.ToString(), -1);
         Destroy(currentSelectedTower);
         SetTowerSelectedUIState(false);
     }

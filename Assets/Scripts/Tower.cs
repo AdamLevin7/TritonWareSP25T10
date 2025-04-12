@@ -57,7 +57,6 @@ public class Tower : MonoBehaviour
         gameObject.layer = UI_LAYER_NUM;
         Debug.Log("Hello there");
         synergyManager = GameObject.FindWithTag("synergy");
-        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
         GameManager.Instance.placingTower = true;
         // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
     }
@@ -177,6 +176,7 @@ public class Tower : MonoBehaviour
                 gameObject.layer = TOWER_LAYER_NUM;
                 isPlaced = true;
                 GameManager.Instance.placingTower = false;
+                synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
 
                 GameManager.Instance.money -= data.price;
                 sellValue = (int)((float)data.price * 0.75f);
