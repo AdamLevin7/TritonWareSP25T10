@@ -1402,7 +1402,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Synergy Test
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7561531366437205871, guid: f5014bb3faea947ee874b48b15c5a2d8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
