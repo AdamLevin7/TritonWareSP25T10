@@ -206,4 +206,18 @@ public class Tower : MonoBehaviour
         GameManager.Instance.placingTower = false;
 
     }
+
+    /// <summary>
+    /// Gets the proper target position of a <paramref name="target"/> Transform. 
+    /// This is so the z-component is always half of the <paramref name="target"/> collider's height.
+    /// </summary>
+    /// <param name="target">The target's transform</param>
+    /// <returns>The proper target position</returns>
+    public static Vector3 Get3DTargetPos(Transform target)
+    {
+        Vector2 initialTargetPos = target.position;
+        Vector3 targetHalfHeight = EnemyManager.Instance.TryGetEnemy(target.gameObject).halfHeight * Vector3.back;
+
+        return (Vector3)initialTargetPos + targetHalfHeight;
+    }
 }

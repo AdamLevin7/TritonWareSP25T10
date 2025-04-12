@@ -115,6 +115,22 @@ public class EnemyManager : MonoBehaviour
         activeEnemies.Add(new Enemy(newEnemy, newHalfHeight, 0, Vector2.zero, defaultEnemyMoveSpeed, TotalHP));
     }
 
+    /// <summary>
+    /// Checks if <paramref name="enemyRef"/> corresponds to a dead enemy.
+    /// </summary>
+    /// <param name="enemyRef">An enemy GameObject</param>
+    /// <returns></returns>
+    public bool EnemyIsDead(GameObject enemyRef)
+    {
+        for (int i = 0; i < deadEnemies.Count; i++)
+        {
+            Enemy enemy = deadEnemies[i];
+            if (enemy.gameObject.Equals(enemyRef)) return true;
+        }
+
+        return false;
+    }
+
     void Start()
     {
         // This should be done on load of the scene with the path
