@@ -270,6 +270,7 @@ public class EnemyManager : MonoBehaviour
     {
         ApplyEffect(effect, enemy);
         enemy.passiveEffects.Add(effect);
+    }
 
     public void SummonWave()
     {
