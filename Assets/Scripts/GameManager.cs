@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public bool isWaveActive;
     public float waveSpeedUpFactor;
     public bool isSpedUp;
+    public bool placingTower;
 
     public bool endingGame;
     [SerializeField] private float endSlowdownRate;
@@ -121,6 +122,7 @@ public class GameManager : MonoBehaviour
         if (isWaveActive)
         {
             Time.timeScale = (Time.timeScale == 1.0f) ? waveSpeedUpFactor : 1.0f;
+            isSpedUp = Time.timeScale > 1.0f;
         }
         else
         {
