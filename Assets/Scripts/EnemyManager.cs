@@ -2,6 +2,21 @@ using UnityEngine;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
+// public enum EffectType
+// {
+// 	OverTime, // effect repeatedly applied over duration
+// 	Buff      // effect applied once, removed after duration expires
+// }
+
+// effects limited to changing HP and movespeed for now.
+public class EnemyEffect
+{
+    /*EffectType type;*/
+    public uint timeLeft;
+    public int hpChange;
+    public float moveSpeedChange;
+}
+
 public class Enemy
 {
     public GameObject gameObject;
@@ -10,6 +25,8 @@ public class Enemy
     public Vector2 direction;
     public float moveSpeed;
     public int hp;
+    public List<EnemyEffect> passiveEffects;
+    public List<EnemyEffect> activeEffects;
 
     public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, int hp)
     {
@@ -19,6 +36,8 @@ public class Enemy
         this.direction = direction;
         this.moveSpeed = moveSpeed;
         this.hp = hp;
+        this.passiveEffects = new();
+        this.activeEffects = new();
     }
 }
 
@@ -93,6 +112,18 @@ public class EnemyManager : MonoBehaviour
             KillEnemy(enemy);
         }
     }
+    public void EnemyTakeDamage(Enemy enemy, int damageHPAmount)
+    {
+        if (enemy == null) return;
+
+        enemy.hp -= damageHPAmount;
+        if (enemy.hp < 0)
+        {
+            DummyAddMoney();
+            KillEnemy(enemy);
+        }
+
+    }
 
     /// <summary>
     /// Creates a new Enemy with an initial hp <paramref name="TotalHP"/>
@@ -132,6 +163,27 @@ public class EnemyManager : MonoBehaviour
         {
             Enemy enemy = activeEnemies[i];
 
+            for (int activeEffectInd = 0; activeEffectInd < enemy.activeEffects.Count; activeEffectInd++)
+            {
+                EnemyEffect e = enemy.activeEffects[activeEffectInd];
+                ApplyEffect(e, enemy);
+                e.timeLeft--;
+                if(e.timeLeft == 0)
+                {
+                    enemy.activeEffects.Remove(e);
+                }
+            }
+
+            for (int passiveEffectInd = 0; passiveEffectInd < enemy.passiveEffects.Count; passiveEffectInd++){
+                EnemyEffect e = enemy.passiveEffects[passiveEffectInd];
+                e.timeLeft--;
+                if(e.timeLeft == 0)
+                {
+                    ApplyEffectInverse(e, enemy);
+                    enemy.activeEffects.Remove(e);
+                }
+            }
+
             if (enemy.currentNodeIdx + 1 < NodePositionList.Count)
             {
                 enemy.direction = (NodePositionList[enemy.currentNodeIdx + 1] - NodePositionList[enemy.currentNodeIdx]).normalized;
@@ -159,6 +211,7 @@ public class EnemyManager : MonoBehaviour
                 }
 
             }
+
         }
 
         //Test of new enemy creation and or deletion
@@ -188,5 +241,32 @@ public class EnemyManager : MonoBehaviour
         enemy.gameObject.GetComponent<Collider>().enabled = false;
         activeEnemies.Remove(enemy);
         deadEnemies.Add(enemy);
+    }
+
+    // Standard effect application
+    private void ApplyEffect(EnemyEffect effect, Enemy enemy)
+    {
+        EnemyTakeDamage(enemy, effect.hpChange);
+        enemy.moveSpeed -= effect.moveSpeedChange;
+    }
+
+    // Useful for undoing an effect. A temporary slow will reduce movespeed then increase it later
+    private void ApplyEffectInverse(EnemyEffect effect, Enemy enemy)
+    {
+        EnemyTakeDamage(enemy, -effect.hpChange);
+        enemy.moveSpeed += effect.moveSpeedChange;
+    }
+
+    // Add to active effect list, which will be applied every tick.
+    public void AffectOverTime(EnemyEffect effect, Enemy enemy)
+    {
+        enemy.activeEffects.Add(effect);
+    }
+    
+    // Add to passive effect list, and apply effect once.
+    public void AffectDebuff(EnemyEffect effect, Enemy enemy)
+    {
+        ApplyEffect(effect, enemy);
+        enemy.passiveEffects.Add(effect);
     }
 }
