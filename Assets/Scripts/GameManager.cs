@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public int lives;
     public int maxLives;
 
-    public int currentRound;
-    public int maxRounds;
+    public int currentWave;
+    public int maxWaves;
 
     public int money;
     public int starterMoney;
@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     public BoxCollider groundCollider;
 
     public bool playing;
+    public bool isWaveActive;
+    public float waveSpeedUpFactor;
+    public bool isSpedUp;
+
     public bool endingGame;
     [SerializeField] private float endSlowdownRate;
     [SerializeField] private float endAnimationDuration;
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
         // or do it yourself here
 
         playing = true;
-        currentRound = 1;
+        currentWave = 1;
         lives = maxLives;
         money = starterMoney;
         activeGameUI.SetActive(true);
@@ -110,6 +114,28 @@ public class GameManager : MonoBehaviour
     public void CheckBalances()
     {
         return;
+    }
+
+    public void NextWaveOrSpeedUp()
+    {
+        if (isWaveActive)
+        {
+            Time.timeScale = (Time.timeScale == 1.0f) ? waveSpeedUpFactor : 1.0f;
+        }
+        else
+        {
+            isWaveActive = true;
+            SendNextWave();
+        }
+        UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
+    }
+
+    public void SendNextWave()
+    {
+        currentWave++;
+        
+        // probably pull summon[] data from .json or some other data file
+        EnemyManager.Instance.SummonWave();
     }
 
     // GameManager's own click event check!
@@ -135,5 +161,4 @@ public class GameManager : MonoBehaviour
             UIHandlerScript.Instance.SetTowerSelectedUIState(false);
         }
     }
-
 }

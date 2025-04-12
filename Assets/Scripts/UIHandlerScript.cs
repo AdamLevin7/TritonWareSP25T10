@@ -15,6 +15,8 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private GameObject roundWaveTextObject;
     [SerializeField] private GameObject availableTowersUI;
     [SerializeField] private GameObject synergiesUI;
+    [SerializeField] private GameObject nextWaveOrSpeedUpBtn;
+    [SerializeField] private Text nextWaveOrSpeedUpText;
 
     [Header("Loss UI")]
     public GameObject roundLossComponent;
@@ -44,7 +46,7 @@ public class UIHandlerScript : MonoBehaviour
         livesTextComponent = livesTextObject.GetComponent<Text>();
         moneyTextComponent = moneyTextObject.GetComponent<Text>();
         roundWaveTextComponent = roundWaveTextObject.GetComponent<Text>();
-
+        // isWaveActive = false;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class UIHandlerScript : MonoBehaviour
 
         livesTextComponent.text = "Lives: " + GameManager.Instance.lives;
         moneyTextComponent.text = "Money: " + GameManager.Instance.money;
-        roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentRound + "/" + GameManager.Instance.maxRounds;
+        roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentWave + "/" + GameManager.Instance.maxWaves;
 
     }
 
@@ -86,6 +88,18 @@ public class UIHandlerScript : MonoBehaviour
         towerSelectionUI.SetActive(state);
         availableTowersUI.SetActive(!state);
         synergiesUI.SetActive(!state);
+    }
+
+    public void SwitchWaveButton(bool waveActive, float timeScale)
+    {
+        if (waveActive)
+        {
+            nextWaveOrSpeedUpText.text = (timeScale == 1.0f) ? "1x Speed" : "2x Speed";
+        }
+        else
+        {
+            nextWaveOrSpeedUpText.text = "Start Wave";
+        }
     }
 
 }
