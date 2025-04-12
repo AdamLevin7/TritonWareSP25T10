@@ -56,8 +56,8 @@ public class Tower : MonoBehaviour
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         gameObject.layer = UI_LAYER_NUM;
         Debug.Log("Hello there");
-        // synergyManager = GameObject.FindWithTag("synergy");
-        // synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
+        synergyManager = GameObject.FindWithTag("synergy");
+        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
         // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
     }
 

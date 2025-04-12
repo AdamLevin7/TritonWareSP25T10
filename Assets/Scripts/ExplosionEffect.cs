@@ -15,6 +15,7 @@ public class ExplosionEffect : MonoBehaviour
     void Start()
     {
         colliderActive = true;
+        circleCollider.radius *= explosionRadiusScaleFactor;
         Vector3 scale3D = new (explosionRadiusScaleFactor, explosionRadiusScaleFactor, 1);
         explosionCtr = 0.0f;
         transform.localScale = scale3D;
