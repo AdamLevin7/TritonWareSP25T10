@@ -815,7 +815,7 @@ MonoBehaviour:
   loseScreenUI: {fileID: 1353290654}
   groundCollider: {fileID: 1640218016}
   playing: 0
-  isWaveActive: 0
+  isWaveActive: 1
   waveSpeedUpFactor: 2
   isSpedUp: 0
   endingGame: 0
@@ -1625,6 +1625,14 @@ PrefabInstance:
       propertyPath: defaultEnemyMoveSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1021647794489535556, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: possibleWavePatterns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021647794489535556, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: 'possibleWavePatterns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 493a01282b89c064b99097797381c3cd, type: 2}
     - target: {fileID: 2673621681878188361, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
       propertyPath: m_Name
       value: EnemyManager

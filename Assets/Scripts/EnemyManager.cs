@@ -42,6 +42,15 @@ public class EnemyManager : MonoBehaviour
 
     public float defaultEnemyMoveSpeed = 2f;
 
+    // round wave stuff
+    // synced by index
+    public List<WavePattern> wavePatterns = new();
+    public List<float> wavePatternsIntervalCtrs = new();
+    public List<float> wavePatternsInitDelayCtrs = new();
+    public List<float> wavePatternsAlreadySummonedCounts = new();
+
+    [SerializeField] private List<WavePattern> possibleWavePatterns;
+
     void DummyAddMoney()
     {
         GameManager.Instance.money += 5;
@@ -115,7 +124,9 @@ public class EnemyManager : MonoBehaviour
         }
 
         // This should be done on event trigger for a new Enemy
-        CreateNewEnemy(10);
+        // CreateNewEnemy(10);
+        // testing! - aiden
+        AddWavePattern(possibleWavePatterns[0]);
     }
 
     // Update is called once per frame
@@ -163,6 +174,12 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
+        // active round wave stuff
+        if (GameManager.Instance.isWaveActive)
+        {
+            UpdateWavePatterns();
+        }
+
         //Test of new enemy creation and or deletion
         if (Input.GetKeyUp(KeyCode.J))
         { 
@@ -173,11 +190,6 @@ public class EnemyManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.K))
         { 
             EnemyTakeDamage(activeEnemies[0].gameObject, 5);
-        }
-
-        if (Input.GetKeyUp(KeyCode.H))
-        {
-            CreateNewEnemy(10);
         }
     }
 
@@ -190,6 +202,56 @@ public class EnemyManager : MonoBehaviour
         enemy.gameObject.GetComponent<Collider>().enabled = false;
         activeEnemies.Remove(enemy);
         deadEnemies.Add(enemy);
+    }
+
+    public void AddWavePattern(WavePattern wave)
+    {
+        wavePatterns.Add(wave);
+        wavePatternsAlreadySummonedCounts.Add(0.0f);
+        wavePatternsInitDelayCtrs.Add(0.0f);
+        wavePatternsIntervalCtrs.Add(0.0f);
+    }
+
+    private void UpdateWavePatterns()
+    {
+        // probably not optimized
+        for (int i = 0; i < wavePatterns.Count; i++)
+        {
+            // already summoned all towers in pattern
+            if (wavePatternsAlreadySummonedCounts[i] >= wavePatterns[i].numberToSummon) 
+            {
+                continue;
+            }
+            // check if initial delay has passed
+            else if (wavePatternsInitDelayCtrs[i] < wavePatterns[i].initialDelay)
+            {
+                wavePatternsInitDelayCtrs[i] += Time.deltaTime;
+                continue;
+            }
+            // check if enough time has psased to spawn another enemy
+            else if (wavePatternsIntervalCtrs[i] < wavePatterns[i].summonInterval)
+            {
+                wavePatternsIntervalCtrs[i] += Time.deltaTime;
+                continue;
+            }
+            // FINALLY, summon an enemy lol
+            else
+            {
+                // certain enemies do not yet exist
+                CreateNewEnemy(10);
+                wavePatternsAlreadySummonedCounts[i]++;
+                wavePatternsIntervalCtrs[i] = 0.0f;
+                continue;
+            }
+        }
+    }
+
+    private void ClearWavePatterns()
+    {
+        wavePatterns.Clear();
+        wavePatternsAlreadySummonedCounts.Clear();
+        wavePatternsInitDelayCtrs.Clear();
+        wavePatternsIntervalCtrs.Clear();
     }
 
     public void SummonWave()
