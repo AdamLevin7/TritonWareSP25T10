@@ -9,13 +9,12 @@ using JetBrains.Annotations;
 // }
 
 // effects limited to changing HP and movespeed for now.
-public class EnemyEffect
-{
-    /*EffectType type;*/
-    public uint timeLeft;
-    public int hpChange;
-    public float moveSpeedChange;
-}
+// public class EnemyEffect
+// {
+//     public uint timeLeft;
+//     public int hpChange;
+//     public float moveSpeedChange;
+// }
 
 public class Enemy
 {
