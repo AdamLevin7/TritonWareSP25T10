@@ -12,35 +12,36 @@ public class Synergy : MonoBehaviour
     private bool rgSynergy;
     private bool bgSynergy;
     private bool totalSynergy;
-    [SerializeField] public Image rbSyn;
-    [SerializeField] public Image rgSyn;
-    [SerializeField] public Image bgSyn;
-    [SerializeField] public Image totalSyn;
+    public Image rbSyn;
+    public Image rgSyn;
+    public Image bgSyn;
+    public Image totalSyn;
 
     // Update is called once per frame
     private void Awake(){
+        
         rbSyn.enabled = false;
         rgSyn.enabled = false;
         bgSyn.enabled = false;
         totalSyn.enabled = false;
     }
-    public void UpdateTowerSynergy(string type)
+    public void UpdateTowerSynergy(string type, int towersAdded)
     {
         if(type == "Red"){
-            redTowers++;
+            redTowers += towersAdded;
         }
         if(type == "Blue"){
-            blueTowers++;
+            blueTowers += towersAdded;
         }
         if(type == "Yellow"){
-            yellowTowers++;
+            yellowTowers += towersAdded;
         }
         if(type == "Green"){
-            greenTowers++;
+            greenTowers += towersAdded;
         }
         CalculateSynergies();
     }
-    void CalculateSynergies(){
+    public void CalculateSynergies(){
         if(0.9*redTowers < blueTowers && 1.1*redTowers>blueTowers){
             rbSynergy = true;
             rbSyn.enabled = true;
@@ -77,10 +78,13 @@ public class Synergy : MonoBehaviour
             totalSyn.enabled = false;
         }
     }
+   /*
     void Update(){
+        
         Debug.Log("rb " + rbSynergy + " r " + redTowers);
         Debug.Log("rg " + rgSynergy + " b " + blueTowers);
         Debug.Log("bg " + bgSynergy + " g " + greenTowers);
         Debug.Log("total " + totalSynergy);
-    } 
+        
+    } */
 }

@@ -152,6 +152,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // kill enemies for reals 
         for (int i = 0; i < deadEnemies.Count; ++i)
         {
             Enemy enemy = deadEnemies[i];
@@ -159,6 +160,7 @@ public class EnemyManager : MonoBehaviour
             deadEnemies.Remove(enemy);
         }
 
+        // update positions of currently alive enemies
         for (int i = 0; i < activeEnemies.Count; ++i)
         {
             Enemy enemy = activeEnemies[i];
@@ -268,5 +270,9 @@ public class EnemyManager : MonoBehaviour
     {
         ApplyEffect(effect, enemy);
         enemy.passiveEffects.Add(effect);
+
+    public void SummonWave()
+    {
+        return;
     }
 }

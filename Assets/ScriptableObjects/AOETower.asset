@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386e67babf4a9664fb2fcc5c4cf79b34, type: 3}
   m_Name: AOETower
   m_EditorClassIdentifier: 
-  towerName: Test Tower
+  towerName: AOE Tower
   price: 200
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

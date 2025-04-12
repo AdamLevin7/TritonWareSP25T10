@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class GameManager : MonoBehaviour
     public int lives;
     public int maxLives;
 
-    public int currentRound;
-    public int maxRounds;
+    public int currentWave;
+    public int maxWaves;
 
     public int money;
     public int starterMoney;
@@ -26,15 +27,25 @@ public class GameManager : MonoBehaviour
     public BoxCollider groundCollider;
 
     public bool playing;
+    public bool isWaveActive;
+    public float waveSpeedUpFactor;
+    public bool isSpedUp;
+
     public bool endingGame;
     [SerializeField] private float endSlowdownRate;
     [SerializeField] private float endAnimationDuration;
     private float endAnimationCtr;
 
+    public InputSystem_Actions inputActions;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+
+        inputActions = new();
+        inputActions.Enable();
+        inputActions.Player.Interact.started += StartInteract;
 
         BeginNewGame();
     }
@@ -83,7 +94,7 @@ public class GameManager : MonoBehaviour
         // or do it yourself here
 
         playing = true;
-        currentRound = 1;
+        currentWave = 1;
         lives = maxLives;
         money = starterMoney;
         activeGameUI.SetActive(true);
@@ -103,5 +114,51 @@ public class GameManager : MonoBehaviour
     public void CheckBalances()
     {
         return;
+    }
+
+    public void NextWaveOrSpeedUp()
+    {
+        if (isWaveActive)
+        {
+            Time.timeScale = (Time.timeScale == 1.0f) ? waveSpeedUpFactor : 1.0f;
+        }
+        else
+        {
+            isWaveActive = true;
+            SendNextWave();
+        }
+        UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
+    }
+
+    public void SendNextWave()
+    {
+        currentWave++;
+        
+        // probably pull summon[] data from .json or some other data file
+        EnemyManager.Instance.SummonWave();
+    }
+
+    // GameManager's own click event check!
+    // only used for towerselectedui for now
+    private void StartInteract(InputAction.CallbackContext ctx)
+    {
+        Vector2 mousePos = inputActions.Player.MousePos.ReadValue<Vector2>();
+        // because of different resolutions i guess (maybe redundant)
+        Vector2 worldMousePos = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
+        Debug.Log(worldMousePos);
+        if (worldMousePos.y < -4.0f) return;
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
+
+        // should hit ground no matter what, but some redundancy wouldn't hurt :)
+        if (hitInfo.collider == null) return;
+
+        // if clicking "nothing", hide tower selected ui
+        if (!hitInfo.collider.gameObject.CompareTag("tower"))
+        {
+            Debug.Log("hit nothing");
+            UIHandlerScript.Instance.SetTowerSelectedUIState(false);
+        }
     }
 }
