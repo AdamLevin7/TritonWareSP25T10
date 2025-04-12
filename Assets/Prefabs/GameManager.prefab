@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4636777667480818011}
-  - component: {fileID: 6216720945784721369}
+  - component: {fileID: 3717839466609955439}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6216720945784721369
+--- !u!114 &3717839466609955439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3337977728743847909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821ba9fcbbc6bf2499f669e8f59a27fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 90851848e74da2a4bb15ca8feb63d730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 0
   maxLives: 100
-  currentRound: 0
-  maxRounds: 30
+  currentRound: 1
+  maxRounds: 10
   money: 0
+  starterMoney: 100000
   towerManager: {fileID: 0}
   enemyManager: {fileID: 0}
+  availableTowers: []
+  activeGameUI: {fileID: 0}
+  loseScreenUI: {fileID: 0}
+  groundCollider: {fileID: 0}
+  playing: 0
+  endingGame: 0
+  endSlowdownRate: 0
+  endAnimationDuration: 0
