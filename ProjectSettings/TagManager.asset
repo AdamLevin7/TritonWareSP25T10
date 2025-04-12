@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - tower
   - synergy
+  - Projectile
   layers:
   - Default
   - TransparentFX
