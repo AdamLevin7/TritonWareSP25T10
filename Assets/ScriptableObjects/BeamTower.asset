@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386e67babf4a9664fb2fcc5c4cf79b34, type: 3}
   m_Name: BeamTower
   m_EditorClassIdentifier: 
-  towerName: 
-  price: 0
-  icon: {fileID: 0}
+  towerName: Light Beamer
+  price: 300
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
