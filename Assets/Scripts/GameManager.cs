@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -94,6 +95,11 @@ public class GameManager : MonoBehaviour
         // towerManager.ClearTowers()
         // or do it yourself here
 
+        // delete all towers and projectiles
+        ClearTowers();
+        ClearProjectiles();
+        ClearEnemies();
+
         playing = true;
         currentWave = 1;
         lives = maxLives;
@@ -162,5 +168,41 @@ public class GameManager : MonoBehaviour
             Debug.Log("hit nothing");
             UIHandlerScript.Instance.SetTowerSelectedUIState(false);
         }
+    }
+
+    // delete all towers on screen
+    public void ClearTowers()
+    {
+        
+        GameObject[] towersOnScreen = GameObject.FindGameObjectsWithTag("tower");
+
+        foreach (GameObject t in towersOnScreen)
+        {
+            Destroy(t);
+        }
+    }
+
+    // delete all projectiles on screem
+    public void ClearProjectiles()
+    {
+
+        GameObject[] projectilesOnScreen = GameObject.FindGameObjectsWithTag("Projectile");
+
+        foreach (GameObject p in projectilesOnScreen)
+        {
+            Destroy(p);
+        }
+    }
+
+    public void ClearEnemies()
+    {
+        GameObject[] enemiesOnScreen = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject e in enemiesOnScreen)
+        {
+            Destroy(e);
+        }
+
+        EnemyManager.Instance.ClearWavePatterns();
     }
 }

@@ -35,24 +35,20 @@ public class SettingsManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // inputActions = new();
+        inputActions = new();
+        inputActions.Enable();
+        inputActions.Player.Cancel.performed += Cancel;
 
         masterVolumeSliderValue = masterVolumeSlider.value;
         sfxVolumeSliderValue = sfxVolumeSlider.value;
         musicVolumeSliderValue = musicVolumeSlider.value; 
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-        inputActions.Player.Cancel.performed += Cancel;
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
-        inputActions.Player.Cancel.performed -= Cancel;
-    }
+    // private void OnDisable()
+    // {
+    //     inputActions.Disable();
+    //     inputActions.Player.Cancel.performed -= Cancel;
+    // }
 
     // Update is called once per frame
     void Update()
@@ -81,12 +77,14 @@ public class SettingsManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        settingsUI.SetActive(false);
         Time.timeScale = (GameManager.Instance.isSpedUp) ? GameManager.Instance.waveSpeedUpFactor : 1.00f;
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0.0f;
+        settingsUI.SetActive(true);
     }
 
     // try to pause game
@@ -96,12 +94,10 @@ public class SettingsManager : MonoBehaviour
 
         if (settingsUI.activeSelf)
         {
-            settingsUI.SetActive(false);
             ResumeGame();
         }
         else
         {
-            settingsUI.SetActive(true);
             PauseGame();
         }
     }

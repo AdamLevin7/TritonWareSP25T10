@@ -246,12 +246,15 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private void ClearWavePatterns()
+    public void ClearWavePatterns()
     {
         wavePatterns.Clear();
         wavePatternsAlreadySummonedCounts.Clear();
         wavePatternsInitDelayCtrs.Clear();
         wavePatternsIntervalCtrs.Clear();
+
+        activeEnemies.Clear();
+        deadEnemies.Clear();
     }
 
     public void SummonWave()
