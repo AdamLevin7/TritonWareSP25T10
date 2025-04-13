@@ -13,6 +13,7 @@ public class AOEProjectile : MonoBehaviour
     private float remainingLifetime;
 
     private bool alreadyExploded = false;
+    public TowerBehavior parentTower;
 
     public Vector2 direction = Vector2.right;
     [SerializeField] private GameObject explosion;
@@ -61,7 +62,8 @@ public class AOEProjectile : MonoBehaviour
 
         GameObject projectileExplosion = Instantiate(explosion);
         projectileExplosion.transform.position = transform.position;
-        explosion.SetActive(true);
+        projectileExplosion.GetComponent<ExplosionEffect>().parentTower = this.parentTower;
+        projectileExplosion.SetActive(true);
 
         alreadyExploded = true;
     }

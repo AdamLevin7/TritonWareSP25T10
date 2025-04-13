@@ -10,6 +10,8 @@ public class ExplosionEffect : MonoBehaviour
     public float explosionDuration;
     [SerializeField] private CircleCollider2D circleCollider;
 
+    public TowerBehavior parentTower;
+
     private bool colliderActive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +31,7 @@ public class ExplosionEffect : MonoBehaviour
         {
             if (enemy.CompareTag("Enemy"))
             {
+                parentTower.tower.totalDamageDealt += damage;
                 EnemyManager.Instance.EnemyTakeDamage(enemy.gameObject, (int)damage);
             }
         }

@@ -18,5 +18,6 @@ public class AOETower : TowerBehavior
         newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
         AOEProjectile newProjectile = newBullet.GetComponent<AOEProjectile>();
         newProjectile.direction = direction.normalized;
+        newProjectile.parentTower = this;
     }
 }

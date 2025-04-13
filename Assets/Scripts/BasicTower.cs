@@ -17,5 +17,7 @@ public class BasicTower : TowerBehavior
         newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
         Projectile newProjectile = newBullet.GetComponent<Projectile>();
         newProjectile.direction = direction.normalized;
+        newProjectile.parentTowerClass = this;
+        
     }
 }

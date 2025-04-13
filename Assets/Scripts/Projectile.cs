@@ -11,6 +11,8 @@ public class Projectile : MonoBehaviour
     private float remainingLifetime;
 
     public Vector2 direction = Vector2.right;
+    public GameObject parentTower;
+    public TowerBehavior parentTowerClass;
 
     private void Awake()
     {
@@ -40,7 +42,11 @@ public class Projectile : MonoBehaviour
         if (collision.collider.CompareTag("Enemy"))
         {
             EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, (int)damage);
-            if (!pierces) Destroy(gameObject);
+            if (!pierces) 
+            {
+                parentTowerClass.tower.totalDamageDealt += damage;
+                Destroy(gameObject);
+            }
         }
     }
 }
