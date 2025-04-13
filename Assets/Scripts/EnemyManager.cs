@@ -2,19 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-// public enum EffectType
-// {
-// 	OverTime, // effect repeatedly applied over duration
-// 	Buff      // effect applied once, removed after duration expires
-// }
-
-// effects limited to changing HP and movespeed for now.
-// public class EnemyEffect
-// {
-//     public uint timeLeft;
-//     public int hpChange;
-//     public float moveSpeedChange;
-// }
 
 public class Enemy
 {
@@ -24,8 +11,14 @@ public class Enemy
     public Vector2 direction;
     public float moveSpeed;
     public int hp;
-    public List<EnemyEffect> passiveEffects;
-    public List<EnemyEffect> activeEffects;
+
+    public float slowFactor;
+    public uint slowDuration;
+    public bool wasSlowed;
+
+    // For a more general system, disabled.
+    // public List<EnemyEffect> passiveEffects;
+    // public List<EnemyEffect> activeEffects;
 
     public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, int hp)
     {
@@ -35,8 +28,14 @@ public class Enemy
         this.direction = direction;
         this.moveSpeed = moveSpeed;
         this.hp = hp;
-        this.passiveEffects = new();
-        this.activeEffects = new();
+
+        // set to nothing values
+        this.slowFactor = 1;
+        this.slowDuration = 0;
+
+        // For a more general system, disabled.
+        /*this.passiveEffects = new();*/
+        /*this.activeEffects = new();*/
     }
 }
 
@@ -57,6 +56,11 @@ public class EnemyManager : MonoBehaviour
     //References for Creating Node Path
     public Transform NodeContainer;
     public List<Vector3> NodePositionList = new();
+
+    // Slowed Enemy specific references paired by index
+    public List<Enemy> slowedEnemies = new();
+    public List<float> slowFactor = new();
+    public List<uint> slowDuration = new();
 
     public float defaultEnemyMoveSpeed = 2f;
 
@@ -164,6 +168,9 @@ public class EnemyManager : MonoBehaviour
         {
             Enemy enemy = activeEnemies[i];
 
+            /* The following code was for a more general effect system.
+             * It is disabled for now.
+             * Please mourn.
             for (int activeEffectInd = 0; activeEffectInd < enemy.activeEffects.Count; activeEffectInd++)
             {
                 EnemyEffect e = enemy.activeEffects[activeEffectInd];
@@ -183,6 +190,20 @@ public class EnemyManager : MonoBehaviour
                     ApplyEffectInverse(e, enemy);
                     enemy.activeEffects.Remove(e);
                 }
+            }
+            */
+
+            if(enemy.slowDuration != 0 && !enemy.wasSlowed)
+            {
+                enemy.slowDuration--;
+                enemy.wasSlowed = true;
+                enemy.moveSpeed = enemy.moveSpeed / enemy.slowFactor;
+            }
+            else if(enemy.slowDuration == 0 && enemy.wasSlowed)
+            {
+                enemy.moveSpeed = enemy.moveSpeed * enemy.slowFactor;
+                enemy.slowFactor = 1;
+                enemy.wasSlowed = false;
             }
 
             if (enemy.currentNodeIdx + 1 < NodePositionList.Count)
@@ -244,6 +265,9 @@ public class EnemyManager : MonoBehaviour
         deadEnemies.Add(enemy);
     }
 
+    /* The following code was for a more general effect system.
+     * It is disabled for now.
+     * Please mourn.
     // Standard effect application
     private void ApplyEffect(EnemyEffect effect, Enemy enemy)
     {
@@ -269,6 +293,24 @@ public class EnemyManager : MonoBehaviour
     {
         ApplyEffect(effect, enemy);
         enemy.passiveEffects.Add(effect);
+    }
+    */
+
+    // following the common "Enemy[Action]" naming scheme
+    public void EnemySlowed(GameObject EnemyReference, uint duration, float factor)
+    {
+
+        Enemy enemy = TryGetEnemy(EnemyReference);
+        if (enemy == null) return;
+
+        SlowEnemy(enemy, duration, factor);
+    }
+
+    // following a different naming scheme
+    public void SlowEnemy(Enemy enemy, uint duration, float factor)
+    {
+        enemy.slowFactor = factor;
+        enemy.slowDuration = duration;
     }
 
     public void SummonWave()
