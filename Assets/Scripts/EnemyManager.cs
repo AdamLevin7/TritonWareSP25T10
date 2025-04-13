@@ -47,16 +47,14 @@ public class EnemyManager : MonoBehaviour
     // round wave stuff
     // synced by index
     public List<WavePattern> wavePatterns = new();
-    public List<float> wavePatternsIntervalCtrs = new();
-    public List<float> wavePatternsInitDelayCtrs = new();
-    public List<float> wavePatternsAlreadySummonedCounts = new();
+    private List<float> wavePatternsIntervalCtrs = new();
+    private List<float> wavePatternsInitDelayCtrs = new();
+    private List<float> wavePatternsAlreadySummonedCounts = new();
 
-    [SerializeField] private List<WavePattern> possibleWavePatterns;
 
     void DummyAddMoney()
     {
         GameManager.Instance.money += 5;
-        // Debug.Log("Money added");
     }
 
     /// <summary>
@@ -153,7 +151,6 @@ public class EnemyManager : MonoBehaviour
             Destroy(enemy.gameObject);
             deadEnemies.Remove(enemy);
             enemiesKilledThisWave++;
-            Debug.Log(enemiesKilledThisWave);
         }
 
         // update positions of currently alive enemies
@@ -198,7 +195,6 @@ public class EnemyManager : MonoBehaviour
             // if all enemies are dead, end round
             if (totalEnemiesInWave <= enemiesKilledThisWave)
             {
-                Debug.Log("wave over!");
                 GameManager.Instance.EndWave();
                 EnemyManager.Instance.totalEnemiesInWave = 0;
                 EnemyManager.Instance.enemiesKilledThisWave = 0;
@@ -227,7 +223,6 @@ public class EnemyManager : MonoBehaviour
         enemy.gameObject.GetComponent<Collider>().enabled = false;
         activeEnemies.Remove(enemy);
         deadEnemies.Add(enemy);
-        Debug.Log("dead enemies: " + deadEnemies.Count);
     }
 
     public void AddWavePattern(WavePattern wave)
