@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dac08791eb8f345a68337d1d2e4a0b, type: 3}
   m_Name: Wave2-1
   m_EditorClassIdentifier: 
+  enemyToSummon: {fileID: 11400000, guid: 2a4b60ff9d5e1644f84579dccb2a1d61, type: 2}
   numberToSummon: 20
   summonInterval: 1
   initialDelay: 0.5

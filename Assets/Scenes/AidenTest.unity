@@ -490,6 +490,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1004881058}
+    - target: {fileID: 4335842207167019810, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_Name
+      value: WaveControllerBtn
+      objectReference: {fileID: 0}
     - target: {fileID: 4431334956175403223, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -538,10 +542,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1004881058}
+    - target: {fileID: 4746086634539231301, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ControlWave
+      objectReference: {fileID: 0}
     - target: {fileID: 5826522950008326044, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1004881058}
+    - target: {fileID: 6702177494226371992, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_Text
+      value: 'Wave:
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7528955679981350552, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -869,7 +883,7 @@ MonoBehaviour:
   lives: 0
   maxLives: 100
   currentWave: 0
-  maxWaves: 0
+  maxWaves: 1
   money: 0
   starterMoney: 0
   towerManager: {fileID: 0}

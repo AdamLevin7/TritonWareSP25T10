@@ -51,6 +51,11 @@ public class UIHandlerScript : MonoBehaviour
         // isWaveActive = false;
     }
 
+    void Start()
+    {
+        roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentWave + "/" + GameManager.Instance.maxWaves;   
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -58,7 +63,7 @@ public class UIHandlerScript : MonoBehaviour
 
         livesTextComponent.text = "Lives: " + GameManager.Instance.lives;
         moneyTextComponent.text = "Money: " + GameManager.Instance.money;
-        roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentWave + "/" + GameManager.Instance.maxWaves;
+        // roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentWave + "/" + GameManager.Instance.maxWaves;
 
     }
 
@@ -103,6 +108,13 @@ public class UIHandlerScript : MonoBehaviour
         {
             nextWaveOrSpeedUpText.text = "Start Wave";
         }
+    }
+
+    public void UpdateWaveNumber(int waveNumber, int lastPredeterminedWave)
+    {
+        string waveText = "Wave: " + waveNumber;
+        if (waveNumber <= lastPredeterminedWave) waveText += " / " + lastPredeterminedWave;
+        roundWaveTextComponent.text = waveText;
     }
 
 }

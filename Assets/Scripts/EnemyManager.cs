@@ -36,6 +36,8 @@ public class EnemyManager : MonoBehaviour
     public GameObject EnemyPrefab;
     public List<Enemy> activeEnemies = new();
     public List<Enemy> deadEnemies = new();
+    public int totalEnemiesInWave;
+    public int enemiesKilledThisWave;
     //References for Creating Node Path
     public Transform NodeContainer;
     public List<Vector3> NodePositionList = new();
@@ -54,7 +56,7 @@ public class EnemyManager : MonoBehaviour
     void DummyAddMoney()
     {
         GameManager.Instance.money += 5;
-        Debug.Log("Money added");
+        // Debug.Log("Money added");
     }
 
     /// <summary>
@@ -107,12 +109,12 @@ public class EnemyManager : MonoBehaviour
     /// Creates a new Enemy with an initial hp <paramref name="TotalHP"/>
     /// </summary>
     /// <param name="TotalHP">The enemy's initial hp</param>
-    public void CreateNewEnemy(int TotalHP)
+    public void CreateNewEnemy(EnemyData enemyData)
     {
-        GameObject newEnemy = Instantiate(EnemyPrefab, NodePositionList[0], Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemyData.enemyPrefab, NodePositionList[0], Quaternion.identity);
         float newHalfHeight = newEnemy.GetComponent<SphereCollider>().radius;
         newEnemy.transform.position += newHalfHeight * Vector3.back;
-        activeEnemies.Add(new Enemy(newEnemy, newHalfHeight, 0, Vector2.zero, defaultEnemyMoveSpeed, TotalHP));
+        activeEnemies.Add(new Enemy(newEnemy, newHalfHeight, 0, Vector2.zero, enemyData.speed, enemyData.hp));
     }
 
     /// <summary>
@@ -139,10 +141,6 @@ public class EnemyManager : MonoBehaviour
             NodePositionList.Add(child.position);
         }
 
-        // This should be done on event trigger for a new Enemy
-        // CreateNewEnemy(10);
-        // testing! - aiden
-        AddWavePattern(possibleWavePatterns[0]);
     }
 
     // Update is called once per frame
@@ -154,6 +152,8 @@ public class EnemyManager : MonoBehaviour
             Enemy enemy = deadEnemies[i];
             Destroy(enemy.gameObject);
             deadEnemies.Remove(enemy);
+            enemiesKilledThisWave++;
+            Debug.Log(enemiesKilledThisWave);
         }
 
         // update positions of currently alive enemies
@@ -194,12 +194,21 @@ public class EnemyManager : MonoBehaviour
         if (GameManager.Instance.isWaveActive)
         {
             UpdateWavePatterns();
+
+            // if all enemies are dead, end round
+            if (totalEnemiesInWave <= enemiesKilledThisWave)
+            {
+                Debug.Log("wave over!");
+                GameManager.Instance.EndWave();
+                EnemyManager.Instance.totalEnemiesInWave = 0;
+                EnemyManager.Instance.enemiesKilledThisWave = 0;
+            }
         }
 
         //Test of new enemy creation and or deletion
         if (Input.GetKeyUp(KeyCode.J))
         { 
-            CreateNewEnemy(10);
+            CreateNewEnemy(WaveManager.Instance.possibleWavePatterns[0].enemyToSummon);
         }
 
         //Test Damage and Health
@@ -218,6 +227,7 @@ public class EnemyManager : MonoBehaviour
         enemy.gameObject.GetComponent<Collider>().enabled = false;
         activeEnemies.Remove(enemy);
         deadEnemies.Add(enemy);
+        Debug.Log("dead enemies: " + deadEnemies.Count);
     }
 
     public void AddWavePattern(WavePattern wave)
@@ -244,7 +254,7 @@ public class EnemyManager : MonoBehaviour
                 wavePatternsInitDelayCtrs[i] += Time.deltaTime;
                 continue;
             }
-            // check if enough time has psased to spawn another enemy
+            // check if enough time has passed to spawn another enemy
             else if (wavePatternsIntervalCtrs[i] < wavePatterns[i].summonInterval)
             {
                 wavePatternsIntervalCtrs[i] += Time.deltaTime;
@@ -253,8 +263,8 @@ public class EnemyManager : MonoBehaviour
             // FINALLY, summon an enemy lol
             else
             {
-                // certain enemies do not yet exist
-                CreateNewEnemy(10);
+                // enemy tyes do not yet exist
+                CreateNewEnemy(wavePatterns[i].enemyToSummon);
                 wavePatternsAlreadySummonedCounts[i]++;
                 wavePatternsIntervalCtrs[i] = 0.0f;
                 continue;
@@ -271,10 +281,5 @@ public class EnemyManager : MonoBehaviour
 
         activeEnemies.Clear();
         deadEnemies.Clear();
-    }
-
-    public void SummonWave()
-    {
-        return;
     }
 }

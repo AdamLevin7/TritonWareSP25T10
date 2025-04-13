@@ -30,11 +30,15 @@ public class WaveManager : MonoBehaviour
         switch (waveNumber)
         {
             case 1: 
-                // EnemyManager.Instance.AddWavePattern(possibleWavePatterns[69])
-                // EnemyManager.Instance.AddWavePattern(possibleWavePatterns[420])
+                EnemyManager.Instance.AddWavePattern(possibleWavePatterns[0]);
                 break;
-            case 2: break;
-            case 3: break;
+            case 2:
+                EnemyManager.Instance.AddWavePattern(possibleWavePatterns[1]);
+                break;
+            case 3:
+                // EnemyManager.Instance.AddWavePattern(possibleWavePatterns[69])
+                // EnemyManager.Instance.AddWavePattern(possibleWavePatterns[420]) 
+                break;
             default: 
                 // enemy stat changes here
                 // global stat multiplier in EnemyManager?
@@ -42,5 +46,14 @@ public class WaveManager : MonoBehaviour
                 // i.e. scaledHP = 1 + 0.1(waveNumber - GameManager.Instance.maxWaves), scaledSpeed = 1 + 0.1(waveNumber - GameManager.Instance.maxWaves), 
                 break;
         }
+
+        // totalEnemiesInWave used to check if everybody is dead in EnemyManager
+        EnemyManager.Instance.totalEnemiesInWave = 0;
+        EnemyManager.Instance.enemiesKilledThisWave = 0;
+        foreach(WavePattern wp in EnemyManager.Instance.wavePatterns)
+        {
+            EnemyManager.Instance.totalEnemiesInWave += wp.numberToSummon;
+        }
+        Debug.Log(EnemyManager.Instance.totalEnemiesInWave);
     }
 }

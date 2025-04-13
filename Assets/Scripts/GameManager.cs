@@ -101,7 +101,8 @@ public class GameManager : MonoBehaviour
         ClearEnemies();
 
         playing = true;
-        currentWave = 1;
+        currentWave = 0;
+        isWaveActive = false;
         lives = maxLives;
         money = starterMoney;
         activeGameUI.SetActive(true);
@@ -109,6 +110,9 @@ public class GameManager : MonoBehaviour
 
         endAnimationCtr = 0.0f;
         endingGame = false;
+
+        UIHandlerScript.Instance.UpdateWaveNumber(currentWave, maxWaves);
+        UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
     }
 
     // function to go back to menu (mainly used for buttons)
@@ -123,7 +127,7 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void NextWaveOrSpeedUp()
+    public void ControlWave()
     {
         if (isWaveActive)
         {
@@ -132,18 +136,21 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            isWaveActive = true;
             SendNextWave();
         }
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
+        Debug.Log("wave active" + isWaveActive);
     }
 
     public void SendNextWave()
     {
         currentWave++;
+        isWaveActive = true;
         
         // probably pull summon[] data from .json or some other data file
-        EnemyManager.Instance.SummonWave();
+        WaveManager.Instance.SummonWave(currentWave);
+        UIHandlerScript.Instance.UpdateWaveNumber(currentWave, maxWaves);
+        UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
     }
 
     // GameManager's own click event check!
@@ -153,7 +160,6 @@ public class GameManager : MonoBehaviour
         Vector2 mousePos = inputActions.Player.MousePos.ReadValue<Vector2>();
         // because of different resolutions i guess (maybe redundant)
         Vector2 worldMousePos = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
-        Debug.Log(worldMousePos);
         if (worldMousePos.y < -4.0f) return;
 
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -165,7 +171,6 @@ public class GameManager : MonoBehaviour
         // if clicking "nothing", hide tower selected ui
         if (!hitInfo.collider.gameObject.CompareTag("tower"))
         {
-            Debug.Log("hit nothing");
             UIHandlerScript.Instance.SetTowerSelectedUIState(false);
         }
     }
@@ -204,5 +209,16 @@ public class GameManager : MonoBehaviour
         }
 
         EnemyManager.Instance.ClearWavePatterns();
+    }
+
+    public void EndWave()
+    {
+        isWaveActive = false;
+        Time.timeScale = 1.0f;
+        UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
+        ClearProjectiles();
+        ClearEnemies();
+
+        money += 100 * currentWave;
     }
 }
