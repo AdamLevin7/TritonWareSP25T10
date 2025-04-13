@@ -46,7 +46,7 @@ public class EnemyManager : MonoBehaviour
 
     // round wave stuff
     // synced by index
-    public List<WavePattern> wavePatterns = new();
+    public List<WavePattern> waveQueue = new();
     private List<float> wavePatternsIntervalCtrs = new();
     private List<float> wavePatternsInitDelayCtrs = new();
     private List<float> wavePatternsAlreadySummonedCounts = new();
@@ -227,7 +227,7 @@ public class EnemyManager : MonoBehaviour
 
     public void AddWavePattern(WavePattern wave)
     {
-        wavePatterns.Add(wave);
+        waveQueue.Add(wave);
         wavePatternsAlreadySummonedCounts.Add(0.0f);
         wavePatternsInitDelayCtrs.Add(0.0f);
         wavePatternsIntervalCtrs.Add(0.0f);
@@ -236,21 +236,21 @@ public class EnemyManager : MonoBehaviour
     private void UpdateWavePatterns()
     {
         // probably not optimized
-        for (int i = 0; i < wavePatterns.Count; i++)
+        for (int i = 0; i < waveQueue.Count; i++)
         {
             // already summoned all towers in pattern
-            if (wavePatternsAlreadySummonedCounts[i] >= wavePatterns[i].numberToSummon) 
+            if (wavePatternsAlreadySummonedCounts[i] >= waveQueue[i].numberToSummon) 
             {
                 continue;
             }
             // check if initial delay has passed
-            else if (wavePatternsInitDelayCtrs[i] < wavePatterns[i].initialDelay)
+            else if (wavePatternsInitDelayCtrs[i] < waveQueue[i].initialDelay)
             {
                 wavePatternsInitDelayCtrs[i] += Time.deltaTime;
                 continue;
             }
             // check if enough time has passed to spawn another enemy
-            else if (wavePatternsIntervalCtrs[i] < wavePatterns[i].summonInterval)
+            else if (wavePatternsIntervalCtrs[i] < waveQueue[i].summonInterval)
             {
                 wavePatternsIntervalCtrs[i] += Time.deltaTime;
                 continue;
@@ -259,7 +259,7 @@ public class EnemyManager : MonoBehaviour
             else
             {
                 // enemy tyes do not yet exist
-                CreateNewEnemy(wavePatterns[i].enemyToSummon);
+                CreateNewEnemy(waveQueue[i].enemyToSummon);
                 wavePatternsAlreadySummonedCounts[i]++;
                 wavePatternsIntervalCtrs[i] = 0.0f;
                 continue;
@@ -269,7 +269,7 @@ public class EnemyManager : MonoBehaviour
 
     public void ClearWavePatterns()
     {
-        wavePatterns.Clear();
+        waveQueue.Clear();
         wavePatternsAlreadySummonedCounts.Clear();
         wavePatternsInitDelayCtrs.Clear();
         wavePatternsIntervalCtrs.Clear();

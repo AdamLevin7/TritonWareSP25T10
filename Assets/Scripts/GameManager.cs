@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public bool playing;
     public bool isWaveActive;
-    public float waveSpeedUpFactor;
+    public float waveSpeedUpFactor = 2f;
     public bool isSpedUp;
     public bool placingTower;
 
@@ -46,9 +46,22 @@ public class GameManager : MonoBehaviour
         else Instance = this;
 
         inputActions = new();
+    }
+
+    private void OnEnable()
+    {
         inputActions.Enable();
         inputActions.Player.Interact.started += StartInteract;
+    }
 
+    private void OnDisable()
+    {
+        inputActions.Player.Interact.started -= StartInteract;
+        inputActions.Disable();
+    }
+
+    private void Start()
+    {
         BeginNewGame();
     }
 

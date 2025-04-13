@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PathObstructor : MonoBehaviour
@@ -11,10 +12,25 @@ public class PathObstructor : MonoBehaviour
         CreatePathColliders();
     }
 
+    [ContextMenu("ClearPathColliders")]
+    public void ClearPathColliders()
+    {
+        foreach (Transform node in transform)
+        {
+            if (node.childCount > 0)
+                foreach (Transform child in node)
+                    if (Application.isEditor) DestroyImmediate(child.gameObject);
+                    else Destroy(child.gameObject);
+        }
+    }
+
+    [ContextMenu("CreatePathColliders")]
     public void CreatePathColliders()
     {
         if (pathColliderContainerPrefab == null) return;
         if (transform.childCount < 2) return;
+
+        ClearPathColliders();
 
         Transform curr = transform.GetChild(0);
 

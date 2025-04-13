@@ -50,7 +50,7 @@ public class WaveManager : MonoBehaviour
         // totalEnemiesInWave used to check if everybody is dead in EnemyManager
         EnemyManager.Instance.totalEnemiesInWave = 0;
         EnemyManager.Instance.enemiesKilledThisWave = 0;
-        foreach(WavePattern wp in EnemyManager.Instance.wavePatterns)
+        foreach(WavePattern wp in EnemyManager.Instance.waveQueue)
         {
             EnemyManager.Instance.totalEnemiesInWave += wp.numberToSummon;
         }
