@@ -348,6 +348,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248937084377422654, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1889156538}
+    - target: {fileID: 4248937084377422654, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginNewGame
+      objectReference: {fileID: 0}
     - target: {fileID: 4431334956175403223, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -400,6 +408,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ControlWave
       objectReference: {fileID: 0}
+    - target: {fileID: 6761590522234727884, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 191120722}
+    - target: {fileID: 6761590522234727884, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761590522234727884, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SettingsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7528955679981350552, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -429,6 +449,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+--- !u!114 &191120722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5599930860495320784, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+  m_PrefabInstance: {fileID: 191120721}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d76a46958911f947a31e554bb418e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &411246297 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8459048478033146133, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
@@ -590,6 +621,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3717839466609955439, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: maxWaves
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717839466609955439, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
       propertyPath: activeGameUI
       value: 
       objectReference: {fileID: 1856530390}
@@ -605,6 +640,10 @@ PrefabInstance:
       propertyPath: groundCollider
       value: 
       objectReference: {fileID: 1494638406}
+    - target: {fileID: 3717839466609955439, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: waveSpeedUpFactor
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4636777667480818011, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

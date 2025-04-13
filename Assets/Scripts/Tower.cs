@@ -176,7 +176,7 @@ public class Tower : MonoBehaviour
                 gameObject.layer = TOWER_LAYER_NUM;
                 isPlaced = true;
                 GameManager.Instance.placingTower = false;
-                synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
+                // synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
 
                 GameManager.Instance.money -= data.price;
                 sellValue = (int)((float)data.price * 0.75f);

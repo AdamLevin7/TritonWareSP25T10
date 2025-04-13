@@ -44,6 +44,9 @@ public class WaveManager : MonoBehaviour
                 // global stat multiplier in EnemyManager?
                 // like hp and speed multis
                 // i.e. scaledHP = 1 + 0.1(waveNumber - GameManager.Instance.maxWaves), scaledSpeed = 1 + 0.1(waveNumber - GameManager.Instance.maxWaves), 
+                
+                // OR, spam towers to high hell because its funny
+                List<WavePattern> randomWavePatterns = new();
                 break;
         }
 
