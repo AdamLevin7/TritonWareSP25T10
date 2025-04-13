@@ -7,20 +7,6 @@ public class SlowingTower : TowerBehavior
     [SerializeField] private uint slowRadius;
     public override void Fire()
     {
-
-    }
-
-    /*public void OnCollisionEnter(Collision collision)*/
-    /*{*/
-    /*    if (collision.collider.CompareTag("Enemy"))*/
-    /*    {*/
-    /*        EnemyManager.Instance.EnemySlowed(collision.gameObject,*/
-    /*                slowDuration, slowFactor);*/
-    /*    }*/
-    /**/
-    /*}*/
-    public void Update() 
-    {
         Collider[] overlapColliders = Physics.OverlapSphere(tower.transform.position, slowRadius);
         Debug.Log("Position: " + transform.position.ToString());
 
