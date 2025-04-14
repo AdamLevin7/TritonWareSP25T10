@@ -14,6 +14,7 @@ public class Enemy
 
     public float slowFactor;
     public uint slowDuration;
+    public float moveSpeedReduction;
     public bool wasSlowed;
 
     // For a more general system, disabled.
@@ -32,6 +33,8 @@ public class Enemy
         // set to nothing values
         this.slowFactor = 1;
         this.slowDuration = 0;
+        this.moveSpeedReduction = 0;
+        this.wasSlowed = false;
 
         // For a more general system, disabled.
         /*this.passiveEffects = new();*/
@@ -193,17 +196,27 @@ public class EnemyManager : MonoBehaviour
             }
             */
 
-            if(enemy.slowDuration != 0 && !enemy.wasSlowed)
+            if(enemy.slowDuration > 0)
             {
                 enemy.slowDuration--;
+            }
+            if(!enemy.wasSlowed)
+            {
                 enemy.wasSlowed = true;
-                enemy.moveSpeed = enemy.moveSpeed / enemy.slowFactor;
+                enemy.moveSpeedReduction = enemy.moveSpeed - enemy.moveSpeed/enemy.slowFactor;
+                enemy.moveSpeed = enemy.moveSpeed - enemy.moveSpeedReduction;
             }
             else if(enemy.slowDuration == 0 && enemy.wasSlowed)
             {
-                enemy.moveSpeed = enemy.moveSpeed * enemy.slowFactor;
-                enemy.slowFactor = 1;
                 enemy.wasSlowed = false;
+                enemy.moveSpeed = enemy.moveSpeed + enemy.moveSpeedReduction;
+                // enemy.slowFactor = 1;
+                enemy.moveSpeedReduction = 0;
+            }
+
+            if(enemy.slowDuration % 10 == 0)
+            {
+                /*Debug.Log("slow duration is" + enemy.slowDuration.ToString());*/
             }
 
             if (enemy.currentNodeIdx + 1 < NodePositionList.Count)
@@ -309,8 +322,28 @@ public class EnemyManager : MonoBehaviour
     // following a different naming scheme
     public void SlowEnemy(Enemy enemy, uint duration, float factor)
     {
-        enemy.slowFactor = factor;
-        enemy.slowDuration = duration;
+        if(enemy.wasSlowed && enemy.slowFactor == factor)
+        {
+            enemy.slowDuration = duration;
+            Debug.Log("Resetting slow duration");
+        }
+        else if(enemy.wasSlowed)
+        {
+            enemy.slowFactor = factor;
+            enemy.slowDuration = duration; 
+            float formerTotalSpeed = enemy.moveSpeed + enemy.moveSpeedReduction;
+            float newReduction = formerTotalSpeed - (formerTotalSpeed / factor);
+            float oldSpeed = enemy.moveSpeed;
+            enemy.moveSpeedReduction = newReduction;
+            enemy.moveSpeed = formerTotalSpeed - newReduction;
+            Debug.Log("Re-slowing from " + oldSpeed.ToString() + " to " + enemy.moveSpeed.ToString());
+        }
+        else 
+        {
+            enemy.slowFactor = factor;
+            enemy.slowDuration = duration;
+            Debug.Log("Slowing for the first time!");
+        }
     }
 
     public void SummonWave()
