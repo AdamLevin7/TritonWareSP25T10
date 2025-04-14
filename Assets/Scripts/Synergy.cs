@@ -20,6 +20,11 @@ public class Synergy : MonoBehaviour
     public Image blueSyn;
     //public Image totalSyn;
 
+    public float globalDamageScaleFactor;
+    public float globalRangeScaleFactor;
+    public float globalFirerateScaleFactor;
+    public float globalMoneyScaleFactor;
+
     // Update is called once per frame
     /*private void Awake(){
         

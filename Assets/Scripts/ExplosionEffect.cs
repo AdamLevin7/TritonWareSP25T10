@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ExplosionEffect : MonoBehaviour
 {
-    public float damage;
+    public float baseDamage;
     public float explosionRadiusScaleFactor;
 
     [SerializeField] float explosionCtr;
@@ -11,6 +11,8 @@ public class ExplosionEffect : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
 
     public TowerBehavior parentTower;
+    public float damageScaleFactor = 1;
+    public float effectiveDamage;
 
     private bool colliderActive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,8 +33,8 @@ public class ExplosionEffect : MonoBehaviour
         {
             if (enemy.CompareTag("Enemy"))
             {
-                parentTower.tower.totalDamageDealt += damage;
-                EnemyManager.Instance.EnemyTakeDamage(enemy.gameObject, (int)damage);
+                parentTower.tower.totalDamageDealt += baseDamage * damageScaleFactor;
+                EnemyManager.Instance.EnemyTakeDamage(enemy.gameObject, baseDamage * damageScaleFactor);
             }
         }
 
@@ -50,4 +52,8 @@ public class ExplosionEffect : MonoBehaviour
         }   
     }
 
+    public void UpdateEffectiveDamage(float scaleFactor)
+    {
+        effectiveDamage = baseDamage * scaleFactor;
+    }
 }
