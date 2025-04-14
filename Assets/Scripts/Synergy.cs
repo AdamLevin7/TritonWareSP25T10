@@ -112,7 +112,7 @@ public class Synergy : MonoBehaviour
         greenSyn.GetComponent<LayoutElement>().flexibleWidth = (float)greenTowers/totalTowers;
         blueSyn.GetComponent<LayoutElement>().flexibleWidth = (float)blueTowers/totalTowers;
     }
-   
+   /*
     void Update(){
         
         Debug.Log("rb " + rbSynergy + " r " + redTowers);
@@ -121,4 +121,5 @@ public class Synergy : MonoBehaviour
         Debug.Log("total " + totalSynergy + " t " + totalTowers);
         
     } 
+    */
 }
