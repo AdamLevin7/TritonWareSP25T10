@@ -1,6 +1,7 @@
 using System.Data.SqlTypes;
 using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,7 +28,8 @@ public class Tower : MonoBehaviour
 
     public TowerBehavior behavior;
     public float shootCooldown;
-    public float range;
+    public float baseRange;
+    public float effectiveRange;
     private float timeSinceLastShoot = 0f;
     [Header("Upgrades")]
     public int currentUpgradeTier;
@@ -45,6 +47,9 @@ public class Tower : MonoBehaviour
     public TowerData data;
     public float totalDamageDealt;
     public int sellValue;
+    public int damageScaleFactor = 1;
+    public int firerateScaleFactor = 1;
+    public int rangeScaleFactor = 1;
 
     // For storing collision for detecting enemies in range
     private readonly Collider[] inRange = new Collider[32];
@@ -53,12 +58,13 @@ public class Tower : MonoBehaviour
     {
         inputActions = new();
         rangeIndicator.gameObject.SetActive(true);
-        rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
+        rangeIndicator.transform.localScale = new(baseRange * 2, baseRange * 2, baseRange * 2);
         gameObject.layer = UI_LAYER_NUM;
         //Debug.Log("Hello there");
         synergyManager = GameObject.FindWithTag("synergy");
         GameManager.Instance.placingTower = true;
         // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
+        effectiveRange = baseRange * rangeScaleFactor;
     }
 
     private void OnEnable()
@@ -79,7 +85,7 @@ public class Tower : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(rangeIndicator.transform.position, range);
+        Gizmos.DrawWireSphere(rangeIndicator.transform.position, baseRange);
     }
 
     private void Update()
@@ -96,7 +102,7 @@ public class Tower : MonoBehaviour
             {
                 behavior.Fire();
 
-                timeSinceLastShoot = shootCooldown;
+                timeSinceLastShoot = shootCooldown /** (1/Synergy.Instance.globalFirerateScaleFactor)*/;
             }
         }
         else
@@ -121,7 +127,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     public void SetTarget()
     {
-        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, range, inRange);
+        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, baseRange, inRange);
 
         target = null;
         float minDistance = float.MaxValue;

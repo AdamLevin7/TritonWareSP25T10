@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 
 public class AOEProjectile : MonoBehaviour
 {
-    public float damage;
+    public float baseDamage;
     
     public float speed;
     public float range;
@@ -17,6 +17,8 @@ public class AOEProjectile : MonoBehaviour
 
     public Vector2 direction = Vector2.right;
     [SerializeField] private GameObject explosion;
+    public float damageScaleFactor;
+    public float effectiveDamage;
 
     private void Awake()
     {
@@ -45,7 +47,7 @@ public class AOEProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, (int)damage);
+            EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, baseDamage * damageScaleFactor);
             CreateExplosion();
 
             if (!pierces)
@@ -66,5 +68,10 @@ public class AOEProjectile : MonoBehaviour
         projectileExplosion.SetActive(true);
 
         alreadyExploded = true;
+    }
+
+    public void UpdateEffectiveDamage(float scaleFactor)
+    {
+        effectiveDamage = baseDamage * scaleFactor;
     }
 }

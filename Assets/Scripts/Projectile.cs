@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float range;
     public bool pierces = false;
-    public float damage = 5f;
+    public float baseDamage = 5f;
 
     private float maxLifetime;
     private float remainingLifetime;
@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     public Vector2 direction = Vector2.right;
     public GameObject parentTower;
     public TowerBehavior parentTowerClass;
+    public float damageScaleFactor;
+    public float effectiveDamage;
 
     private void Awake()
     {
@@ -41,12 +43,17 @@ public class Projectile : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, (int)damage);
+            EnemyManager.Instance.EnemyTakeDamage(collision.gameObject, baseDamage * damageScaleFactor);
             if (!pierces) 
             {
-                parentTowerClass.tower.totalDamageDealt += damage;
+                parentTowerClass.tower.totalDamageDealt += baseDamage * damageScaleFactor;
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void UpdateEffectiveDamage(float scaleFactor)
+    {
+        effectiveDamage = baseDamage * scaleFactor;
     }
 }

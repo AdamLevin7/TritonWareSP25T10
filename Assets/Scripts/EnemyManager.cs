@@ -9,9 +9,9 @@ public class Enemy
     public int currentNodeIdx;
     public Vector2 direction;
     public float moveSpeed;
-    public int hp;
+    public float hp;
 
-    public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, int hp)
+    public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, float hp)
     {
         this.gameObject = gameObject;
         this.halfHeight = halfHeight;
@@ -90,7 +90,7 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     /// <param name="EnemyReference">GameObject of the enemy to deal damage to</param>
     /// <param name="damageHPAmount">The amount of damage to deal to the enemy</param>
-    public void EnemyTakeDamage(GameObject EnemyReference, int damageHPAmount)
+    public void EnemyTakeDamage(GameObject EnemyReference, float damageHPAmount)
     {
         Enemy enemy = TryGetEnemy(EnemyReference);
         if (enemy == null) return;
@@ -178,7 +178,7 @@ public class EnemyManager : MonoBehaviour
                     if (enemy.currentNodeIdx >= NodePositionList.Count - 1)
                     {
                         // arbitrary number for now
-                        GameManager.Instance.lives -= Mathf.Max(0, enemy.hp);
+                        GameManager.Instance.lives -= (int)Mathf.Max(0, enemy.hp);
                         KillEnemy(enemy);
                         continue;
                     }

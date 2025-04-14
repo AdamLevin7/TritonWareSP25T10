@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
             SendNextWave();
         }
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
-        Debug.Log("wave active" + isWaveActive);
+        // Debug.Log("wave active" + isWaveActive);
     }
 
     public void SendNextWave()

@@ -5,6 +5,6 @@ public class EnemyData : ScriptableObject
 {
     public GameObject enemyPrefab;
     public int value;
-    public int hp;
+    public float hp;
     public float speed;
 }
