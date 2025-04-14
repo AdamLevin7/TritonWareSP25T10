@@ -46,13 +46,13 @@ public class EffectProjectile : MonoBehaviour
         {
             Enemy enemy = EnemyManager.Instance.TryGetEnemy(collision.gameObject);
             if(enemy == null) return;
-            EnemyManager.Instance.EnemyTakeDamage(enemy, (int)damage);
+            // EnemyManager.Instance.EnemyTakeDamage(enemy, (int)damage);
 
             if(isBuff){
-                enemy.passiveEffects.Add(effect);
+                // enemy.passiveEffects.Add(effect);
             }
             else {
-                enemy.activeEffects.Add(effect);
+                // enemy.activeEffects.Add(effect);
             }
 
             if (!pierces)
