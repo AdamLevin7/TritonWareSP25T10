@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3314468801435317163}
   - component: {fileID: 7561531366437205871}
   m_Layer: 0
-  m_Name: Synergy Test
-  m_TagString: Untagged
+  m_Name: Resonance Object
+  m_TagString: synergy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5728797431126738059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.0938964, y: 5.745346, z: -0.12381552}
+  m_LocalPosition: {x: -2.3438964, y: 5.995346, z: -0.12381552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0223223b1a64bce8e8f5be3ce14458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rbSyn: {fileID: 0}
-  rgSyn: {fileID: 0}
-  bgSyn: {fileID: 0}
-  totalSyn: {fileID: 0}
+  redSyn: {fileID: 0}
+  greenSyn: {fileID: 0}
+  blueSyn: {fileID: 0}
