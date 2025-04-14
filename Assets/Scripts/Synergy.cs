@@ -111,6 +111,41 @@ public class Synergy : MonoBehaviour
         redSyn.GetComponent<LayoutElement>().flexibleWidth = (float)redTowers/totalTowers;
         greenSyn.GetComponent<LayoutElement>().flexibleWidth = (float)greenTowers/totalTowers;
         blueSyn.GetComponent<LayoutElement>().flexibleWidth = (float)blueTowers/totalTowers;
+
+        OrderResonanceBar();
+    }
+
+    public void OrderResonanceBar(){
+        if(redTowers >= greenTowers && greenTowers >= blueTowers && redTowers >= blueTowers){
+            redSyn.transform.SetSiblingIndex(0);
+            greenSyn.transform.SetSiblingIndex(1);
+            blueSyn.transform.SetSiblingIndex(2);
+        }
+        else if(redTowers >= blueTowers && blueTowers >= greenTowers && redTowers >= greenTowers){
+            redSyn.transform.SetSiblingIndex(0);
+            greenSyn.transform.SetSiblingIndex(2);
+            blueSyn.transform.SetSiblingIndex(1);
+        }
+        else if(greenTowers >= redTowers && redTowers >= blueTowers && greenTowers >= blueTowers){
+            redSyn.transform.SetSiblingIndex(1);
+            greenSyn.transform.SetSiblingIndex(0);
+            blueSyn.transform.SetSiblingIndex(2);
+        }
+        else if(greenTowers >= blueTowers && blueTowers >= redTowers && greenTowers >= redTowers){
+            redSyn.transform.SetSiblingIndex(2);
+            greenSyn.transform.SetSiblingIndex(0);
+            blueSyn.transform.SetSiblingIndex(1);
+        }
+        else if(blueTowers >= redTowers && redTowers >= greenTowers && blueTowers >= greenTowers){
+            redSyn.transform.SetSiblingIndex(1);
+            greenSyn.transform.SetSiblingIndex(2);
+            blueSyn.transform.SetSiblingIndex(0);
+        }
+        else if(blueTowers >= greenTowers && greenTowers >= redTowers && blueTowers >= redTowers){
+            redSyn.transform.SetSiblingIndex(2);
+            greenSyn.transform.SetSiblingIndex(1);
+            blueSyn.transform.SetSiblingIndex(0);
+        }
     }
    /*
     void Update(){
