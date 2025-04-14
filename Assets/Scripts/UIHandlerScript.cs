@@ -17,6 +17,7 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private GameObject synergiesUI;
     [SerializeField] private GameObject nextWaveOrSpeedUpBtn;
     [SerializeField] private Text nextWaveOrSpeedUpText;
+    [SerializeField] private GameObject towerSelectUIBtn;
 
     [Header("Loss UI")]
     public GameObject roundLossComponent;
@@ -38,6 +39,9 @@ public class UIHandlerScript : MonoBehaviour
     private Text moneyTextComponent;
     private Text roundWaveTextComponent;
 
+    private RectTransform towerSelectUIBtnRT;
+    private bool hiddenTowerSelection = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -49,6 +53,8 @@ public class UIHandlerScript : MonoBehaviour
         roundWaveTextComponent = roundWaveTextObject.GetComponent<Text>();
         synergyManager = GameObject.FindWithTag("synergy");
         // isWaveActive = false;
+
+        towerSelectUIBtnRT = towerSelectUIBtn.GetComponent<RectTransform>();
     }
 
     void Start()
@@ -117,4 +123,12 @@ public class UIHandlerScript : MonoBehaviour
         roundWaveTextComponent.text = waveText;
     }
 
+    public void ControlTowerSelectUI()
+    {
+        hiddenTowerSelection = !hiddenTowerSelection;
+        availableTowersUI.SetActive(!hiddenTowerSelection);
+
+        float newX = (hiddenTowerSelection) ? -525 : 10;
+        towerSelectUIBtnRT.anchoredPosition = new(newX, -225);
+    }
 }
