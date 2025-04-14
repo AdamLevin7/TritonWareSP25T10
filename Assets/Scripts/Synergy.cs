@@ -8,10 +8,10 @@ public class Synergy : MonoBehaviour
     private int blueTowers;
     private int greenTowers;
     private int totalTowers;
-    private bool rbSynergy;
-    private bool rgSynergy;
-    private bool bgSynergy;
-    private bool totalSynergy;
+    public bool rbSynergy;
+    public bool rgSynergy;
+    public bool bgSynergy;
+    public bool totalSynergy;
     //public Image rbSyn;
     //public Image rgSyn;
     //public Image bgSyn;

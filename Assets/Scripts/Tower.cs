@@ -28,9 +28,18 @@ public class Tower : MonoBehaviour
 
     public TowerBehavior behavior;
     public float shootCooldown;
+<<<<<<< HEAD
+    public float range;
+    private float unbuffedRange;
+    private float buffedRange;
+=======
     public float baseRange;
     public float effectiveRange;
+>>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
     private float timeSinceLastShoot = 0f;
+    private float rgResonanceBuff = 0.25f;
+    private float rbResonanceBuff = 0.25f;
+    private float bgResonanceBuff = 0.1f;
     [Header("Upgrades")]
     public int currentUpgradeTier;
     public int maxUpgradeTiers;
@@ -58,7 +67,13 @@ public class Tower : MonoBehaviour
     {
         inputActions = new();
         rangeIndicator.gameObject.SetActive(true);
+<<<<<<< HEAD
+        rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
+        unbuffedRange = range;
+        buffedRange = range * (1 + bgResonanceBuff);
+=======
         rangeIndicator.transform.localScale = new(baseRange * 2, baseRange * 2, baseRange * 2);
+>>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
         gameObject.layer = UI_LAYER_NUM;
         //Debug.Log("Hello there");
         synergyManager = GameObject.FindWithTag("synergy");
@@ -98,11 +113,27 @@ public class Tower : MonoBehaviour
 
             SetTarget();
 
+            if(synergyManager.GetComponent<Synergy>().bgSynergy && (synergyType.ToString() == "Blue" || synergyType.ToString() == "Green")){
+                range = buffedRange;
+            }
+            else{
+                range = unbuffedRange;
+            }
+
             if (timeSinceLastShoot < 0f && target != null)
             {
                 behavior.Fire();
 
-                timeSinceLastShoot = shootCooldown /** (1/Synergy.Instance.globalFirerateScaleFactor)*/;
+<<<<<<< HEAD
+                if(synergyManager.GetComponent<Synergy>().rgSynergy && (synergyType.ToString() == "Red" || synergyType.ToString() == "Green")){
+                    timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
+                }
+                else{
+                    timeSinceLastShoot = shootCooldown;
+                }
+=======
+                //timeSinceLastShoot = shootCooldown /** (1/Synergy.Instance.globalFirerateScaleFactor)*/;
+>>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
             }
         }
         else
