@@ -20,8 +20,14 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private GameObject towerSelectUIBtn;
 
     [Header("Loss UI")]
-    public GameObject roundLossComponent;
-    [SerializeField] private GameObject restartButton;
+    public GameObject roundLossUI;
+    [SerializeField] private GameObject loseRestartBtn;
+    [SerializeField] private GameObject loseMenuBtn;
+
+    [Header("Win UI")]
+    public GameObject roundWinUI;
+    [SerializeField] private GameObject winRestartBtn;
+    [SerializeField] private GameObject winMenuBtn;
 
     [Header("Tower Selection UI")]
     [SerializeField] private GameObject towerSelectionUI;

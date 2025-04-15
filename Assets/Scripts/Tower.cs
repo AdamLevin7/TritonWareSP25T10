@@ -28,14 +28,9 @@ public class Tower : MonoBehaviour
 
     public TowerBehavior behavior;
     public float shootCooldown;
-<<<<<<< HEAD
     public float range;
     private float unbuffedRange;
     private float buffedRange;
-=======
-    public float baseRange;
-    public float effectiveRange;
->>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
     private float timeSinceLastShoot = 0f;
     private float rgResonanceBuff = 0.25f;
     private float rbResonanceBuff = 0.25f;
@@ -67,19 +62,15 @@ public class Tower : MonoBehaviour
     {
         inputActions = new();
         rangeIndicator.gameObject.SetActive(true);
-<<<<<<< HEAD
         rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
         unbuffedRange = range;
         buffedRange = range * (1 + bgResonanceBuff);
-=======
-        rangeIndicator.transform.localScale = new(baseRange * 2, baseRange * 2, baseRange * 2);
->>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
         gameObject.layer = UI_LAYER_NUM;
         //Debug.Log("Hello there");
         synergyManager = GameObject.FindWithTag("synergy");
         GameManager.Instance.placingTower = true;
         // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
-        effectiveRange = baseRange * rangeScaleFactor;
+        buffedRange = unbuffedRange * rangeScaleFactor;
     }
 
     private void OnEnable()
@@ -100,7 +91,7 @@ public class Tower : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(rangeIndicator.transform.position, baseRange);
+        Gizmos.DrawWireSphere(rangeIndicator.transform.position, buffedRange);
     }
 
     private void Update()
@@ -124,16 +115,12 @@ public class Tower : MonoBehaviour
             {
                 behavior.Fire();
 
-<<<<<<< HEAD
                 if(synergyManager.GetComponent<Synergy>().rgSynergy && (synergyType.ToString() == "Red" || synergyType.ToString() == "Green")){
                     timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
                 }
                 else{
                     timeSinceLastShoot = shootCooldown;
                 }
-=======
-                //timeSinceLastShoot = shootCooldown /** (1/Synergy.Instance.globalFirerateScaleFactor)*/;
->>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
             }
         }
         else
@@ -158,7 +145,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     public void SetTarget()
     {
-        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, baseRange, inRange);
+        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, buffedRange, inRange);
 
         target = null;
         float minDistance = float.MaxValue;
