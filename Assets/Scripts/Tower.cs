@@ -28,18 +28,13 @@ public class Tower : MonoBehaviour
 
     public TowerBehavior behavior;
     public float shootCooldown;
-<<<<<<< HEAD
     public float range;
-    private float unbuffedRange;
-    private float buffedRange;
-=======
     public float baseRange;
     public float effectiveRange;
->>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
     private float timeSinceLastShoot = 0f;
     private float rgResonanceBuff = 0.25f;
     private float rbResonanceBuff = 0.25f;
-    private float bgResonanceBuff = 0.1f;
+    private float bgResonanceBuff = 1.25f;
     [Header("Upgrades")]
     public int currentUpgradeTier;
     public int maxUpgradeTiers;
@@ -58,28 +53,21 @@ public class Tower : MonoBehaviour
     public int sellValue;
     public int damageScaleFactor = 1;
     public int firerateScaleFactor = 1;
-    public int rangeScaleFactor = 1;
 
     // For storing collision for detecting enemies in range
     private readonly Collider[] inRange = new Collider[32];
 
     private void Awake()
     {
+        effectiveRange = range;
+        baseRange = range;
         inputActions = new();
         rangeIndicator.gameObject.SetActive(true);
-<<<<<<< HEAD
-        rangeIndicator.transform.localScale = new(range * 2, range * 2, range * 2);
-        unbuffedRange = range;
-        buffedRange = range * (1 + bgResonanceBuff);
-=======
-        rangeIndicator.transform.localScale = new(baseRange * 2, baseRange * 2, baseRange * 2);
->>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
+        rangeIndicator.transform.localScale = new(effectiveRange * 2, effectiveRange * 2, effectiveRange * 2);
         gameObject.layer = UI_LAYER_NUM;
-        //Debug.Log("Hello there");
         synergyManager = GameObject.FindWithTag("synergy");
         GameManager.Instance.placingTower = true;
         // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
-        effectiveRange = baseRange * rangeScaleFactor;
     }
 
     private void OnEnable()
@@ -100,7 +88,7 @@ public class Tower : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(rangeIndicator.transform.position, baseRange);
+        Gizmos.DrawWireSphere(rangeIndicator.transform.position, effectiveRange);
     }
 
     private void Update()
@@ -114,26 +102,25 @@ public class Tower : MonoBehaviour
             SetTarget();
 
             if(synergyManager.GetComponent<Synergy>().bgSynergy && (synergyType.ToString() == "Blue" || synergyType.ToString() == "Green")){
-                range = buffedRange;
+                effectiveRange = baseRange * bgResonanceBuff;
+                Debug.Log("bg synergy on");
             }
             else{
-                range = unbuffedRange;
+                effectiveRange = baseRange;
             }
+            rangeIndicator.transform.localScale = new(effectiveRange * 2, effectiveRange * 2, effectiveRange * 2);
 
             if (timeSinceLastShoot < 0f && target != null)
             {
                 behavior.Fire();
 
-<<<<<<< HEAD
                 if(synergyManager.GetComponent<Synergy>().rgSynergy && (synergyType.ToString() == "Red" || synergyType.ToString() == "Green")){
                     timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
+                    Debug.Log("rg synergy on");
                 }
                 else{
                     timeSinceLastShoot = shootCooldown;
                 }
-=======
-                //timeSinceLastShoot = shootCooldown /** (1/Synergy.Instance.globalFirerateScaleFactor)*/;
->>>>>>> e9de22f3f0b6a1be0076734bc069572324cca829
             }
         }
         else
@@ -158,7 +145,7 @@ public class Tower : MonoBehaviour
     /// </summary>
     public void SetTarget()
     {
-        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, baseRange, inRange);
+        int resultCount = Physics.OverlapSphereNonAlloc(rangeIndicator.transform.position, effectiveRange, inRange);
 
         target = null;
         float minDistance = float.MaxValue;
