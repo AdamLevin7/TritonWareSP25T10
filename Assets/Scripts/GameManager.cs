@@ -22,9 +22,6 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> availableTowers;
 
-    public GameObject activeGameUI;
-    public GameObject loseScreenUI;
-
     public BoxCollider groundCollider;
 
     public bool playing;
@@ -98,8 +95,9 @@ public class GameManager : MonoBehaviour
         playing = false;
         endingGame = true;
 
-        activeGameUI.SetActive(false);
-        loseScreenUI.SetActive(true);
+        UIHandlerScript.Instance.roundActiveComponent.SetActive(false);
+        UIHandlerScript.Instance.roundLossUI.SetActive(true);
+
     }
 
     // begins new game (used in callbacks and button triggers)
@@ -118,8 +116,9 @@ public class GameManager : MonoBehaviour
         isWaveActive = false;
         lives = maxLives;
         money = starterMoney;
-        activeGameUI.SetActive(true);
-        loseScreenUI.SetActive(false);
+        UIHandlerScript.Instance.roundActiveComponent.SetActive(true);
+        UIHandlerScript.Instance.roundLossUI.SetActive(false);
+        UIHandlerScript.Instance.roundWinUI.SetActive(false);
 
         endAnimationCtr = 0.0f;
         endingGame = false;
@@ -228,6 +227,17 @@ public class GameManager : MonoBehaviour
     {
         isWaveActive = false;
         Time.timeScale = 1.0f;
+
+        if (currentWave == maxWaves) 
+        {
+            UIHandlerScript.Instance.roundActiveComponent.SetActive(false);
+            UIHandlerScript.Instance.roundWinUI.SetActive(true);
+            
+            playing = false;
+            endingGame = true;
+        }
+
+
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
         ClearProjectiles();
         ClearEnemies();

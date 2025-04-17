@@ -31,6 +31,8 @@ public class Tower : MonoBehaviour
     public float range;
     public float baseRange;
     public float effectiveRange;
+    private float unbuffedRange;
+    private float buffedRange;
     private float timeSinceLastShoot = 0f;
     private float rgResonanceBuff = 0.25f;
     private float rbResonanceBuff = 0.25f;
