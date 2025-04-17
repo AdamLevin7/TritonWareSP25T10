@@ -15,10 +15,12 @@ public class Projectile : MonoBehaviour
     public TowerBehavior parentTowerClass;
     public float damageScaleFactor;
     public float effectiveDamage;
+    [SerializeField] private GameObject synergyManager;
 
     private void Awake()
     {
         remainingLifetime = speed == 0 ? 0 : range / speed;
+        synergyManager = GameObject.FindWithTag("synergy");
     }
 
     private void Update()
@@ -37,6 +39,15 @@ public class Projectile : MonoBehaviour
         float fdt = Time.fixedDeltaTime;
 
         transform.position += (Vector3)(speed * fdt * direction );
+
+        if(synergyManager.GetComponent<Synergy>().rbSynergy && 
+            parentTowerClass.tower.synergyType.ToString() == "Red" || 
+            parentTowerClass.tower.synergyType.ToString() == "Blue"){
+                damageScaleFactor = 1.25f;
+        }
+        else{
+            damageScaleFactor = 1.0f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

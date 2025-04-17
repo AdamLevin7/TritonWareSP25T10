@@ -2447,9 +2447,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1021647794489535556, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: waveQueue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021647794489535556, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
       propertyPath: defaultEnemyMoveSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1021647794489535556, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: 'waveQueue.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 493a01282b89c064b99097797381c3cd, type: 2}
+    - target: {fileID: 1021647794489535556, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: 'waveQueue.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 173c860fdbc64f647b6e42d8326261b0, type: 2}
     - target: {fileID: 2673621681878188361, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
       propertyPath: m_Name
       value: EnemyManager
