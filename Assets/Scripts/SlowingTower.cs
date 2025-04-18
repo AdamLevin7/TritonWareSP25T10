@@ -5,6 +5,7 @@ public class SlowingTower : TowerBehavior
     [SerializeField] private uint slowDuration;
     [SerializeField] private float slowFactor;
     [SerializeField] private uint slowRadius;
+	[SerializeField] private int damage;
     public override void Fire()
     {
         Collider[] overlapColliders = Physics.OverlapSphere(tower.transform.position, slowRadius);
@@ -15,6 +16,8 @@ public class SlowingTower : TowerBehavior
             {
                 EnemyManager.Instance.EnemySlowed(collider.gameObject,
                         slowDuration, slowFactor);
+				EnemyManager.Instance.EnemyTakeDamage(collider.gameObject,
+						damage);
             }
         }
     }
