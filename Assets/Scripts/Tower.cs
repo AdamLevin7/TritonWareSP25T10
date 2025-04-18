@@ -185,6 +185,8 @@ public class Tower : MonoBehaviour
             {
                 isSelected = !isSelected;
 
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.towerSelectSound);
+
                 // open tower selection ui
                 UIHandlerScript.Instance.UpdateTowerSelectedInformation(this.gameObject);
                 UIHandlerScript.Instance.SetTowerSelectedUIState(isSelected);
