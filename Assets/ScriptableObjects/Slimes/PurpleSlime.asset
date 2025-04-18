@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92f73d9d3d72a7498c6bceac27127e0, type: 3}
+  m_Name: PurpleSlime
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7998079915046675355, guid: 5338344e8b13d314e8edc721e5ca45c9, type: 3}
+  value: 5
+  hp: 5
+  speed: 2

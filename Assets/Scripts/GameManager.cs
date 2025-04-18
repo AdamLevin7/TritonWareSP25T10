@@ -244,4 +244,6 @@ public class GameManager : MonoBehaviour
 
         money += 100 * currentWave;
     }
+
+    
 }
