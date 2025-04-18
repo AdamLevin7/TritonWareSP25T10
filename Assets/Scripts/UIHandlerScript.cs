@@ -137,4 +137,10 @@ public class UIHandlerScript : MonoBehaviour
         float newX = (hiddenTowerSelection) ? -525 : 10;
         towerSelectUIBtnRT.anchoredPosition = new(newX, -225);
     }
+
+    public void ContinueToFreeplay()
+    {
+        roundWinUI.SetActive(false);
+        roundActiveComponent.SetActive(true);
+    }
 }
