@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Music")]
 
+    public EventReference titleScreenMusic;
     public EventReference gameplayMusic;
 
     [Header("SFX")]
@@ -26,6 +27,8 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+
+        InitializeMusic(gameplayMusic);
     }
 
     public void PlayOneShot(EventReference sound)

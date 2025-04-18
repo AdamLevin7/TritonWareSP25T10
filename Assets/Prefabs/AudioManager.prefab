@@ -44,6 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03374cfc524877429bb7d49064b3a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleScreenMusic:
+    Guid:
+      Data1: 1905022257
+      Data2: 1092901980
+      Data3: 333701028
+      Data4: 1453427027
+    Path: event:/Music/TitleTheme
   gameplayMusic:
     Guid:
       Data1: 172391001
