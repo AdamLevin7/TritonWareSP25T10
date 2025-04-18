@@ -23,6 +23,9 @@ public class AudioManager : MonoBehaviour
     public EventReference towerSelectSound;
     public EventReference whooshSound;
 
+    public EventReference loseSound;
+    public EventReference winSound;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);

@@ -114,3 +114,17 @@ MonoBehaviour:
       Data3: -1058083683
       Data4: -359003554
     Path: event:/SFX/Whoosh
+  loseSound:
+    Guid:
+      Data1: -438084701
+      Data2: 1296700858
+      Data3: -328798279
+      Data4: -641253716
+    Path: event:/SFX/LoseGame
+  winSound:
+    Guid:
+      Data1: -14410507
+      Data2: 1112281691
+      Data3: 1870330792
+      Data4: -1634504527
+    Path: event:/SFX/WinGame
