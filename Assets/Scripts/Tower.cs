@@ -205,6 +205,8 @@ public class Tower : MonoBehaviour
 
                 GameManager.Instance.money -= data.price;
                 sellValue = (int)((float)data.price * 0.75f);
+
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.towerPlacementSound);
             }
             else
             {

@@ -128,3 +128,6 @@ MonoBehaviour:
       Data3: 1870330792
       Data4: -1634504527
     Path: event:/SFX/WinGame
+  masterVolume: 1
+  sfxVolume: 1
+  musicVolume: 1

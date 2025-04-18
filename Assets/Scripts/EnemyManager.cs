@@ -106,6 +106,7 @@ public class EnemyManager : MonoBehaviour
 
         enemy.hp -= damageHPAmount;
         enemy.healthbar.UpdateHealthBar(enemy.hp, enemy.maxHealth);
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.enemyHitSound);
         if (enemy.hp < 0)
         {
             DummyAddMoney();
@@ -233,6 +234,8 @@ public class EnemyManager : MonoBehaviour
         enemy.gameObject.GetComponent<Collider>().enabled = false;
         activeEnemies.Remove(enemy);
         deadEnemies.Add(enemy);
+
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.enemyDeathSound);
     }
 
     public void AddWavePattern(WavePattern wave)

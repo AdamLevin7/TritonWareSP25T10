@@ -26,12 +26,32 @@ public class AudioManager : MonoBehaviour
     public EventReference loseSound;
     public EventReference winSound;
 
+    [Header("Volume")]
+    [Range(0, 1)] public float masterVolume;
+    [Range(0, 1)] public float sfxVolume;
+    [Range(0, 1)] public float musicVolume;
+
+    private Bus masterBus;
+    private Bus musicBus;
+    private Bus sfxBus;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
 
+        masterBus = RuntimeManager.GetBus("bus:/");
+        sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        musicBus = RuntimeManager.GetBus("bus:/Music");
+
         InitializeMusic(gameplayMusic);
+    }
+
+    private void Update()
+    {
+        masterBus.setVolume(masterVolume);
+        sfxBus.setVolume(sfxVolume);
+        musicBus.setVolume(musicVolume);
     }
 
     public void PlayOneShot(EventReference sound)

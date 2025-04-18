@@ -18,6 +18,7 @@ public class BasicTower : TowerBehavior
         Projectile newProjectile = newBullet.GetComponent<Projectile>();
         newProjectile.direction = direction.normalized;
         newProjectile.parentTowerClass = this;
-        
+
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.whooshSound);
     }
 }
