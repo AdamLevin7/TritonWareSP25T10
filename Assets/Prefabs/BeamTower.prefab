@@ -160,6 +160,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6344117493942760752}
     - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: synergyType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: shootCooldown
       value: 0.3
       objectReference: {fileID: 0}
@@ -219,11 +223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6310284994268039186, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
   m_PrefabInstance: {fileID: 9151799634132171470}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3419915303620719313 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5797332966313248799, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
-  m_PrefabInstance: {fileID: 9151799634132171470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5345548079628090638 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
@@ -262,4 +261,3 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  cannon: {fileID: 3419915303620719313}

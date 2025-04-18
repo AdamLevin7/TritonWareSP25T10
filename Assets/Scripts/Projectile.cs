@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     public float damageScaleFactor;
     public float effectiveDamage;
     [SerializeField] private GameObject synergyManager;
+    private float rbResonanceBuff = 1.25f;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class Projectile : MonoBehaviour
         if(synergyManager.GetComponent<Synergy>().rbSynergy && 
             parentTowerClass.tower.synergyType.ToString() == "Red" || 
             parentTowerClass.tower.synergyType.ToString() == "Blue"){
-                damageScaleFactor = 1.25f;
+                damageScaleFactor = rbResonanceBuff;
         }
         else{
             damageScaleFactor = 1.0f;
