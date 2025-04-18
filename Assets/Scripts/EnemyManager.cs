@@ -58,7 +58,12 @@ public class EnemyManager : MonoBehaviour
 
     void DummyAddMoney()
     {
-        GameManager.Instance.money += 5;
+        if(GameManager.Instance.synergyManager.GetComponent<Synergy>().totalSynergy){
+            GameManager.Instance.money += 10;
+        }
+        else{
+            GameManager.Instance.money += 5;
+        }
     }
 
     /// <summary>

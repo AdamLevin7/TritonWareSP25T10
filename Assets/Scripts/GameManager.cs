@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float endSlowdownRate;
     [SerializeField] private float endAnimationDuration;
     private float endAnimationCtr;
-    [SerializeField] private GameObject synergyManager;
+    [SerializeField] public GameObject synergyManager;
     private float totalResonanceBuff = 1.25f;
 
     public InputSystem_Actions inputActions;

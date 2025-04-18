@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 6344117493942760752}
     - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: synergyType
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: shootCooldown

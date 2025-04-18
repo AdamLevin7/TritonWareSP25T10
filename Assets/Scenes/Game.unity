@@ -1922,6 +1922,13 @@ MonoBehaviour:
   possibleWavePatterns:
   - {fileID: 11400000, guid: 173c860fdbc64f647b6e42d8326261b0, type: 2}
   - {fileID: 11400000, guid: 0e13b4ecef6912344a03cee0b2ba04ce, type: 2}
+  yellowSlime: {fileID: 0}
+  blackSlime: {fileID: 0}
+  pinkSlime: {fileID: 0}
+  freeplayYellowNumberScale: 0
+  freeplayBlackNumberScale: 0
+  freeplayPinkNumberScale: 0
+  randomScaleOffet: 0
 --- !u!1 &2037872664
 GameObject:
   m_ObjectHideFlags: 0
