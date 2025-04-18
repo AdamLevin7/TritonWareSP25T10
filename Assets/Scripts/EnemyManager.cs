@@ -10,6 +10,8 @@ public class Enemy
     public Vector2 direction;
     public float moveSpeed;
     public float hp;
+    public float maxHealth;
+    public HealthBar healthbar;
 
     public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, float hp)
     {
@@ -19,6 +21,8 @@ public class Enemy
         this.direction = direction;
         this.moveSpeed = moveSpeed;
         this.hp = hp;
+        maxHealth = hp;
+        healthbar = gameObject.GetComponentInChildren<HealthBar>();
     }
 }
 
@@ -96,6 +100,7 @@ public class EnemyManager : MonoBehaviour
         if (enemy == null) return;
 
         enemy.hp -= damageHPAmount;
+        enemy.healthbar.UpdateHealthBar(enemy.hp, enemy.maxHealth);
         if (enemy.hp < 0)
         {
             DummyAddMoney();

@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float endSlowdownRate;
     [SerializeField] private float endAnimationDuration;
     private float endAnimationCtr;
+    [SerializeField] private GameObject synergyManager;
+    private float totalResonanceBuff = 1.25f;
 
     public InputSystem_Actions inputActions;
 
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         else Instance = this;
 
         inputActions = new();
+        synergyManager = GameObject.FindWithTag("synergy");
     }
 
     private void OnEnable()
@@ -241,7 +244,11 @@ public class GameManager : MonoBehaviour
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
         ClearProjectiles();
         ClearEnemies();
-
-        money += 100 * currentWave;
+        if(synergyManager.GetComponent<Synergy>().totalSynergy){
+            money += (int)(100 * currentWave * totalResonanceBuff);
+        }
+        else{
+            money += 100 * currentWave;
+        }
     }
 }

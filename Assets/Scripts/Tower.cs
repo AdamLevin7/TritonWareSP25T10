@@ -15,7 +15,6 @@ public class Tower : MonoBehaviour
     public enum SynergyType{
         Red,
         Blue,
-        Yellow,
         Green
     }
 
