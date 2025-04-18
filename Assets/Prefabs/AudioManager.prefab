@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6522063313920670896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4885116207102856306}
+  - component: {fileID: 1166180584273119513}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4885116207102856306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522063313920670896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1166180584273119513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522063313920670896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03374cfc524877429bb7d49064b3a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameplayMusic:
+    Guid:
+      Data1: 172391001
+      Data2: 1151860052
+      Data3: 1330119061
+      Data4: 1622227457
+    Path: event:/Music/BGM
+  towerPlacementSound:
+    Guid:
+      Data1: -1283358185
+      Data2: 1245185807
+      Data3: 857830287
+      Data4: -2043619077
+    Path: event:/SFX/TowerPlaced
+  enemyHitSound:
+    Guid:
+      Data1: 1632550068
+      Data2: 1205895829
+      Data3: -1725545296
+      Data4: -1995993276
+    Path: event:/SFX/EnemyHit
+  enemyDeathSound:
+    Guid:
+      Data1: -1366137279
+      Data2: 1277007047
+      Data3: -1621582148
+      Data4: -1022161247
+    Path: event:/SFX/EnemyDeath
+  beamFireSound:
+    Guid:
+      Data1: -1951068230
+      Data2: 1184970246
+      Data3: -1285523057
+      Data4: 1070120711
+    Path: event:/SFX/BeamFire
+  explosionSound:
+    Guid:
+      Data1: 1995023034
+      Data2: 1288135729
+      Data3: -1616052857
+      Data4: 1986359566
+    Path: event:/SFX/Explosion
+  uiClickSound:
+    Guid:
+      Data1: -1750047092
+      Data2: 1132101452
+      Data3: 1846398133
+      Data4: -1965047735
+    Path: event:/SFX/UIClick
+  towerSelectSound:
+    Guid:
+      Data1: 683603317
+      Data2: 1119779291
+      Data3: 92029843
+      Data4: -2052232857
+    Path: event:/SFX/TowerSelect
+  whooshSound:
+    Guid:
+      Data1: -1271287596
+      Data2: 1284334516
+      Data3: -1058083683
+      Data4: -359003554
+    Path: event:/SFX/Whoosh
