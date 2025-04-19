@@ -38,8 +38,8 @@ public class Tower : MonoBehaviour
     private float rbResonanceBuff = 0.25f;
     private float bgResonanceBuff = 1.25f;
     [Header("Upgrades")]
-    public int currentUpgradeTier;
-    public int maxUpgradeTiers;
+    public int currentUpgradeTier = 0;
+    public int maxUpgradeTiers = 3;
     public List<UpgradeData> upgrades;
 
     private bool isPlaced = false;
