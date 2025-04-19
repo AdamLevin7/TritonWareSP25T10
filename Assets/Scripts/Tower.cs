@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data.SqlTypes;
 using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
@@ -37,8 +38,8 @@ public class Tower : MonoBehaviour
     private float rbResonanceBuff = 0.25f;
     private float bgResonanceBuff = 1.25f;
     [Header("Upgrades")]
-    public int currentUpgradeTier;
-    public int maxUpgradeTiers;
+    public int currentUpgradeTier = 0;
+    public int maxUpgradeTiers = 3;
 
     private bool isPlaced = false;
     private bool canBePlaced = false;
@@ -57,6 +58,8 @@ public class Tower : MonoBehaviour
 
     // For storing collision for detecting enemies in range
     private readonly Collider[] inRange = new Collider[32];
+
+    public List<UpgradeData> upgrades;
 
     private void Awake()
     {

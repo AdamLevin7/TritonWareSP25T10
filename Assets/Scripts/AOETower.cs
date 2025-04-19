@@ -20,4 +20,17 @@ public class AOETower : TowerBehavior
         newProjectile.direction = direction.normalized;
         newProjectile.parentTower = this;
     }
+
+    public override void OnTier1Upgrade()
+    {
+        return;
+    }
+    public override void OnTier2Upgrade()
+    {
+        return;
+    }
+    public override void OnTier3Upgrade()
+    {
+        return;
+    }
 }

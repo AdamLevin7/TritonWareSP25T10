@@ -10,4 +10,26 @@ public abstract class TowerBehavior : MonoBehaviour
     }
 
     public abstract void Fire();
+
+    public void UpgradeTower()
+    {
+        tower.currentUpgradeTier++;
+        GameManager.Instance.money -= tower.upgrades[tower.currentUpgradeTier].price;
+        switch (tower.currentUpgradeTier)
+        {
+            case 1:
+                OnTier1Upgrade();
+                break;
+            case 2:
+                OnTier2Upgrade();
+                break;
+            case 3:
+                OnTier3Upgrade();
+                break;
+        }
+    }
+
+    public abstract void OnTier1Upgrade();
+    public abstract void OnTier2Upgrade();
+    public abstract void OnTier3Upgrade();
 }

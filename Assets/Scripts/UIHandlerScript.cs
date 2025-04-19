@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 public class UIHandlerScript : MonoBehaviour
 {
@@ -23,6 +25,11 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Sprite twoXSpeedSprite;
     [SerializeField] private Sprite oneXSpeedSprite;
 
+    [SerializeField] private Text upgradeNameText;
+    [SerializeField] private Text upgradeDescriptionText;
+    [SerializeField] private Text upgradePriceText;
+    [SerializeField] private Text upgradeTierText;
+
     [Header("Loss UI")]
     public GameObject roundLossUI;
     [SerializeField] private GameObject loseRestartBtn;
@@ -34,20 +41,21 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private GameObject winMenuBtn;
 
     [Header("Tower Selection UI")]
-    [SerializeField] private GameObject towerSelectionUI;
+    public GameObject towerSelectionUI;
     [SerializeField] private Text selectedTowerName;
     [SerializeField] private Text selectedTowerDamage;
     [SerializeField] private Text selectedTowerValue;
     [SerializeField] private Image selectedTowerIcon;
     [SerializeField] private GameObject synergyManager;
-    private GameObject currentSelectedTower;
-    private Tower currentSelectedTowerClass;
+    [SerializeField] private GameObject currentSelectedTower;
+    [SerializeField] private TowerBehavior currentSelectedTowerClass;
 
-    private TowerData currentSelectedTowerData;
+    [SerializeField] private TowerData currentSelectedTowerData;
 
     private Text livesTextComponent;
     private Text moneyTextComponent;
     private Text roundWaveTextComponent;
+    private UpgradeData nextUpgrade;
 
     private RectTransform towerSelectUIBtnRT;
     private bool hiddenTowerSelection = false;
@@ -70,6 +78,10 @@ public class UIHandlerScript : MonoBehaviour
     void Start()
     {
         roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentWave + "/" + GameManager.Instance.maxWaves;   
+
+        currentSelectedTower = new();
+        // currentSelectedTowerClass = new();
+        currentSelectedTowerData = new();
     }
 
     // Update is called once per frame
@@ -87,21 +99,23 @@ public class UIHandlerScript : MonoBehaviour
     public void UpdateTowerSelectedInformation(GameObject tower)
     {
         currentSelectedTower = tower;
-        currentSelectedTowerClass = tower.GetComponent<Tower>();
-        currentSelectedTowerData = currentSelectedTowerClass.data;
+        currentSelectedTowerClass = tower.GetComponent<TowerBehavior>();
+        currentSelectedTowerData = currentSelectedTowerClass.tower.data;
         
         selectedTowerIcon.sprite = currentSelectedTowerData.icon;
         selectedTowerName.text = currentSelectedTowerData.towerName;
-        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.totalDamageDealt).ToString();
-        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.sellValue;
+        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.tower.totalDamageDealt).ToString();
+        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.tower.sellValue;
+
+        UpdateUpgradeUI();
     }
 
     // sell currently selected tower as shown in ui
     public void SellCurrentlySelectedTower()
     {
         // maybe have a towermanager do this in the future, but works for now
-        GameManager.Instance.money += currentSelectedTowerClass.sellValue;
-        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(currentSelectedTowerClass.synergyType.ToString(), -1);
+        GameManager.Instance.money += currentSelectedTowerClass.tower.sellValue;
+        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(currentSelectedTowerClass.tower.synergyType.ToString(), -1);
         Destroy(currentSelectedTower);
         SetTowerSelectedUIState(false);
     }
@@ -146,5 +160,52 @@ public class UIHandlerScript : MonoBehaviour
     {
         roundWinUI.SetActive(false);
         roundActiveComponent.SetActive(true);
+    }
+
+    public void GoToMenu()
+    {
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
+        SceneManager.LoadScene(0);
+    }
+
+    public void UpdateUpgradeUI()
+    {
+        int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
+
+        upgradeTierText.text = upgradeTier + "/" + currentSelectedTowerClass.tower.maxUpgradeTiers;
+
+        if (upgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers)
+        {
+            upgradeNameText.text = "Max Upgrades!";
+            upgradeDescriptionText.text = "";
+            upgradePriceText.text = "";
+            return;
+        }
+
+        UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier + 1];
+        upgradeNameText.text = nextUpgrade.upgradeName;
+        upgradeDescriptionText.text = nextUpgrade.upgradeDescription;
+        upgradePriceText.text = "$" + nextUpgrade.price.ToString();
+    }
+
+    public void TryUpgradeTower()
+    {
+        Debug.Log(this.currentSelectedTower);
+        if (this.currentSelectedTower == null) 
+        {
+            Debug.LogWarning("currentSelectedTower is not referenced");
+            return;
+        }
+        currentSelectedTowerClass = this.currentSelectedTower.GetComponent<TowerBehavior>();
+        int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
+        UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier + 1];
+
+        return;
+
+        if (nextUpgrade.price > GameManager.Instance.money) return;
+        if (currentSelectedTowerClass.tower.currentUpgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers) return;
+
+        currentSelectedTowerClass.UpgradeTower();
+        UpdateUpgradeUI();
     }
 }

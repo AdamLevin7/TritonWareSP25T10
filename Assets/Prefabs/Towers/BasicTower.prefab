@@ -435,6 +435,26 @@ PrefabInstance:
       propertyPath: shootCooldown
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: maxUpgradeTiers
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: upgrades.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: 'upgrades.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8617fa0c9cd414f4f80dd2c3aa1eed1e, type: 2}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: 'upgrades.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 89db87dd4f0c76c4f87c8c0434bee112, type: 2}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: 'upgrades.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a086e62fba1fbc4bb3cb3aa84353b73, type: 2}
     - target: {fileID: 6310284994268039186, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

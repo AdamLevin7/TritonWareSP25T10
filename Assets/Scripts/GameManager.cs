@@ -174,8 +174,8 @@ public class GameManager : MonoBehaviour
     {
         Vector2 mousePos = inputActions.Player.MousePos.ReadValue<Vector2>();
         // because of different resolutions i guess (maybe redundant)
-        Vector2 worldMousePos = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
-        if (worldMousePos.y < -4.0f) return;
+        Vector2 uiMousePos = Input.mousePosition;
+        if (uiMousePos.y < 290.0f && UIHandlerScript.Instance.towerSelectionUI.activeSelf) return;
 
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
