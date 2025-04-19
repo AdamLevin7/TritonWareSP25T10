@@ -25,8 +25,16 @@ public class AOETower : TowerBehavior
         }
     }
 
+    public override void OnTier1Upgrade()
+    {
+        return;
+    }
+    public override void OnTier2Upgrade()
+    {
+        return;
+    }
     public override void OnTier3Upgrade()
     {
-        
+        return;
     }
 }

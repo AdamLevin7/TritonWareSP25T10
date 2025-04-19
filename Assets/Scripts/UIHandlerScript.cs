@@ -48,7 +48,7 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Image selectedTowerIcon;
     [SerializeField] private GameObject synergyManager;
     public GameObject currentSelectedTower;
-    public Tower currentSelectedTowerClass;
+    public TowerBehavior currentSelectedTowerClass;
 
     public TowerData currentSelectedTowerData;
 
@@ -58,6 +58,8 @@ public class UIHandlerScript : MonoBehaviour
 
     private RectTransform towerSelectUIBtnRT;
     private bool hiddenTowerSelection = false;
+
+    private UpgradeData nextUpgrade;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -94,22 +96,22 @@ public class UIHandlerScript : MonoBehaviour
     public void UpdateTowerSelectedInformation(GameObject tower)
     {
         currentSelectedTower = tower;
-        currentSelectedTowerClass = tower.GetComponent<Tower>();
-        currentSelectedTowerData = currentSelectedTowerClass.data;
+        currentSelectedTowerClass = tower.GetComponent<TowerBehavior>();
+        currentSelectedTowerData = currentSelectedTowerClass.tower.data;
         UpdateUpgradeUI();
         
         selectedTowerIcon.sprite = currentSelectedTowerData.icon;
         selectedTowerName.text = currentSelectedTowerData.towerName;
-        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.totalDamageDealt).ToString();
-        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.sellValue;
+        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.tower.totalDamageDealt).ToString();
+        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.tower.sellValue;
     }
 
     // sell currently selected tower as shown in ui
     public void SellCurrentlySelectedTower()
     {
         // maybe have a towermanager do this in the future, but works for now
-        GameManager.Instance.money += currentSelectedTowerClass.sellValue;
-        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(currentSelectedTowerClass.synergyType.ToString(), -1);
+        GameManager.Instance.money += currentSelectedTowerClass.tower.sellValue;
+        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(currentSelectedTowerClass.tower.synergyType.ToString(), -1);
         Destroy(currentSelectedTower);
         SetTowerSelectedUIState(false);
     }
@@ -165,11 +167,20 @@ public class UIHandlerScript : MonoBehaviour
 
     public void UpdateUpgradeUI()
     {
-        int upgradeTier = currentSelectedTowerClass.currentUpgradeTier;
-        UpgradeData nextUpgrade = currentSelectedTowerClass.upgrades[upgradeTier + 1];
+        int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
+        nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier + 1];
         upgradeNameText.text = nextUpgrade.upgradeName;
         upgradeDescriptionText.text = nextUpgrade.upgradeDescription;
         upgradePriceText.text = "$" + nextUpgrade.price.ToString();
-        upgradeTierText.text = upgradeTier + "/" + currentSelectedTowerClass.maxUpgradeTiers;
+        upgradeTierText.text = upgradeTier + "/" + currentSelectedTowerClass.tower.maxUpgradeTiers;
+    }
+
+    public void TryUpgradeTower()
+    {
+        if (nextUpgrade.price > GameManager.Instance.money || 
+        currentSelectedTowerClass.tower.currentUpgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers) return;
+
+        currentSelectedTowerClass.UpgradeTower();
+        UpdateUpgradeUI();
     }
 }
