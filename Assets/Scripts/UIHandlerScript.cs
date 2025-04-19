@@ -103,10 +103,15 @@ public class UIHandlerScript : MonoBehaviour
         
         selectedTowerIcon.sprite = currentSelectedTowerData.icon;
         selectedTowerName.text = currentSelectedTowerData.towerName;
-        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.tower.totalDamageDealt).ToString();
-        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.tower.sellValue;
+        UpdateSelectedTowerStats();
 
         UpdateUpgradeUI();
+    }
+
+    public void UpdateSelectedTowerStats()
+    {
+        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.tower.totalDamageDealt).ToString();
+        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.tower.sellValue;
     }
 
     // sell currently selected tower as shown in ui
@@ -196,6 +201,7 @@ public class UIHandlerScript : MonoBehaviour
         if (currentSelectedTowerClass.tower.currentUpgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers) return;
 
         currentSelectedTowerClass.UpgradeTower();
+        UpdateSelectedTowerStats();
         UpdateUpgradeUI();
         Debug.Log("done upgrade");
     }
