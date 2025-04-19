@@ -78,7 +78,7 @@ public class UIHandlerScript : MonoBehaviour
         if (!gameObject.activeSelf) return;
 
         livesTextComponent.text = GameManager.Instance.lives.ToString();
-        moneyTextComponent.text = "Money: " + GameManager.Instance.money;
+        moneyTextComponent.text = GameManager.Instance.money.ToString();
         // roundWaveTextComponent.text = "Wave: " + GameManager.Instance.currentWave + "/" + GameManager.Instance.maxWaves;
 
     }

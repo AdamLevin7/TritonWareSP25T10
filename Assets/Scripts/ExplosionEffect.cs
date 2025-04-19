@@ -14,21 +14,22 @@ public class ExplosionEffect : MonoBehaviour
     public float damageScaleFactor = 1;
     public float effectiveDamage;
 
-    private bool colliderActive;
     [SerializeField] private GameObject synergyManager;
     private float rbResonanceBuff = 1.25f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        colliderActive = true;
         circleCollider.radius *= explosionRadiusScaleFactor;
         Vector3 scale3D = new (explosionRadiusScaleFactor, explosionRadiusScaleFactor, 1);
         explosionCtr = 0.0f;
         transform.localScale = scale3D;
     }
+
     void Awake(){
         synergyManager = GameObject.FindWithTag("synergy");
     }
+
     void DoExplodeDamage()
     {
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position, circleCollider.radius);
@@ -49,19 +50,11 @@ public class ExplosionEffect : MonoBehaviour
                 EnemyManager.Instance.EnemyTakeDamage(enemy.gameObject, baseDamage * damageScaleFactor);
             }
         }
-
-        colliderActive = false;
     }
 
-    void Update()
+    public void EndAnim()
     {
-        if (colliderActive) DoExplodeDamage();
-
-        explosionCtr += Time.deltaTime;
-        if (explosionCtr > explosionDuration)
-        {
-            Destroy(gameObject);
-        }   
+        Destroy(gameObject);
     }
 
     public void UpdateEffectiveDamage(float scaleFactor)

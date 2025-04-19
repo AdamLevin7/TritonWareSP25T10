@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7975607291897781367}
   - component: {fileID: 8909177305347567296}
   - component: {fileID: -6942888086288977213}
+  - component: {fileID: 8187077639553063021}
   m_Layer: 0
   m_Name: ExplosionEffect
   m_TagString: Projectile
@@ -46,11 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152aa98d19a8a4e48b59db0660772567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  baseDamage: 0
   explosionRadiusScaleFactor: 2
   explosionCtr: 0
   explosionDuration: 0.5
   circleCollider: {fileID: -6942888086288977213}
+  parentTower: {fileID: 0}
+  damageScaleFactor: 1
+  effectiveDamage: 0
+  synergyManager: {fileID: 0}
 --- !u!58 &-6942888086288977213
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -87,6 +92,28 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!95 &8187077639553063021
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344771678506714218}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e72c768d803e1547865a4c4ce376c64, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1017291517489664451
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +125,7 @@ GameObject:
   - component: {fileID: 6494216343346470604}
   - component: {fileID: 4646373213258783060}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,9 +140,9 @@ Transform:
   m_GameObject: {fileID: 1017291517489664451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.037824254}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7975607291897781367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -162,15 +189,15 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 11.75, y: 11.2300005}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
