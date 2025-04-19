@@ -5,7 +5,7 @@ using FMOD.Studio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
-    private EventInstance musicEventInstance;
+    public EventInstance musicEventInstance;
 
     [Header("Music")]
 
@@ -20,8 +20,10 @@ public class AudioManager : MonoBehaviour
     public EventReference beamFireSound;
     public EventReference explosionSound;
     public EventReference uiClickSound;
+    public EventReference uiHoverSound;
     public EventReference towerSelectSound;
     public EventReference whooshSound;
+    public EventReference hummingSound;
 
     public EventReference loseSound;
     public EventReference winSound;
@@ -40,11 +42,15 @@ public class AudioManager : MonoBehaviour
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
 
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("AudioManager");
+
+        if (objs.Length > 1) Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+
         masterBus = RuntimeManager.GetBus("bus:/");
         sfxBus = RuntimeManager.GetBus("bus:/SFX");
         musicBus = RuntimeManager.GetBus("bus:/Music");
-
-        InitializeMusic(gameplayMusic);
     }
 
     private void Update()
@@ -56,12 +62,21 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShot(EventReference sound)
     {
-        RuntimeManager.PlayOneShot(sound);
+        EventInstance instance = RuntimeManager.CreateInstance(sound);
+        instance.start();
+        instance.release();
+    }
+
+    public EventInstance CreateEventInstance(EventReference eventReference)
+    {
+        EventInstance newInstance = RuntimeManager.CreateInstance(eventReference);
+        return newInstance;
     }
 
     public void InitializeMusic(EventReference music)
     {
-        musicEventInstance = RuntimeManager.CreateInstance(music);
+        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicEventInstance = CreateEventInstance(music);
         musicEventInstance.start();
     }
 }

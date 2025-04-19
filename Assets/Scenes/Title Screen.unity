@@ -2347,7 +2347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4b0f02946ff4fb2891a096858ba548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad: 1
+  SceneToLoad: Game
 --- !u!114 &1287937257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2450,12 +2450,10 @@ MonoBehaviour:
   quitBtn: {fileID: 0}
   settingsMenu: {fileID: 1569925050}
   credits: {fileID: 1521664292}
+  gameStarter: {fileID: 0}
   masterVolumeSlider: {fileID: 2064332143}
   sfxVolumeSlider: {fileID: 1039428282}
   musicVolumeSlider: {fileID: 334937271}
-  masterVolume: 0
-  sfxVolume: 0
-  musicVolume: 0
 --- !u!1 &1401173075
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,9 +3672,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 882500169}
     m_Modifications:
     - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1287937261}
+      objectReference: {fileID: 1287937256}
+    - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StartGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285549660650507088, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TitleScreenManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2767304253312162681, guid: 9bccf2f394e1a56498d1107d619aa110, type: 3}
       propertyPath: m_text
       value: Start Game

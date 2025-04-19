@@ -69,10 +69,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // testing only!
-        if (Input.GetKey(KeyCode.L)) lives--;
-        if (Input.GetKey(KeyCode.M)) money += 1000;
+        if (Input.GetKeyUp(KeyCode.L)) lives--;
+        if (Input.GetKeyUp(KeyCode.M)) money += 1000;
+        if (Input.GetKeyUp(KeyCode.W)) WinGame();
 
-        if (lives <= 0)
+        if (lives <= 0 && !endingGame)
         {
             EndGame();
         }
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
         UIHandlerScript.Instance.roundActiveComponent.SetActive(false);
         UIHandlerScript.Instance.roundLossUI.SetActive(true);
 
+        AudioManager.Instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.loseSound);
     }
 
     // begins new game (used in callbacks and button triggers)
@@ -128,6 +131,8 @@ public class GameManager : MonoBehaviour
 
         UIHandlerScript.Instance.UpdateWaveNumber(currentWave, maxWaves);
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
+
+        AudioManager.Instance.InitializeMusic(AudioManager.Instance.gameplayMusic);
     }
 
     // function to go back to menu (mainly used for buttons)
@@ -226,20 +231,24 @@ public class GameManager : MonoBehaviour
         EnemyManager.Instance.ClearWavePatterns();
     }
 
+    public void WinGame()
+    {
+        UIHandlerScript.Instance.roundActiveComponent.SetActive(false);
+        UIHandlerScript.Instance.roundWinUI.SetActive(true);
+
+        AudioManager.Instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.winSound);
+        
+        playing = false;
+        endingGame = true;
+    }
+
     public void EndWave()
     {
         isWaveActive = false;
         Time.timeScale = 1.0f;
 
-        if (currentWave == maxWaves) 
-        {
-            UIHandlerScript.Instance.roundActiveComponent.SetActive(false);
-            UIHandlerScript.Instance.roundWinUI.SetActive(true);
-            
-            playing = false;
-            endingGame = true;
-        }
-
+        if (currentWave == maxWaves) WinGame();
 
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
         ClearProjectiles();

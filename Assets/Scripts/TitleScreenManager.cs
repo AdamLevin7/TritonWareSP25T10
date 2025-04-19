@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class TitleScreenManager : MonoBehaviour
 {
-
     [Header("Start Menu")]
     [SerializeField] private Button startBtn;
     [SerializeField] private Button creditsBtn;
     [SerializeField] private Button quitBtn;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject credits;
+    [SerializeField] private StartGame gameStarter;
 
     private InputSystem_Actions inputActions;
 
@@ -18,28 +18,32 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
     [SerializeField] private Slider musicVolumeSlider;
-    private float masterVolumeSliderValue;
-    private float sfxVolumeSliderValue;
-    private float musicVolumeSliderValue;
     
-    public float masterVolume;
-    public float sfxVolume;
-    public float musicVolume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         inputActions = new();
-        inputActions.Enable();
-
-        inputActions.Player.Interact.started += StartInteract;
-        inputActions.Player.Cancel.performed += Cancel;
 
         // gameManager should be present and disabled in here (to sync settings)
         // DontDestroyOnLoad(GameManager.Instance);
 
-        UpdateMasterVolume();
-        UpdateSFXVolume();
-        UpdateMusicVolume();
+        UpdateVolumes();
+
+        AudioManager.Instance.InitializeMusic(AudioManager.Instance.titleScreenMusic);
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+        inputActions.Player.Interact.started += StartInteract;
+        inputActions.Player.Cancel.performed += Cancel;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Interact.started -= StartInteract;
+        inputActions.Player.Cancel.performed -= Cancel;
+        inputActions.Disable();
     }
 
     // Update is called once per frame
@@ -100,34 +104,10 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// For the settings to sync, it would be easier for GameManager to already exist so that audio settings can be synced directly. 
-    /// In that case, GameManager should have DontDestroyOnLoad()
-    /// - Aiden
-    /// </summary>
-    public void UpdateMasterVolume()
-    {
-        masterVolumeSliderValue = masterVolumeSlider.value;
-        UpdateVolumes();
-        AudioListener.volume = masterVolume;
-    }
-
-    public void UpdateSFXVolume()
-    {
-        sfxVolumeSliderValue = sfxVolumeSlider.value;
-        UpdateVolumes();
-    }
-
-    public void UpdateMusicVolume()
-    {
-        musicVolumeSliderValue = musicVolumeSlider.value;
-        UpdateVolumes();
-    }
-
     private void UpdateVolumes()
     {
-        masterVolume = masterVolumeSliderValue;
-        sfxVolume = masterVolume * sfxVolumeSliderValue;
-        musicVolume = masterVolume * musicVolumeSliderValue;
+        AudioManager.Instance.masterVolume = masterVolumeSlider.value;
+        AudioManager.Instance.sfxVolume = sfxVolumeSlider.value;
+        AudioManager.Instance.musicVolume = musicVolumeSlider.value;
     }
 }

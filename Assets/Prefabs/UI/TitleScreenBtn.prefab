@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6341799546935325226}
   - component: {fileID: 2285549660650507088}
   - component: {fileID: 8479510159593070440}
+  - component: {fileID: -6935258342191325619}
   m_Layer: 5
   m_Name: TitleScreenBtn
   m_TagString: Untagged
@@ -156,6 +157,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6935258342191325619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530171684150034474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a567aeaaf30813a4b93ff554cd092ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6597908271867056807
 GameObject:
   m_ObjectHideFlags: 0

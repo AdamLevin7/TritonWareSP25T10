@@ -218,7 +218,10 @@ public class EnemyManager : MonoBehaviour
                     {
                         // arbitrary number for now
                         GameManager.Instance.lives -= (int)Mathf.Max(0, enemy.hp);
-                        KillEnemy(enemy);
+                        enemiesKilledThisWave++;
+                        activeEnemies.Remove(enemy);
+                        Destroy(enemy.gameObject);
+
                         continue;
                     }
                 }
@@ -238,18 +241,6 @@ public class EnemyManager : MonoBehaviour
                 EnemyManager.Instance.totalEnemiesInWave = 0;
                 EnemyManager.Instance.enemiesKilledThisWave = 0;
             }
-        }
-
-        //Test of new enemy creation and or deletion
-        if (Input.GetKeyUp(KeyCode.J))
-        { 
-            CreateNewEnemy(WaveManager.Instance.possibleWavePatterns[0].enemyToSummon);
-        }
-
-        //Test Damage and Health
-        if (Input.GetKeyUp(KeyCode.K))
-        { 
-            EnemyTakeDamage(activeEnemies[0].gameObject, 5);
         }
     }
 

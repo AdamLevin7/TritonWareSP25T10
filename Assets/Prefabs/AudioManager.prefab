@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1166180584273119513}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,17 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleScreenMusic:
     Guid:
-      Data1: 1905022257
-      Data2: 1092901980
-      Data3: 333701028
-      Data4: 1453427027
+      Data1: 1728528341
+      Data2: 1106423809
+      Data3: 652453511
+      Data4: 1235796915
     Path: event:/Music/TitleTheme
   gameplayMusic:
     Guid:
-      Data1: 172391001
-      Data2: 1151860052
-      Data3: 1330119061
-      Data4: 1622227457
+      Data1: -1088213982
+      Data2: 1198165904
+      Data3: 140594596
+      Data4: 1107073691
     Path: event:/Music/BGM
   towerPlacementSound:
     Guid:
@@ -100,6 +100,13 @@ MonoBehaviour:
       Data3: 1846398133
       Data4: -1965047735
     Path: event:/SFX/UIClick
+  uiHoverSound:
+    Guid:
+      Data1: -1036030802
+      Data2: 1293099410
+      Data3: 441146263
+      Data4: 365762757
+    Path: event:/SFX/UIHover
   towerSelectSound:
     Guid:
       Data1: 683603317
@@ -114,6 +121,13 @@ MonoBehaviour:
       Data3: -1058083683
       Data4: -359003554
     Path: event:/SFX/Whoosh
+  hummingSound:
+    Guid:
+      Data1: 236925029
+      Data2: 1301269098
+      Data3: -998499170
+      Data4: 1975314558
+    Path: event:/SFX/Humming
   loseSound:
     Guid:
       Data1: -438084701

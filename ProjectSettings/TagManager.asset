@@ -9,6 +9,7 @@ TagManager:
   - tower
   - synergy
   - Projectile
+  - AudioManager
   layers:
   - Default
   - TransparentFX
