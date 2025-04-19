@@ -122,6 +122,7 @@ public class EnemyManager : MonoBehaviour
             DummyAddMoney();
             KillEnemy(enemy);
         }
+        UIHandlerScript.Instance.UpdateSelectedTowerStats();
     }
 
     /// <summary>
