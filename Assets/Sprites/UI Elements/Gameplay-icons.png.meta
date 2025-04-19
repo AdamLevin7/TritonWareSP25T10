@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Gameplay-icons_0: 1392453461471133126
+      Gameplay-icons_1: -268901104957784480
+      Gameplay-icons_2: 8080942396874714646
+      Gameplay-icons_3: 5097157373985318186
+      Gameplay-icons_4: 2636713148741002560
+      Gameplay-icons_5: 956905610257811078
+      Gameplay-icons_6: 5249978466846010063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
