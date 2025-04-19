@@ -21,4 +21,9 @@ public class SlowingTower : TowerBehavior
             }
         }
     }
+
+    public override void OnTier3Upgrade()
+    {
+        return;
+    }
 }
