@@ -15,7 +15,6 @@ public class Tower : MonoBehaviour
     public enum SynergyType{
         Red,
         Blue,
-        Yellow,
         Green
     }
 
@@ -198,6 +197,8 @@ public class Tower : MonoBehaviour
             {
                 isSelected = !isSelected;
 
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.towerSelectSound);
+
                 // open tower selection ui
                 UIHandlerScript.Instance.UpdateTowerSelectedInformation(this.gameObject);
                 UIHandlerScript.Instance.SetTowerSelectedUIState(isSelected);
@@ -218,6 +219,8 @@ public class Tower : MonoBehaviour
 
                 GameManager.Instance.money -= data.price;
                 sellValue = (int)((float)data.price * 0.75f);
+
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.towerPlacementSound);
             }
             else
             {

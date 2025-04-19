@@ -67,6 +67,8 @@ public class AOEProjectile : MonoBehaviour
         projectileExplosion.GetComponent<ExplosionEffect>().parentTower = this.parentTower;
         projectileExplosion.SetActive(true);
 
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.explosionSound);
+
         alreadyExploded = true;
     }
 

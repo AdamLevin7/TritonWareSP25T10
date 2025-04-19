@@ -80,6 +80,8 @@ public class LightBeamTower : TowerBehavior
         if (beamTargets.Count == 1) return; // No enemies hit if only target is the beam origin
 
         StartCoroutine(DoBeamVisual(beamTargets.ToArray()));
+        // stuff
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.beamFireSound);
     }
 
     private IEnumerator DoBeamVisual(Vector3[] targetPositions)

@@ -21,10 +21,6 @@ public class SettingsManager : MonoBehaviour
     private float sfxVolumeSliderValue;
     private float musicVolumeSliderValue;
     private InputSystem_Actions inputActions;
-    
-    public float masterVolume;
-    public float sfxVolume;
-    public float musicVolume;
 
     // private void Awake()
     // {
@@ -41,7 +37,8 @@ public class SettingsManager : MonoBehaviour
 
         masterVolumeSliderValue = masterVolumeSlider.value;
         sfxVolumeSliderValue = sfxVolumeSlider.value;
-        musicVolumeSliderValue = musicVolumeSlider.value; 
+        musicVolumeSliderValue = musicVolumeSlider.value;
+        UpdateVolumes();
     }
 
     // private void OnDisable()
@@ -60,7 +57,6 @@ public class SettingsManager : MonoBehaviour
     {
         masterVolumeSliderValue = masterVolumeSlider.value;
         UpdateVolumes();
-        AudioListener.volume = masterVolume;
     }
 
     public void UpdateSFXVolume()
@@ -77,12 +73,14 @@ public class SettingsManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         settingsUI.SetActive(false);
         Time.timeScale = (GameManager.Instance.isSpedUp) ? GameManager.Instance.waveSpeedUpFactor : 1.00f;
     }
 
     public void PauseGame()
     {
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         Time.timeScale = 0.0f;
         settingsUI.SetActive(true);
     }
@@ -104,9 +102,9 @@ public class SettingsManager : MonoBehaviour
 
     private void UpdateVolumes()
     {
-        masterVolume = masterVolumeSliderValue;
-        sfxVolume = masterVolume * sfxVolumeSliderValue;
-        musicVolume = masterVolume * musicVolumeSliderValue;
+        AudioManager.Instance.masterVolume = masterVolumeSliderValue;
+        AudioManager.Instance.sfxVolume = sfxVolumeSliderValue;
+        AudioManager.Instance.musicVolume = musicVolumeSliderValue;
     }
 
 }

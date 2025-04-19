@@ -22,5 +22,6 @@ public class BasicTower : TowerBehavior
         {
             newProjectile.UpdateEffectiveDamage(tower.towerUpgrade.damageIncrease);
         }
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.whooshSound);
     }
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Test Tower
   price: 100
-  icon: {fileID: 1041003540372436296, guid: 230d5269cc3160044ba37a0c4dd9f1d7, type: 3}
+  icon: {fileID: -5240437528254865894, guid: 514541e8cff0abb48a3ddade8b0af1cb, type: 3}
