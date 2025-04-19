@@ -1,10 +1,18 @@
 using UnityEngine;
+using FMOD.Studio;
 
 public class SlowingTower : TowerBehavior
 {
     [SerializeField] private uint slowDuration;
     [SerializeField] private float slowFactor;
 	[SerializeField] private int damage;
+
+    private EventInstance humming;
+
+    private void Awake()
+    {
+        humming = AudioManager.Instance.CreateEventInstance(AudioManager.Instance.hummingSound);
+    }
 
     public override void Fire()
     {
@@ -37,5 +45,23 @@ public class SlowingTower : TowerBehavior
         upgrade3Unlocked = true;
         slowDuration = 2000; // it's in frames???
         return;
+    }
+
+    private void Update()
+    {
+        UpdateSound();
+    }
+
+    private void UpdateSound()
+    {
+        if (tower.target != null)
+        {
+            humming.getPlaybackState(out PLAYBACK_STATE playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED)) humming.start();
+        }
+        else
+        {
+            humming.stop(STOP_MODE.ALLOWFADEOUT);
+        }
     }
 }
