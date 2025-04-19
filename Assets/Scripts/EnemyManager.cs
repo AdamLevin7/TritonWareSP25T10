@@ -133,6 +133,7 @@ public class EnemyManager : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyData.enemyPrefab, NodePositionList[0], Quaternion.identity);
         float newHalfHeight = newEnemy.GetComponent<SphereCollider>().radius;
         newEnemy.transform.position += newHalfHeight * Vector3.back;
+        newEnemy.GetComponentInChildren<MeshRenderer>().materials[0].SetColor("_BaseColor", enemyData.color);
         activeEnemies.Add(new Enemy(newEnemy, newHalfHeight, 0, Vector2.zero, enemyData.speed, enemyData.hp));
     }
 
