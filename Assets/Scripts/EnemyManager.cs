@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
+
 public class Enemy
 {
     public GameObject gameObject;
@@ -13,6 +14,15 @@ public class Enemy
     public float maxHealth;
     public HealthBar healthbar;
 
+    public float slowFactor;
+    public uint slowDuration;
+    public float moveSpeedReduction;
+    public bool wasSlowed;
+
+    // For a more general system, disabled.
+    // public List<EnemyEffect> passiveEffects;
+    // public List<EnemyEffect> activeEffects;
+
     public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, float hp)
     {
         this.gameObject = gameObject;
@@ -21,8 +31,15 @@ public class Enemy
         this.direction = direction;
         this.moveSpeed = moveSpeed;
         this.hp = hp;
+
         maxHealth = hp;
         healthbar = gameObject.GetComponentInChildren<HealthBar>();
+
+        // set to nothing values
+        this.slowFactor = 1;
+        this.slowDuration = 0;
+        this.moveSpeedReduction = 0;
+        this.wasSlowed = false;
     }
 }
 
@@ -45,6 +62,11 @@ public class EnemyManager : MonoBehaviour
     //References for Creating Node Path
     public Transform NodeContainer;
     public List<Vector3> NodePositionList = new();
+
+    // Slowed Enemy specific references paired by index
+    public List<Enemy> slowedEnemies = new();
+    public List<float> slowFactor = new();
+    public List<uint> slowDuration = new();
 
     public float defaultEnemyMoveSpeed = 2f;
 
@@ -113,6 +135,18 @@ public class EnemyManager : MonoBehaviour
             KillEnemy(enemy);
         }
     }
+    public void EnemyTakeDamage(Enemy enemy, int damageHPAmount)
+    {
+        if (enemy == null) return;
+
+        enemy.hp -= damageHPAmount;
+        if (enemy.hp < 0)
+        {
+            DummyAddMoney();
+            KillEnemy(enemy);
+        }
+
+    }
 
     /// <summary>
     /// Creates a new Enemy with an initial hp <paramref name="TotalHP"/>
@@ -169,6 +203,54 @@ public class EnemyManager : MonoBehaviour
         {
             Enemy enemy = activeEnemies[i];
 
+            /* The following code was for a more general effect system.
+             * It is disabled for now.
+             * Please mourn.
+            for (int activeEffectInd = 0; activeEffectInd < enemy.activeEffects.Count; activeEffectInd++)
+            {
+                EnemyEffect e = enemy.activeEffects[activeEffectInd];
+                ApplyEffect(e, enemy);
+                e.timeLeft--;
+                if(e.timeLeft == 0)
+                {
+                    enemy.activeEffects.Remove(e);
+                }
+            }
+
+            for (int passiveEffectInd = 0; passiveEffectInd < enemy.passiveEffects.Count; passiveEffectInd++){
+                EnemyEffect e = enemy.passiveEffects[passiveEffectInd];
+                e.timeLeft--;
+                if(e.timeLeft == 0)
+                {
+                    ApplyEffectInverse(e, enemy);
+                    enemy.activeEffects.Remove(e);
+                }
+            }
+            */
+
+            if(enemy.slowDuration > 0)
+            {
+                enemy.slowDuration--;
+            }
+            if(!enemy.wasSlowed)
+            {
+                enemy.wasSlowed = true;
+                enemy.moveSpeedReduction = enemy.moveSpeed - enemy.moveSpeed/enemy.slowFactor;
+                enemy.moveSpeed = enemy.moveSpeed - enemy.moveSpeedReduction;
+            }
+            else if(enemy.slowDuration == 0 && enemy.wasSlowed)
+            {
+                enemy.wasSlowed = false;
+                enemy.moveSpeed = enemy.moveSpeed + enemy.moveSpeedReduction;
+                // enemy.slowFactor = 1;
+                enemy.moveSpeedReduction = 0;
+            }
+
+            if(enemy.slowDuration % 10 == 0)
+            {
+                /*Debug.Log("slow duration is" + enemy.slowDuration.ToString());*/
+            }
+
             if (enemy.currentNodeIdx + 1 < NodePositionList.Count)
             {
                 enemy.direction = (NodePositionList[enemy.currentNodeIdx + 1] - NodePositionList[enemy.currentNodeIdx]).normalized;
@@ -196,6 +278,7 @@ public class EnemyManager : MonoBehaviour
                 }
 
             }
+
         }
 
         // active round wave stuff
@@ -245,6 +328,45 @@ public class EnemyManager : MonoBehaviour
         wavePatternsInitDelayCtrs.Add(0.0f);
         wavePatternsIntervalCtrs.Add(0.0f);
     }
+    
+
+    // following the common "Enemy[Action]" naming scheme
+    public void EnemySlowed(GameObject EnemyReference, uint duration, float factor)
+    {
+
+        Enemy enemy = TryGetEnemy(EnemyReference);
+        if (enemy == null) return;
+
+        SlowEnemy(enemy, duration, factor);
+    }
+
+    // following a different naming scheme
+    public void SlowEnemy(Enemy enemy, uint duration, float factor)
+    {
+        if(enemy.wasSlowed && enemy.slowFactor == factor)
+        {
+            enemy.slowDuration = duration;
+            Debug.Log("Resetting slow duration");
+        }
+        else if(enemy.wasSlowed)
+        {
+            enemy.slowFactor = factor;
+            enemy.slowDuration = duration; 
+            float formerTotalSpeed = enemy.moveSpeed + enemy.moveSpeedReduction;
+            float newReduction = formerTotalSpeed - (formerTotalSpeed / factor);
+            float oldSpeed = enemy.moveSpeed;
+            enemy.moveSpeedReduction = newReduction;
+            enemy.moveSpeed = formerTotalSpeed - newReduction;
+            Debug.Log("Re-slowing from " + oldSpeed.ToString() + " to " + enemy.moveSpeed.ToString());
+        }
+        else 
+        {
+            enemy.slowFactor = factor;
+            enemy.slowDuration = duration;
+            Debug.Log("Slowing for the first time!");
+        }
+    }
+
 
     private void UpdateWavePatterns()
     {
