@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float range;
     public bool pierces = false;
-    public float baseDamage = 5f;
+    public float baseDamage = 1f;
 
     private float maxLifetime;
     private float remainingLifetime;

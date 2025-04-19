@@ -55,7 +55,6 @@ public class UIHandlerScript : MonoBehaviour
     private Text livesTextComponent;
     private Text moneyTextComponent;
     private Text roundWaveTextComponent;
-    private UpgradeData nextUpgrade;
 
     private RectTransform towerSelectUIBtnRT;
     private bool hiddenTowerSelection = false;
@@ -182,7 +181,7 @@ public class UIHandlerScript : MonoBehaviour
             return;
         }
 
-        UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier + 1];
+        UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier];
         upgradeNameText.text = nextUpgrade.upgradeName;
         upgradeDescriptionText.text = nextUpgrade.upgradeDescription;
         upgradePriceText.text = "$" + nextUpgrade.price.ToString();
@@ -190,22 +189,14 @@ public class UIHandlerScript : MonoBehaviour
 
     public void TryUpgradeTower()
     {
-        Debug.Log(this.currentSelectedTower);
-        if (this.currentSelectedTower == null) 
-        {
-            Debug.LogWarning("currentSelectedTower is not referenced");
-            return;
-        }
-        currentSelectedTowerClass = this.currentSelectedTower.GetComponent<TowerBehavior>();
         int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
-        UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier + 1];
-
-        return;
-
+        UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier];
+        
         if (nextUpgrade.price > GameManager.Instance.money) return;
         if (currentSelectedTowerClass.tower.currentUpgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers) return;
 
         currentSelectedTowerClass.UpgradeTower();
         UpdateUpgradeUI();
+        Debug.Log("done upgrade");
     }
 }

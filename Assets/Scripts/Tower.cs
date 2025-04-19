@@ -107,7 +107,7 @@ public class Tower : MonoBehaviour
 
             if(synergyManager.GetComponent<Synergy>().bgSynergy && (synergyType.ToString() == "Blue" || synergyType.ToString() == "Green")){
                 effectiveRange = baseRange * bgResonanceBuff;
-                Debug.Log("bg synergy on");
+                // Debug.Log("bg synergy on");
             }
             else{
                 effectiveRange = baseRange;
@@ -120,7 +120,7 @@ public class Tower : MonoBehaviour
 
                 if(synergyManager.GetComponent<Synergy>().rgSynergy && (synergyType.ToString() == "Red" || synergyType.ToString() == "Green")){
                     timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
-                    Debug.Log("rg synergy on");
+                    // Debug.Log("rg synergy on");
                 }
                 else{
                     timeSinceLastShoot = shootCooldown;

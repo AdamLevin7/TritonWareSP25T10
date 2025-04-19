@@ -17,13 +17,13 @@ public abstract class TowerBehavior : MonoBehaviour
         GameManager.Instance.money -= tower.upgrades[tower.currentUpgradeTier].price;
         switch (tower.currentUpgradeTier)
         {
-            case 1:
+            case 0:
                 OnTier1Upgrade();
                 break;
-            case 2:
+            case 1:
                 OnTier2Upgrade();
                 break;
-            case 3:
+            case 2:
                 OnTier3Upgrade();
                 break;
         }
