@@ -799,10 +799,6 @@ PrefabInstance:
       value: AOETower
       objectReference: {fileID: 0}
     - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
-      propertyPath: col
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: c348e56280bf6a246af1f2e2e7faaf8f, type: 2}

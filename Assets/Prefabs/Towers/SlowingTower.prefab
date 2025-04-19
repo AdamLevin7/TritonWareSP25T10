@@ -824,6 +824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlowingTower
       objectReference: {fileID: 0}
+    - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      propertyPath: behavior
+      value: 
+      objectReference: {fileID: 5273790565450909989}
     - target: {fileID: 6310284994268039186, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -872,8 +876,43 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1112445517664444296, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1351666944688756351}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3171320367764228099, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5273790565450909989}
   m_SourcePrefab: {fileID: 100100000, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+--- !u!1 &4683505774220585401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3171320367764228099, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+  m_PrefabInstance: {fileID: 7853693623884636602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5273790565450909989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683505774220585401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962f048ed2419434bac62f49a90e7b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 6472629595955488378}
+  slowDuration: 30
+  slowFactor: 1.5
+  damage: 0
+--- !u!114 &6472629595955488378 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
+  m_PrefabInstance: {fileID: 7853693623884636602}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683505774220585401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25cd7a94a5fe8744098743c3bbcb1d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7173636005138382386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1112445517664444296, guid: d9223143b7842c34791d79fefa2374b7, type: 3}

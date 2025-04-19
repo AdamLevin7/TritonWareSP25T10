@@ -13,6 +13,11 @@ public class Enemy
     public float maxHealth;
     public HealthBar healthbar;
 
+    public float slowFactor;
+    public uint slowDuration;
+    public float moveSpeedReduction;
+    public bool wasSlowed;
+
     public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, float hp)
     {
         this.gameObject = gameObject;
@@ -23,6 +28,11 @@ public class Enemy
         this.hp = hp;
         maxHealth = hp;
         healthbar = gameObject.GetComponentInChildren<HealthBar>();
+
+        this.slowFactor = 1;
+        this.slowDuration = 0;
+        this.moveSpeedReduction = 0;
+        this.wasSlowed = false;
     }
 }
 
@@ -169,6 +179,24 @@ public class EnemyManager : MonoBehaviour
         {
             Enemy enemy = activeEnemies[i];
 
+            if(enemy.slowDuration > 0)
+            {
+                enemy.slowDuration--;
+            }
+            if(!enemy.wasSlowed)
+            {
+                enemy.wasSlowed = true;
+                enemy.moveSpeedReduction = enemy.moveSpeed - enemy.moveSpeed/enemy.slowFactor;
+                enemy.moveSpeed = enemy.moveSpeed - enemy.moveSpeedReduction;
+            }
+            else if(enemy.slowDuration == 0 && enemy.wasSlowed)
+            {
+                enemy.wasSlowed = false;
+                enemy.moveSpeed = enemy.moveSpeed + enemy.moveSpeedReduction;
+                // enemy.slowFactor = 1;
+                enemy.moveSpeedReduction = 0;
+            }
+
             if (enemy.currentNodeIdx + 1 < NodePositionList.Count)
             {
                 enemy.direction = (NodePositionList[enemy.currentNodeIdx + 1] - NodePositionList[enemy.currentNodeIdx]).normalized;
@@ -289,5 +317,40 @@ public class EnemyManager : MonoBehaviour
 
         activeEnemies.Clear();
         deadEnemies.Clear();
+    }
+    public void EnemySlowed(GameObject EnemyReference, uint duration, float factor)
+    {
+
+        Enemy enemy = TryGetEnemy(EnemyReference);
+        if (enemy == null) return;
+
+        SlowEnemy(enemy, duration, factor);
+    }
+
+    // following a different naming scheme
+    public void SlowEnemy(Enemy enemy, uint duration, float factor)
+    {
+        if(enemy.wasSlowed && enemy.slowFactor == factor)
+        {
+            enemy.slowDuration = duration;
+            Debug.Log("Resetting slow duration");
+        }
+        else if(enemy.wasSlowed)
+        {
+            enemy.slowFactor = factor;
+            enemy.slowDuration = duration; 
+            float formerTotalSpeed = enemy.moveSpeed + enemy.moveSpeedReduction;
+            float newReduction = formerTotalSpeed - (formerTotalSpeed / factor);
+            float oldSpeed = enemy.moveSpeed;
+            enemy.moveSpeedReduction = newReduction;
+            enemy.moveSpeed = formerTotalSpeed - newReduction;
+            Debug.Log("Re-slowing from " + oldSpeed.ToString() + " to " + enemy.moveSpeed.ToString());
+        }
+        else 
+        {
+            enemy.slowFactor = factor;
+            enemy.slowDuration = duration;
+            Debug.Log("Slowing for the first time!");
+        }
     }
 }
