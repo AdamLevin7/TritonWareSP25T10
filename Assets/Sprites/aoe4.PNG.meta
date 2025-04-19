@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: a71a2186e0ec306459fdfd56558d9684
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2321621124274919034
+    second: aoe4_0
+  - first:
+      213: 6801387411242178338
+    second: aoe4_1
+  - first:
+      213: -5227291836338378361
+    second: aoe4_2
+  - first:
+      213: 5399430796288165699
+    second: aoe4_3
+  - first:
+      213: -2941232766884741680
+    second: aoe4_4
+  - first:
+      213: -6756448197800583822
+    second: aoe4_5
+  - first:
+      213: 816029486003103646
+    second: aoe4_6
+  - first:
+      213: 926707301035568186
+    second: aoe4_7
+  - first:
+      213: -6521742457227618274
+    second: aoe4_8
+  - first:
+      213: 4397466237611636941
+    second: aoe4_9
+  - first:
+      213: 6254442223877724069
+    second: aoe4_10
+  - first:
+      213: -3964860338482669280
+    second: aoe4_11
+  - first:
+      213: 779369295624301071
+    second: aoe4_12
+  - first:
+      213: -3224933217391141798
+    second: aoe4_13
+  - first:
+      213: -3043133704339952684
+    second: aoe4_14
+  - first:
+      213: 4152728027284367032
+    second: aoe4_15
+  - first:
+      213: 1699322553715607860
+    second: aoe4_16
+  - first:
+      213: 31499796067605649
+    second: aoe4_17
+  - first:
+      213: 1234427635749173079
+    second: aoe4_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: aoe4_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 769
+        width: 560
+        height: 567
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76137fac1e083020800000000000000
+      internalID: 2321621124274919034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 760
+        width: 606
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22757e2b0d1636e50800000000000000
+      internalID: 6801387411242178338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_2
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 820
+        width: 419
+        height: 506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78960cd25cde477b0800000000000000
+      internalID: -5227291836338378361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_3
+      rect:
+        serializedVersion: 2
+        x: 1789
+        y: 1314
+        width: 43
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3478f0aa3b1aeea40800000000000000
+      internalID: 5399430796288165699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_4
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 1320
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd7810c164ae27d0800000000000000
+      internalID: -2941232766884741680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_5
+      rect:
+        serializedVersion: 2
+        x: 2075
+        y: 873
+        width: 445
+        height: 478
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27d94ca49264c32a0800000000000000
+      internalID: -6756448197800583822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_6
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 1276
+        width: 110
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e97a5777e7e135b00800000000000000
+      internalID: 816029486003103646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_7
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1223
+        width: 33
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c6cf061635cdc00800000000000000
+      internalID: 926707301035568186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_8
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 1171
+        width: 10
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e185d50f9cd1e75a0800000000000000
+      internalID: -6521742457227618274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_9
+      rect:
+        serializedVersion: 2
+        x: 1962
+        y: 1156
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc87d9c8e30f60d30800000000000000
+      internalID: 4397466237611636941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_10
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 1149
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a79f6ea01e3cc650800000000000000
+      internalID: 6254442223877724069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_11
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 948
+        width: 22
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02994b4678cf9f8c0800000000000000
+      internalID: -3964860338482669280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_12
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 170
+        width: 576
+        height: 557
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a688ebe30e0da00800000000000000
+      internalID: 779369295624301071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_13
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 174
+        width: 592
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5c1b01435cbe33d0800000000000000
+      internalID: -3224933217391141798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_14
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 214
+        width: 389
+        height: 456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db6cc4e40e94c5d0800000000000000
+      internalID: -3043133704339952684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_15
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 177
+        width: 499
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b6e713832471a930800000000000000
+      internalID: 4152728027284367032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_16
+      rect:
+        serializedVersion: 2
+        x: 2497
+        y: 648
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4394705fbd4359710800000000000000
+      internalID: 1699322553715607860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_17
+      rect:
+        serializedVersion: 2
+        x: 1945
+        y: 305
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19c5b1bc5e8ef6000800000000000000
+      internalID: 31499796067605649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aoe4_18
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 169
+        width: 97
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75731c9f461912110800000000000000
+      internalID: 1234427635749173079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      aoe4_0: 2321621124274919034
+      aoe4_1: 6801387411242178338
+      aoe4_10: 6254442223877724069
+      aoe4_11: -3964860338482669280
+      aoe4_12: 779369295624301071
+      aoe4_13: -3224933217391141798
+      aoe4_14: -3043133704339952684
+      aoe4_15: 4152728027284367032
+      aoe4_16: 1699322553715607860
+      aoe4_17: 31499796067605649
+      aoe4_18: 1234427635749173079
+      aoe4_2: -5227291836338378361
+      aoe4_3: 5399430796288165699
+      aoe4_4: -2941232766884741680
+      aoe4_5: -6756448197800583822
+      aoe4_6: 816029486003103646
+      aoe4_7: 926707301035568186
+      aoe4_8: -6521742457227618274
+      aoe4_9: 4397466237611636941
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

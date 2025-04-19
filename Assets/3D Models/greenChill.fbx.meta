@@ -3,7 +3,22 @@ guid: 7ef979a51abcb4f41ad424e26373396f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: chillguy
+    second: {fileID: 2100000, guid: fcafc4960f11cba4088229c8c6afb21f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pink
+    second: {fileID: 2100000, guid: fcafc4960f11cba4088229c8c6afb21f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pinkbody
+    second: {fileID: 2100000, guid: fcafc4960f11cba4088229c8c6afb21f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -48,12 +48,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70dc0855b9056740bfe26141d12ff0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  baseDamage: 3
   speed: 10
   range: 10
   pierces: 0
+  parentTower: {fileID: 0}
   direction: {x: 1, y: 0}
   explosion: {fileID: 344771678506714218, guid: 4cdc801281e0e1340ad7d35a8595216c, type: 3}
+  damageScaleFactor: 0
+  effectiveDamage: 0
+  synergyManager: {fileID: 0}
 --- !u!54 &7974947510092174770
 Rigidbody:
   m_ObjectHideFlags: 0
