@@ -22,6 +22,9 @@ public class AOEProjectile : MonoBehaviour
     [SerializeField] private GameObject synergyManager;
     private float rbResonanceBuff = 1.25f;
 
+    public bool boostedExplosion;
+    public bool scaledDamage;
+
     private void Awake()
     {
         remainingLifetime = speed == 0 ? 0 : range / speed;
@@ -75,7 +78,17 @@ public class AOEProjectile : MonoBehaviour
 
         GameObject projectileExplosion = Instantiate(explosion);
         projectileExplosion.transform.position = transform.position;
-        projectileExplosion.GetComponent<ExplosionEffect>().parentTower = this.parentTower;
+        ExplosionEffect exp =  projectileExplosion.GetComponent<ExplosionEffect>();
+        exp.parentTower = this.parentTower;
+        if (boostedExplosion) 
+        {
+            exp.baseDamage *= 3.0f;
+            exp.explosionRadiusScaleFactor *= 3.0f;
+        }
+        if (scaledDamage)
+        {
+            exp.scaledDmg = true;
+        }
         projectileExplosion.SetActive(true);
 
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.explosionSound);

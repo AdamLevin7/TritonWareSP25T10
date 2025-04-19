@@ -71,6 +71,7 @@ public class Tower : MonoBehaviour
         gameObject.layer = UI_LAYER_NUM;
         synergyManager = GameObject.FindWithTag("synergy");
         GameManager.Instance.placingTower = true;
+        timeSinceLastShoot = shootCooldown;
         // uiHandlerClass = UIHandler.GetComponent<UIHandlerScript>();
     }
 
@@ -122,7 +123,8 @@ public class Tower : MonoBehaviour
                     timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
                     // Debug.Log("rg synergy on");
                 }
-                else{
+                else
+                {
                     timeSinceLastShoot = shootCooldown;
                 }
             }

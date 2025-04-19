@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SlowUpgrade3
   m_EditorClassIdentifier: 
   upgradeName: Shaken to the Core
-  upgradeDescription: Hits deal additional true damage
+  upgradeDescription: Much better slowed duration
   price: 500

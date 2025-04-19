@@ -9,21 +9,25 @@ public abstract class TowerBehavior : MonoBehaviour
         tower.behavior = this;
     }
 
+    protected bool upgrade1Unlocked = false;
+    protected bool upgrade2Unlocked = false;
+    protected bool upgrade3Unlocked = false;
+
     public abstract void Fire();
 
     public void UpgradeTower()
     {
         tower.currentUpgradeTier++;
-        GameManager.Instance.money -= tower.upgrades[tower.currentUpgradeTier].price;
+        GameManager.Instance.money -= tower.upgrades[tower.currentUpgradeTier - 1].price;
         switch (tower.currentUpgradeTier)
         {
-            case 0:
+            case 1:
                 OnTier1Upgrade();
                 break;
-            case 1:
+            case 2:
                 OnTier2Upgrade();
                 break;
-            case 2:
+            case 3:
                 OnTier3Upgrade();
                 break;
         }

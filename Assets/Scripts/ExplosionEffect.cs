@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -17,8 +18,15 @@ public class ExplosionEffect : MonoBehaviour
     [SerializeField] private GameObject synergyManager;
     private float rbResonanceBuff = 1.25f;
 
+    public bool scaledDmg;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+
+    }
+
+    void OnEnable()
     {
         circleCollider.radius *= explosionRadiusScaleFactor;
         Vector3 scale3D = new (explosionRadiusScaleFactor, explosionRadiusScaleFactor, 1);
@@ -46,8 +54,13 @@ public class ExplosionEffect : MonoBehaviour
                 else{
                     damageScaleFactor = 1.0f;
                 }
-                parentTower.tower.totalDamageDealt += baseDamage * damageScaleFactor;
-                EnemyManager.Instance.EnemyTakeDamage(enemy.gameObject, baseDamage * damageScaleFactor);
+                float damageDoneToEnemy = baseDamage *= damageScaleFactor;
+                if (scaledDmg)
+                {
+                    damageDoneToEnemy += Math.Max(enemy.gameObject.GetComponent<Enemy>().hp * 0.2f, 5);
+                }
+                parentTower.tower.totalDamageDealt += damageDoneToEnemy;
+                EnemyManager.Instance.EnemyTakeDamage(enemy.gameObject, damageDoneToEnemy);
             }
         }
     }

@@ -171,13 +171,12 @@ public class UIHandlerScript : MonoBehaviour
     {
         int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
 
-        upgradeTierText.text = upgradeTier + "/" + currentSelectedTowerClass.tower.maxUpgradeTiers;
-
         if (upgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers)
         {
             upgradeNameText.text = "Max Upgrades!";
             upgradeDescriptionText.text = "";
             upgradePriceText.text = "";
+            upgradeTierText.text = "";
             return;
         }
 
@@ -185,13 +184,14 @@ public class UIHandlerScript : MonoBehaviour
         upgradeNameText.text = nextUpgrade.upgradeName;
         upgradeDescriptionText.text = nextUpgrade.upgradeDescription;
         upgradePriceText.text = "$" + nextUpgrade.price.ToString();
+        upgradeTierText.text = (upgradeTier + 1) + "/" + currentSelectedTowerClass.tower.maxUpgradeTiers;
     }
 
     public void TryUpgradeTower()
     {
         int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
         UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier];
-        
+
         if (nextUpgrade.price > GameManager.Instance.money) return;
         if (currentSelectedTowerClass.tower.currentUpgradeTier == currentSelectedTowerClass.tower.maxUpgradeTiers) return;
 
