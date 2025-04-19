@@ -41,7 +41,15 @@ public class LightBeamTower : TowerBehavior
 
             Vector3 beamTargetPos = Tower.Get3DTargetPos(beamTarget);
 
-            int totalDamage = (int) (damage * towerUpgrade.damageIncrease);
+            int totalDamage;
+            if (tower.towerUpgrade != null)
+            {
+                totalDamage = (int) (damage * tower.towerUpgrade.damageIncrease);
+            }
+            else
+            {
+                totalDamage = (int)damage;
+            }
 
             EnemyManager.Instance.EnemyTakeDamage(beamTarget.gameObject, totalDamage);
             tower.totalDamageDealt += damage;
