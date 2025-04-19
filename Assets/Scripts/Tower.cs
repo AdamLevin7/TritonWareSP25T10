@@ -50,7 +50,7 @@ public class Tower : MonoBehaviour
     private const int UI_LAYER_NUM = 5;
     private const int TOWER_LAYER_NUM = 6;
 
-	public TowerUpgrade towerUpgrade;
+    public TowerUpgrade towerUpgrade;
 
     public TowerData data;
     public float totalDamageDealt;
@@ -101,7 +101,6 @@ public class Tower : MonoBehaviour
 
         if (isPlaced)
         {
-            timeSinceLastShoot -= dt;
 
             SetTarget();
 
@@ -109,8 +108,18 @@ public class Tower : MonoBehaviour
                 effectiveRange = baseRange * bgResonanceBuff;
                 Debug.Log("bg synergy on");
             }
-            else{
+            else
+            {
                 effectiveRange = baseRange;
+            }
+            if(towerUpgrade != null )
+            {
+                effectiveRange = effectiveRange * towerUpgrade.rangeIncrease;
+                timeSinceLastShoot -= dt * towerUpgrade.shootCooldownReduction;
+            }
+            else
+            {
+                timeSinceLastShoot -= dt;
             }
             rangeIndicator.transform.localScale = new(effectiveRange * 2, effectiveRange * 2, effectiveRange * 2);
 
@@ -122,7 +131,8 @@ public class Tower : MonoBehaviour
                     timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
                     Debug.Log("rg synergy on");
                 }
-                else{
+                else
+                {
                     timeSinceLastShoot = shootCooldown;
                 }
             }
@@ -175,7 +185,7 @@ public class Tower : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         wasClicked = col.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity);
     }
-    
+
     private void Interact(InputAction.CallbackContext ctx)
     {
         if (isPlaced)
