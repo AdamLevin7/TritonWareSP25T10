@@ -856,7 +856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 5345548079628090638}
   chainRange: 1
-  maxChainCount: 25
+  maxChainCount: 5
   damage: 1
   beam: {fileID: 4789953808017043485}
   beamWidth: 0.1

@@ -940,7 +940,7 @@ MonoBehaviour:
   tower: {fileID: 6472629595955488378}
   slowDuration: 30
   slowFactor: 1.5
-  damage: 0
+  damage: 1
 --- !u!114 &6472629595955488378 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}

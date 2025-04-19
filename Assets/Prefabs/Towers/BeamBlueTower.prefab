@@ -64,9 +64,17 @@ PrefabInstance:
       propertyPath: synergyType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5345548079628090638, guid: 2587232bb6579f94397035b1940693fd, type: 3}
+      propertyPath: shootCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5981750439785476813, guid: 2587232bb6579f94397035b1940693fd, type: 3}
       propertyPath: m_Name
       value: BeamBlueTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344117493942760752, guid: 2587232bb6579f94397035b1940693fd, type: 3}
+      propertyPath: maxChainCount
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8408913505364516987, guid: 2587232bb6579f94397035b1940693fd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

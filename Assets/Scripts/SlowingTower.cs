@@ -4,7 +4,8 @@ public class SlowingTower : TowerBehavior
 {
     [SerializeField] private uint slowDuration;
     [SerializeField] private float slowFactor;
-	[SerializeField] private int damage;
+	[SerializeField] private float damage;
+	private int counter;
 
     public override void Fire()
     {
@@ -15,7 +16,15 @@ public class SlowingTower : TowerBehavior
             if (collider.CompareTag("Enemy"))
             {
                 EnemyManager.Instance.EnemySlowed(collider.gameObject, slowDuration, slowFactor);
-				EnemyManager.Instance.EnemyTakeDamage(collider.gameObject, damage);
+				if(counter % 10 == 0)
+				{
+					EnemyManager.Instance.EnemyTakeDamage(collider.gameObject, damage);
+					counter = 0;
+				}
+				else 
+				{
+					counter++;
+				}
             }
         }
     }
