@@ -19,6 +19,7 @@ public abstract class TowerBehavior : MonoBehaviour
     {
         tower.currentUpgradeTier++;
         GameManager.Instance.money -= tower.upgrades[tower.currentUpgradeTier - 1].price;
+        tower.sellValue += (int)((float)tower.upgrades[tower.currentUpgradeTier - 1].price * 0.75f);
         switch (tower.currentUpgradeTier)
         {
             case 1:

@@ -83,7 +83,7 @@ public class AOEProjectile : MonoBehaviour
         if (boostedExplosion) 
         {
             exp.baseDamage *= 3.0f;
-            exp.explosionRadiusScaleFactor *= 3.0f;
+            exp.explosionRadiusScaleFactor *= 1.5f;
         }
         if (scaledDamage)
         {
