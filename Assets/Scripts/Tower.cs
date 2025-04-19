@@ -50,6 +50,8 @@ public class Tower : MonoBehaviour
     private const int UI_LAYER_NUM = 5;
     private const int TOWER_LAYER_NUM = 6;
 
+	public TowerUpgrade towerUpgrade;
+
     public TowerData data;
     public float totalDamageDealt;
     public int sellValue;
@@ -246,4 +248,5 @@ public class Tower : MonoBehaviour
 
         return (Vector3)initialTargetPos + targetHalfHeight;
     }
+
 }

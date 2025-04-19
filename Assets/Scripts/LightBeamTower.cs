@@ -41,7 +41,9 @@ public class LightBeamTower : TowerBehavior
 
             Vector3 beamTargetPos = Tower.Get3DTargetPos(beamTarget);
 
-            EnemyManager.Instance.EnemyTakeDamage(beamTarget.gameObject, (int)damage);
+            int totalDamage = (int) (damage * towerUpgrade.damageIncrease);
+
+            EnemyManager.Instance.EnemyTakeDamage(beamTarget.gameObject, totalDamage);
             tower.totalDamageDealt += damage;
 
             int resultCount = Physics.OverlapSphereNonAlloc(beamTargetPos, chainRange, chainRangeResults, enemyLayer);

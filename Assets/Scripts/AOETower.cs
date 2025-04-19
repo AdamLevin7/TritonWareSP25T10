@@ -19,5 +19,6 @@ public class AOETower : TowerBehavior
         AOEProjectile newProjectile = newBullet.GetComponent<AOEProjectile>();
         newProjectile.direction = direction.normalized;
         newProjectile.parentTower = this;
+        newProjectile.UpdateEffectiveDamage(towerUpgrade.damageIncrease);
     }
 }
