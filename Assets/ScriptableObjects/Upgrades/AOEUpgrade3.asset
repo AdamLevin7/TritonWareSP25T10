@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9add67d4369b85346a72748502414a4f, type: 3}
   m_Name: AOEUpgrade3
   m_EditorClassIdentifier: 
-  upgradeName: 
-  upgradeDescription: 
-  price: 0
+  upgradeName: We Bring the Boom
+  upgradeDescription: Additional damage that scales based on user's health
+  price: 700

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9add67d4369b85346a72748502414a4f, type: 3}
   m_Name: BasicUpgrade2
   m_EditorClassIdentifier: 
-  upgradeName: 
-  upgradeDescription: 
-  price: 0
+  upgradeName: Multi-Shard System
+  upgradeDescription: Shoots multiple shards
+  price: 200
