@@ -5,8 +5,9 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     // public static SettingsManager Instance { get; private set; }
+    public static SettingsManager Instance { get; private set; } 
 
-    [SerializeField] private GameObject settingsUI;
+    public GameObject settingsUI;
 
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
@@ -22,11 +23,11 @@ public class SettingsManager : MonoBehaviour
     private float musicVolumeSliderValue;
     private InputSystem_Actions inputActions;
 
-    // private void Awake()
-    // {
-    //     if (Instance != null && Instance != this) Destroy(this);
-    //     else Instance = this;
-    // }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

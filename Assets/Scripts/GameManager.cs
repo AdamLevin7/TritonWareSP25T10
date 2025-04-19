@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -125,6 +126,7 @@ public class GameManager : MonoBehaviour
         UIHandlerScript.Instance.roundActiveComponent.SetActive(true);
         UIHandlerScript.Instance.roundLossUI.SetActive(false);
         UIHandlerScript.Instance.roundWinUI.SetActive(false);
+        SettingsManager.Instance.settingsUI.SetActive(false);
 
         endAnimationCtr = 0.0f;
         endingGame = false;
@@ -138,7 +140,8 @@ public class GameManager : MonoBehaviour
     // function to go back to menu (mainly used for buttons)
     public void GoToMenu()
     {
-        Debug.Log("pretend this button works right now");
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
+        SceneManager.LoadScene(0);
     }
 
     // template function for checking whether or not there are any bonuses to be applied due to balances
