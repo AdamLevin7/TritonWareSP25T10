@@ -16,8 +16,12 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private GameObject availableTowersUI;
     [SerializeField] private GameObject synergiesUI;
     [SerializeField] private GameObject nextWaveOrSpeedUpBtn;
-    [SerializeField] private Text nextWaveOrSpeedUpText;
+    [SerializeField] private Image nextWaveOrSpeedUpImage;
     [SerializeField] private GameObject towerSelectUIBtn;
+
+    [SerializeField] private Sprite waveStartSprite;
+    [SerializeField] private Sprite twoXSpeedSprite;
+    [SerializeField] private Sprite oneXSpeedSprite;
 
     [Header("Loss UI")]
     public GameObject roundLossUI;
@@ -114,11 +118,11 @@ public class UIHandlerScript : MonoBehaviour
     {
         if (waveActive)
         {
-            nextWaveOrSpeedUpText.text = (timeScale == 1.0f) ? "1x Speed" : "2x Speed";
+            nextWaveOrSpeedUpImage.sprite = (timeScale == 1.0f) ? oneXSpeedSprite : twoXSpeedSprite;
         }
         else
         {
-            nextWaveOrSpeedUpText.text = "Start Wave";
+            nextWaveOrSpeedUpImage.sprite = waveStartSprite;
         }
     }
 
