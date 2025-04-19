@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295c5b5b797857246a1c2e6c61b5c0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathWidth: 1.5
+  pathWidth: 1
   pathColliderContainerPrefab: {fileID: 6148205349351142905, guid: 6bd632362dbda894385642abd92349e0, type: 3}
 --- !u!114 &4396365557552545167
 MonoBehaviour:

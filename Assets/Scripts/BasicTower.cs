@@ -12,8 +12,7 @@ public class BasicTower : TowerBehavior
 
         cannon.eulerAngles = new Vector3(0, 0, angle - 90);
 
-        GameObject newBullet = Instantiate(bulletPrefab);
-        newBullet.transform.position = Tower.Get3DTargetPos(tower.target);
+        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
         Projectile newProjectile = newBullet.GetComponent<Projectile>();
         newProjectile.direction = direction.normalized;
