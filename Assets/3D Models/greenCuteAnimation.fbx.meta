@@ -3,7 +3,22 @@ guid: b4460cba14fbf0d45a5ca14071747f44
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LILBODY
+    second: {fileID: 2100000, guid: 514112c669bc5764b8e36b58c70f6b0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crystal
+    second: {fileID: 2100000, guid: 507287f1f60300c489a3978ad0ca9191, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crystalthotface
+    second: {fileID: 2100000, guid: 321acebd11078ec4bb359e4faf16851f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
