@@ -64,9 +64,6 @@ public class EnemyManager : MonoBehaviour
     public List<Vector3> NodePositionList = new();
 
     // Slowed Enemy specific references paired by index
-    public List<Enemy> slowedEnemies = new();
-    public List<float> slowFactor = new();
-    public List<uint> slowDuration = new();
 
     public float defaultEnemyMoveSpeed = 2f;
 
