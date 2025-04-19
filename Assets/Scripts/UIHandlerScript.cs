@@ -47,10 +47,10 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Text selectedTowerValue;
     [SerializeField] private Image selectedTowerIcon;
     [SerializeField] private GameObject synergyManager;
-    private GameObject currentSelectedTower;
-    private Tower currentSelectedTowerClass;
+    public GameObject currentSelectedTower;
+    public Tower currentSelectedTowerClass;
 
-    private TowerData currentSelectedTowerData;
+    public TowerData currentSelectedTowerData;
 
     private Text livesTextComponent;
     private Text moneyTextComponent;
