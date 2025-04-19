@@ -9,6 +9,7 @@ using UnityEngine.Assertions;
 public class LightBeamTower : TowerBehavior
 {
     public float chainRange = 5f;
+    private float baseChainRange;
     public int maxChainCount = 25;
     public float damage = 1f;
     public LineRenderer beam;
@@ -27,6 +28,7 @@ public class LightBeamTower : TowerBehavior
     {
         chainRangeResults = new Collider[maxChainCount];
         shotCtr = 0;
+        baseChainRange = chainRange;
         beam.enabled = false;
     }
 
@@ -38,7 +40,7 @@ public class LightBeamTower : TowerBehavior
         List<Vector3> beamTargets = new(maxChainCount + 1) { transform.position };
 
         int currentChain;
-        if (shotCtr >= 3) 
+        if (shotCtr >= 3 && upgrade3Unlocked) 
         {
             currentChain = EnemyManager.Instance.totalEnemiesInWave;
             chainRange = float.MaxValue;
@@ -46,7 +48,7 @@ public class LightBeamTower : TowerBehavior
         else
         {
             currentChain = maxChainCount;
-            chainRange = 0.5f;
+            chainRange = baseChainRange;
         }
 
         for (int i = 0; i < currentChain; ++i)

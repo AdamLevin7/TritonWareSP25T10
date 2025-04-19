@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackSlime
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5499502075246150122, guid: 5114bc0f93cda4b418845dae835eabd2, type: 3}
-  value: 20
-  hp: 20
+  value: 200
+  hp: 200
   speed: 2
   color: {r: 0, g: 0, b: 0, a: 0}

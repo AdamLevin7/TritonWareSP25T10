@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RedBeamTower
   m_EditorClassIdentifier: 
   towerName: Red Prismoid
-  price: 200
+  price: 800
   icon: {fileID: 8663374444170863565, guid: 664a83d10807c314285eb41f2e47b906, type: 3}

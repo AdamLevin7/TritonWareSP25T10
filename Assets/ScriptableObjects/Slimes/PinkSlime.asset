@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PinkSlime
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2716657236759834368, guid: 552da9a3984b64c439fe9ee1c0688586, type: 3}
-  value: 30
-  hp: 30
+  value: 300
+  hp: 300
   speed: 2
   color: {r: 1, g: 0, b: 0.33480358, a: 0}

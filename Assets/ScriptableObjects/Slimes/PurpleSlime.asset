@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PurpleSlime
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7998079915046675355, guid: 5338344e8b13d314e8edc721e5ca45c9, type: 3}
-  value: 5
-  hp: 5
+  value: 50
+  hp: 50
   speed: 2
+  color: {r: 0, g: 0, b: 0, a: 0}

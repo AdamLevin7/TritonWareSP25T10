@@ -1377,6 +1377,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1587236135681910406}
     - target: {fileID: 3717839466609955439, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
+      propertyPath: starterMoney
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717839466609955439, guid: 7d6aa366ae8486d45ac3abf0b7c2ef33, type: 3}
       propertyPath: groundCollider
       value: 
       objectReference: {fileID: 1494638406}

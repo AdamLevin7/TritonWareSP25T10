@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowSlime
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7548816356474245444, guid: 158c391c06de4f74cbb6ef1edce31226, type: 3}
-  value: 10
-  hp: 10
+  value: 100
+  hp: 100
   speed: 2
   color: {r: 1, g: 0.99867064, b: 0, a: 0}

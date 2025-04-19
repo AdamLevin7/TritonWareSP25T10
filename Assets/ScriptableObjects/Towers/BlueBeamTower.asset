@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BlueBeamTower
   m_EditorClassIdentifier: 
   towerName: Blue Prismoid
-  price: 200
+  price: 800
   icon: {fileID: -7790984860747823071, guid: 3ecabd0a573f91047a22b00ba2ca2d6c, type: 3}

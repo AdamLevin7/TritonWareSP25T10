@@ -34,7 +34,6 @@ public class ExplosionEffect : MonoBehaviour
         explosionCtr = 0.0f;
         transform.localScale = scale3D;
         visual.localScale *= explosionRadiusScaleFactor;
-        DoExplodeDamage();
     }
 
     void Awake(){

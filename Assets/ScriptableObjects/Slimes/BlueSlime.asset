@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlueSlime
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2878264669084940628, guid: a01727c0eed88754ca60e0ec07598700, type: 3}
-  value: 2
-  hp: 2
+  value: 20
+  hp: 20
   speed: 2
   color: {r: 0, g: 0.028794289, b: 1, a: 0}

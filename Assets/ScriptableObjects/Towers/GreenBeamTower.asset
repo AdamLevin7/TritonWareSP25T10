@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GreenBeamTower
   m_EditorClassIdentifier: 
   towerName: Green Prismoid
-  price: 200
+  price: 800
   icon: {fileID: 177343832777717972, guid: 9677187180ccf3447a87d7339a7166a5, type: 3}

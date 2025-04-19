@@ -958,8 +958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 6472629595955488378}
-  slowDuration: 30
-  slowFactor: 1.5
+  slowDuration: 90
+  slowFactor: 4
   damage: 0
 --- !u!114 &6472629595955488378 stripped
 MonoBehaviour:

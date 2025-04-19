@@ -759,7 +759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: shootCooldown
-      value: 0.3
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3832153094053922752, guid: d9223143b7842c34791d79fefa2374b7, type: 3}
       propertyPath: maxUpgradeTiers
@@ -875,8 +875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 5345548079628090638}
-  chainRange: 1
-  maxChainCount: 25
+  chainRange: 1.8
+  maxChainCount: 5
   damage: 1
   beam: {fileID: 4789953808017043485}
   beamWidth: 0.1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedSlime
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6002290206572040041, guid: 13802cba9780bd442b30cbbf1f2e871b, type: 3}
-  value: 3
-  hp: 3
+  value: 30
+  hp: 30
   speed: 2
   color: {r: 1, g: 0, b: 0, a: 0}
