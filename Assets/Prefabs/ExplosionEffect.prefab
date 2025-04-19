@@ -52,10 +52,12 @@ MonoBehaviour:
   explosionCtr: 0
   explosionDuration: 0.5
   circleCollider: {fileID: -6942888086288977213}
+  visual: {fileID: 6494216343346470604}
   parentTower: {fileID: 0}
   damageScaleFactor: 1
   effectiveDamage: 0
   synergyManager: {fileID: 0}
+  scaledDmg: 0
 --- !u!58 &-6942888086288977213
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -140,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 1017291517489664451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -190,14 +192,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1194172653, guid: abd33570fa5e8834cb5699ff4c0c5bb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 11.75, y: 11.2300005}
+  m_Size: {x: 7.4800005, y: 7.8200006}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

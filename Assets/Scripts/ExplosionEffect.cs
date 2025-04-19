@@ -10,6 +10,7 @@ public class ExplosionEffect : MonoBehaviour
     [SerializeField] float explosionCtr;
     public float explosionDuration;
     [SerializeField] private CircleCollider2D circleCollider;
+    [SerializeField] private Transform visual;
 
     public TowerBehavior parentTower;
     public float damageScaleFactor = 1;
@@ -32,6 +33,7 @@ public class ExplosionEffect : MonoBehaviour
         Vector3 scale3D = new (explosionRadiusScaleFactor, explosionRadiusScaleFactor, 1);
         explosionCtr = 0.0f;
         transform.localScale = scale3D;
+        visual.localScale *= explosionRadiusScaleFactor;
     }
 
     void Awake(){
