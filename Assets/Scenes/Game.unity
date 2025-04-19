@@ -795,7 +795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5674409008217113264, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.75
+      value: -13.37
       objectReference: {fileID: 0}
     - target: {fileID: 5674409008217113264, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9163,8 +9163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 415, y: 157.42188}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 356.49997, y: 157.42188}
+  m_SizeDelta: {x: 313, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6634780744995030350
 CanvasRenderer:
@@ -9260,7 +9260,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Wave:
+  m_Text: 'Wave: XX/XX
 
 '
 --- !u!114 &6704812691462175528

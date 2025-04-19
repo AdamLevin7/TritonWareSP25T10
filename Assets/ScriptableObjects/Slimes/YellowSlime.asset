@@ -16,3 +16,4 @@ MonoBehaviour:
   value: 10
   hp: 10
   speed: 2
+  color: {r: 1, g: 0.99867064, b: 0, a: 0}
