@@ -22,14 +22,20 @@ public class SlowingTower : TowerBehavior
 
     public override void OnTier1Upgrade()
     {
+        upgrade1Unlocked = true;
+        tower.baseRange *= 1.25f;
         return;
     }
     public override void OnTier2Upgrade()
     {
+        upgrade2Unlocked = true;
+        slowFactor = 2.0f;
         return;
     }
     public override void OnTier3Upgrade()
     {
+        upgrade3Unlocked = true;
+        slowDuration = 2000; // it's in frames???
         return;
     }
 }

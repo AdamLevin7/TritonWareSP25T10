@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
+        damageScaleFactor = 1.0f;
         remainingLifetime = speed == 0 ? 0 : range / speed;
         synergyManager = GameObject.FindWithTag("synergy");
     }
@@ -44,11 +45,9 @@ public class Projectile : MonoBehaviour
         if(synergyManager.GetComponent<Synergy>().rbSynergy && 
             parentTowerClass.tower.synergyType.ToString() == "Red" || 
             parentTowerClass.tower.synergyType.ToString() == "Blue"){
-                damageScaleFactor = rbResonanceBuff;
+                damageScaleFactor += rbResonanceBuff - 1.0f;
         }
-        else{
-            damageScaleFactor = 1.0f;
-        }
+
     }
 
     private void OnCollisionEnter(Collision collision)

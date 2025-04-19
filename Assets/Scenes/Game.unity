@@ -8149,7 +8149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 723005235617065688, guid: a19510c4c8c52b840b1ee9d645ffdd6e, type: 3}
+      - m_Target: {fileID: 723005235434860425}
         m_TargetAssemblyTypeName: UIHandlerScript, Assembly-CSharp
         m_MethodName: TryUpgradeTower
         m_Mode: 1

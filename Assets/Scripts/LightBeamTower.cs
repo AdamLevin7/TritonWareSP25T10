@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 public class LightBeamTower : TowerBehavior
 {
-    public float chainRange = 0.25f;
+    public float chainRange = 5f;
     public int maxChainCount = 25;
     public float damage = 1f;
     public LineRenderer beam;
@@ -21,20 +21,35 @@ public class LightBeamTower : TowerBehavior
     private Collider[] chainRangeResults;
     private readonly HashSet<GameObject> targetsAlreadyHit = new();
 
+    private int shotCtr;
+
     private void Awake()
     {
         chainRangeResults = new Collider[maxChainCount];
-
+        shotCtr = 0;
         beam.enabled = false;
     }
 
     public override void Fire()
     {
+        if (upgrade3Unlocked) shotCtr++;
         beamTarget = tower.target;
 
         List<Vector3> beamTargets = new(maxChainCount + 1) { transform.position };
 
-        for (int i = 0; i < maxChainCount; ++i)
+        int currentChain;
+        if (shotCtr >= 3) 
+        {
+            currentChain = EnemyManager.Instance.totalEnemiesInWave;
+            chainRange = float.MaxValue;
+        }
+        else
+        {
+            currentChain = maxChainCount;
+            chainRange = 0.5f;
+        }
+
+        for (int i = 0; i < currentChain; ++i)
         {
             targetsAlreadyHit.Add(beamTarget.gameObject);
             beamTargets.Add(beamTarget.position + Vector3.back);
@@ -72,6 +87,7 @@ public class LightBeamTower : TowerBehavior
         StartCoroutine(DoBeamVisual(beamTargets.ToArray()));
         // stuff
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.beamFireSound);
+        if (shotCtr >= 3) shotCtr = 0;
     }
 
     private IEnumerator DoBeamVisual(Vector3[] targetPositions)
@@ -90,14 +106,20 @@ public class LightBeamTower : TowerBehavior
 
     public override void OnTier1Upgrade()
     {
+        upgrade1Unlocked = true;
+        damage *= 2.0f;
+        maxChainCount = (int)((float)maxChainCount * 1.5f);
         return;
     }
     public override void OnTier2Upgrade()
     {
+        upgrade2Unlocked = true;
+        tower.shootCooldown *= 0.66f;
         return;
     }
     public override void OnTier3Upgrade()
     {
+        upgrade3Unlocked = true;
         return;
     }
 }

@@ -19,18 +19,35 @@ public class AOETower : TowerBehavior
         AOEProjectile newProjectile = newBullet.GetComponent<AOEProjectile>();
         newProjectile.direction = direction.normalized;
         newProjectile.parentTower = this;
+        newProjectile.boostedExplosion = false;
+        newProjectile.scaledDamage = false;
+        if (upgrade2Unlocked) 
+        {
+            newProjectile.baseDamage *= 3.0f;
+            newProjectile.boostedExplosion = true;
+        }
+        if (upgrade3Unlocked)
+        {
+            newProjectile.scaledDamage = true;
+        }
     }
 
     public override void OnTier1Upgrade()
     {
+        upgrade1Unlocked = true;
+        tower.baseRange *= 1.25f;
+        tower.shootCooldown *= 0.66f;
         return;
     }
     public override void OnTier2Upgrade()
     {
+        upgrade2Unlocked = true;
         return;
     }
     public override void OnTier3Upgrade()
     {
+        upgrade3Unlocked = true;
+        tower.shootCooldown *= 0.5f;
         return;
     }
 }
