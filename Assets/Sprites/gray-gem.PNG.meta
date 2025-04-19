@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5d0947efbba6ea0448f296642ed88870
+guid: 1b5129862835b764cadbe10a94025879
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,128 +93,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: settings-ui_0
+      name: gray-gem_0
       rect:
         serializedVersion: 2
-        x: 71
-        y: 236
-        width: 966
-        height: 1131
+        x: 803
+        y: 683
+        width: 1054
+        height: 190
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 26, y: 31, z: 35, w: 29}
+      border: {x: 61, y: 52, z: 95, w: 78}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91ebbb47f09930d4dbd4b08b7385f795
-      internalID: -486998460
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: settings-ui_1
-      rect:
-        serializedVersion: 2
-        x: 1103
-        y: 1184
-        width: 483
-        height: 123
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 20, y: 20, z: 20, w: 20}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 029a260b8c8e921478aacf5c45e9099f
-      internalID: 607806551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: settings-ui_2
-      rect:
-        serializedVersion: 2
-        x: 1104
-        y: 1118
-        width: 480
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88ac834d039e5e747aada8f784171d21
-      internalID: -1650909925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: settings-ui_3
-      rect:
-        serializedVersion: 2
-        x: 1104
-        y: 1043
-        width: 480
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df4f2cf8db179b5488c3508c9c92a7b1
-      internalID: 338686117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: settings-ui_4
-      rect:
-        serializedVersion: 2
-        x: 1112
-        y: 952
-        width: 41
-        height: 41
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c21b49f524c2e0942a95e1bbfa574488
-      internalID: -912542373
+      spriteID: ea27f858c1bbecf4f9c352c56e80de9f
+      internalID: -1838824609
       vertices: []
       indices: 
       edges: []
@@ -223,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9c052bd325bba9b48a03723424e3ad96
+    spriteID: dac2029b1b3000a4b970891a5c84e4dc
     internalID: 0
     vertices: []
     indices: 
@@ -233,11 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      settings-ui_0: -486998460
-      settings-ui_1: 607806551
-      settings-ui_2: -1650909925
-      settings-ui_3: 338686117
-      settings-ui_4: -912542373
+      gray-gem_0: -1838824609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
