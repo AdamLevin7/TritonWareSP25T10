@@ -458,6 +458,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c7db6feae02e4914095c651746fdb0fe, type: 2}
     - target: {fileID: 4480492262840168896, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: randomScaleOffet
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480492262840168896, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: freeplayPinkNumberScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480492262840168896, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: freeplayBlackNumberScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480492262840168896, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
+      propertyPath: freeplayYellowNumberScale
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480492262840168896, guid: 098406f1fe5d5eb48b40cc6bb71aa3ae, type: 3}
       propertyPath: possibleWavePatterns.Array.size
       value: 77
       objectReference: {fileID: 0}
