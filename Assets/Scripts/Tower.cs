@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data.SqlTypes;
 using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
@@ -39,6 +40,7 @@ public class Tower : MonoBehaviour
     [Header("Upgrades")]
     public int currentUpgradeTier;
     public int maxUpgradeTiers;
+    public List<UpgradeData> upgrades;
 
     private bool isPlaced = false;
     private bool canBePlaced = false;

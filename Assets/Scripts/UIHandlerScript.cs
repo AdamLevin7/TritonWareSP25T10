@@ -25,6 +25,11 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Sprite twoXSpeedSprite;
     [SerializeField] private Sprite oneXSpeedSprite;
 
+    [SerializeField] private Text upgradeNameText;
+    [SerializeField] private Text upgradeDescriptionText;
+    [SerializeField] private Text upgradePriceText;
+    [SerializeField] private Text upgradeTierText;
+
     [Header("Loss UI")]
     public GameObject roundLossUI;
     [SerializeField] private GameObject loseRestartBtn;
@@ -91,6 +96,7 @@ public class UIHandlerScript : MonoBehaviour
         currentSelectedTower = tower;
         currentSelectedTowerClass = tower.GetComponent<Tower>();
         currentSelectedTowerData = currentSelectedTowerClass.data;
+        UpdateUpgradeUI();
         
         selectedTowerIcon.sprite = currentSelectedTowerData.icon;
         selectedTowerName.text = currentSelectedTowerData.towerName;
@@ -155,5 +161,15 @@ public class UIHandlerScript : MonoBehaviour
     {
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         SceneManager.LoadScene(0);
+    }
+
+    public void UpdateUpgradeUI()
+    {
+        int upgradeTier = currentSelectedTowerClass.currentUpgradeTier;
+        UpgradeData nextUpgrade = currentSelectedTowerClass.upgrades[upgradeTier + 1];
+        upgradeNameText.text = nextUpgrade.upgradeName;
+        upgradeDescriptionText.text = nextUpgrade.upgradeDescription;
+        upgradePriceText.text = "$" + nextUpgrade.price.ToString();
+        upgradeTierText.text = upgradeTier + "/" + currentSelectedTowerClass.maxUpgradeTiers;
     }
 }
