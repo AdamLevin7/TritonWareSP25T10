@@ -1,64 +1,7 @@
 fileFormatVersion: 2
-guid: 1ce47084b2367064a955383a0a7d3cd2
+guid: 9a5838331dd726248acbebea2142b3b6
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1453941816354127680
-    second: gameplay-ui_0
-  - first:
-      213: 7187807809950153572
-    second: gameplay-ui_1
-  - first:
-      213: 1313676622042634318
-    second: gameplay-ui_2
-  - first:
-      213: 5252690443980681888
-    second: gameplay-ui_3
-  - first:
-      213: 2042826080094568532
-    second: gameplay-ui_4
-  - first:
-      213: 1557195362285087683
-    second: gameplay-ui_5
-  - first:
-      213: -5884524662585180768
-    second: gameplay-ui_6
-  - first:
-      213: -8068778046699060856
-    second: gameplay-ui_7
-  - first:
-      213: 569727207515434761
-    second: gameplay-ui_8
-  - first:
-      213: 8743505674109233276
-    second: gameplay-ui_9
-  - first:
-      213: 121716026359006135
-    second: gameplay-ui_10
-  - first:
-      213: -3305428608960755770
-    second: gameplay-ui_11
-  - first:
-      213: -2393533478807893954
-    second: gameplay-ui_12
-  - first:
-      213: -2233929734206105096
-    second: gameplay-ui_13
-  - first:
-      213: 2334903599398794829
-    second: gameplay-ui_14
-  - first:
-      213: -7514780169590935743
-    second: gameplay-ui_15
-  - first:
-      213: 6667932451259932896
-    second: gameplay-ui_16
-  - first:
-      213: -7336350626133663105
-    second: gameplay-ui_17
-  - first:
-      213: 3313614465576949076
-    second: gameplay-ui_18
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,13 +39,13 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -150,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -158,19 +114,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 115
-        y: 1010
-        width: 321
-        height: 315
+        y: 1011
+        width: 320
+        height: 312
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0c040201f9f82dbe0800000000000000
-      internalID: -1453941816354127680
+      spriteID: 43c547029e5cc4e4a814425ca02770bf
+      internalID: -327046387
       vertices: []
       indices: 
       edges: []
@@ -180,19 +136,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 490
-        y: 1010
+        y: 1011
         width: 319
-        height: 315
+        height: 312
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 46b7bd9de1930c360800000000000000
-      internalID: 7187807809950153572
+      spriteID: 21e604d455cb7a741a781b8b7b3dd748
+      internalID: 1815221213
       vertices: []
       indices: 
       edges: []
@@ -201,20 +157,20 @@ TextureImporter:
       name: gameplay-ui_2
       rect:
         serializedVersion: 2
-        x: 874
+        x: 875
         y: 1014
-        width: 321
-        height: 315
+        width: 318
+        height: 314
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4816967ded1b3210800000000000000
-      internalID: 1313676622042634318
+      spriteID: 56d5e9b8cc814dc44a4dfd62efd00530
+      internalID: -2133289033
       vertices: []
       indices: 
       edges: []
@@ -224,63 +180,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1290
-        y: 1010
+        y: 1011
         width: 319
-        height: 315
+        height: 312
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0a2be8cf02e45e840800000000000000
-      internalID: 5252690443980681888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gameplay-ui_4
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 572
-        width: 496
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 450c0f91f73995c10800000000000000
-      internalID: 2042826080094568532
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gameplay-ui_5
-      rect:
-        serializedVersion: 2
-        x: 759
-        y: 571
-        width: 403
-        height: 357
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cb63ee7ee44c9510800000000000000
-      internalID: 1557195362285087683
+      spriteID: 937a72930ad52fe41ae19ae92f6b78f8
+      internalID: -815341486
       vertices: []
       indices: 
       edges: []
@@ -289,20 +201,20 @@ TextureImporter:
       name: gameplay-ui_6
       rect:
         serializedVersion: 2
-        x: 1013
-        y: 916
-        width: 46
-        height: 36
+        x: 148
+        y: 572
+        width: 495
+        height: 342
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0adb5963ff7f55ea0800000000000000
-      internalID: -5884524662585180768
+      spriteID: f653e57d9af96134d9f0a5cc5cb74382
+      internalID: 910807638
       vertices: []
       indices: 
       edges: []
@@ -311,20 +223,20 @@ TextureImporter:
       name: gameplay-ui_7
       rect:
         serializedVersion: 2
-        x: 639
-        y: 700
-        width: 8
-        height: 7
+        x: 640
+        y: 701
+        width: 7
+        height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8814803ed11f50090800000000000000
-      internalID: -8068778046699060856
+      spriteID: 0ccaf3bdd0890b4489c484322ab76c3c
+      internalID: 860830367
       vertices: []
       indices: 
       edges: []
@@ -334,19 +246,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1236
-        y: 614
+        y: 615
         width: 192
-        height: 124
+        height: 123
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 90f25de60e318e700800000000000000
-      internalID: 569727207515434761
+      spriteID: c94a1bd1309ce184f988f7d64731b79c
+      internalID: -1086080904
       vertices: []
       indices: 
       edges: []
@@ -356,19 +268,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1617
-        y: 619
+        y: 618
         width: 159
         height: 159
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c78a4e4e51c275970800000000000000
-      internalID: 8743505674109233276
+      spriteID: d5958c60001b5cc40a4970c655298fc7
+      internalID: 837426132
       vertices: []
       indices: 
       edges: []
@@ -382,15 +294,15 @@ TextureImporter:
         width: 159
         height: 159
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7b3c992c41c60b100800000000000000
-      internalID: 121716026359006135
+      spriteID: 904b68749f61a9c4faaa7e7d2dfe6402
+      internalID: -1054726715
       vertices: []
       indices: 
       edges: []
@@ -399,20 +311,20 @@ TextureImporter:
       name: gameplay-ui_11
       rect:
         serializedVersion: 2
-        x: 2055
+        x: 2056
         y: 613
-        width: 177
-        height: 162
+        width: 176
+        height: 161
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6c70b7c6132c022d0800000000000000
-      internalID: -3305428608960755770
+      spriteID: 44a86480d68d71b4dad1a8986a558b62
+      internalID: -216099602
       vertices: []
       indices: 
       edges: []
@@ -421,20 +333,20 @@ TextureImporter:
       name: gameplay-ui_12
       rect:
         serializedVersion: 2
-        x: 2285
+        x: 2286
         y: 613
-        width: 177
-        height: 162
+        width: 176
+        height: 161
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e3886a58bf578ced0800000000000000
-      internalID: -2393533478807893954
+      spriteID: e4280b3b1583d894c8e8c88423b59649
+      internalID: 284950969
       vertices: []
       indices: 
       edges: []
@@ -443,20 +355,20 @@ TextureImporter:
       name: gameplay-ui_13
       rect:
         serializedVersion: 2
-        x: 1445
-        y: 619
-        width: 131
-        height: 77
+        x: 1446
+        y: 620
+        width: 129
+        height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8f9567b1ebc7ff0e0800000000000000
-      internalID: -2233929734206105096
+      spriteID: 184c804dd44c0374f9557fab3d0fcace
+      internalID: 827678464
       vertices: []
       indices: 
       edges: []
@@ -465,20 +377,20 @@ TextureImporter:
       name: gameplay-ui_14
       rect:
         serializedVersion: 2
-        x: 1450
-        y: 611
-        width: 18
-        height: 9
+        x: 1452
+        y: 612
+        width: 13
+        height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4632fae37e376020800000000000000
-      internalID: 2334903599398794829
+      spriteID: 52160c95e86f3c343aa860cb08248a7d
+      internalID: 1918642816
       vertices: []
       indices: 
       edges: []
@@ -487,20 +399,20 @@ TextureImporter:
       name: gameplay-ui_15
       rect:
         serializedVersion: 2
-        x: 1468
-        y: 593
-        width: 40
-        height: 13
+        x: 1470
+        y: 594
+        width: 36
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 14fe162304326b790800000000000000
-      internalID: -7514780169590935743
+      spriteID: 4a99a2af21ca5214a9c0387d077e5ee4
+      internalID: 1033511284
       vertices: []
       indices: 
       edges: []
@@ -509,20 +421,20 @@ TextureImporter:
       name: gameplay-ui_16
       rect:
         serializedVersion: 2
-        x: 380
-        y: 544
-        width: 6
-        height: 7
+        x: 381
+        y: 545
+        width: 4
+        height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0e0e5a77c31498c50800000000000000
-      internalID: 6667932451259932896
+      spriteID: 6d2816a01eb5e9e47a390e6298cbb6c8
+      internalID: -1770381427
       vertices: []
       indices: 
       edges: []
@@ -531,20 +443,20 @@ TextureImporter:
       name: gameplay-ui_17
       rect:
         serializedVersion: 2
-        x: 95
+        x: 94
         y: 316
         width: 1340
-        height: 210
+        height: 209
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 63, y: 68, z: 95, w: 83}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f72a695a9fb003a90800000000000000
-      internalID: -7336350626133663105
+      spriteID: 5c34d0a59cc5633478d518cb4aaae2cb
+      internalID: -1726200761
       vertices: []
       indices: 
       edges: []
@@ -555,18 +467,40 @@ TextureImporter:
         serializedVersion: 2
         x: 1433
         y: 316
-        width: 1053
-        height: 209
+        width: 1051
+        height: 208
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4555f47dcc25cfd20800000000000000
-      internalID: 3313614465576949076
+      spriteID: acdd952b5685deb40b6198164b91027f
+      internalID: 440433531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameplay-ui_5
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 572
+        width: 396
+        height: 380
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a3d053261be3846b46f442b993d398
+      internalID: -952049776
       vertices: []
       indices: 
       edges: []
@@ -575,7 +509,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f610b3baf0bae544fb1e0a711d3438fa
     internalID: 0
     vertices: []
     indices: 
@@ -584,7 +518,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gameplay-ui_0: -327046387
+      gameplay-ui_1: 1815221213
+      gameplay-ui_10: -1054726715
+      gameplay-ui_11: -216099602
+      gameplay-ui_12: 284950969
+      gameplay-ui_13: 827678464
+      gameplay-ui_14: 1918642816
+      gameplay-ui_15: 1033511284
+      gameplay-ui_16: -1770381427
+      gameplay-ui_17: -1726200761
+      gameplay-ui_18: 440433531
+      gameplay-ui_2: -2133289033
+      gameplay-ui_3: -815341486
+      gameplay-ui_4: 2046711977
+      gameplay-ui_5: -952049776
+      gameplay-ui_6: 910807638
+      gameplay-ui_7: 860830367
+      gameplay-ui_8: -1086080904
+      gameplay-ui_9: 837426132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
