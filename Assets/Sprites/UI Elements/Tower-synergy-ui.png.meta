@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tower-synergy-ui_0: 9177610181782412517
+      Tower-synergy-ui_1: 3498553807011902368
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

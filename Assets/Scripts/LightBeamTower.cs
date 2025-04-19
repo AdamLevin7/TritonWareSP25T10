@@ -86,4 +86,9 @@ public class LightBeamTower : TowerBehavior
 
         beam.enabled = false;
     }
+
+    public override void OnTier3Upgrade()
+    {
+        
+    }
 }

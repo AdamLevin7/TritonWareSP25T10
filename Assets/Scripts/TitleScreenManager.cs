@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleScreenManager : MonoBehaviour
 {
@@ -50,8 +51,8 @@ public class TitleScreenManager : MonoBehaviour
 
     public void StartGame()
     {
-        // should load game scene, but not linked yet
-        return;
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
+        SceneManager.LoadScene(1);
     }
 
     public void OpenSettings()

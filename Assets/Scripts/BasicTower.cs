@@ -21,4 +21,9 @@ public class BasicTower : TowerBehavior
 
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.whooshSound);
     }
+
+    public override void OnTier3Upgrade()
+    {
+        
+    }
 }

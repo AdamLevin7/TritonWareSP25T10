@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Title Screen.unity
     guid: 57c5764add9de4c0ab792413e435d324
   - enabled: 1
-    path: Assets/Scenes/Drag and Drop.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Game.unity
+    guid: 26d72bd3a0600bb4688dc342d2a53053
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

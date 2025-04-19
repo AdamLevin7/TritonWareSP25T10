@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -122,9 +123,11 @@ public class GameManager : MonoBehaviour
         UIHandlerScript.Instance.roundActiveComponent.SetActive(true);
         UIHandlerScript.Instance.roundLossUI.SetActive(false);
         UIHandlerScript.Instance.roundWinUI.SetActive(false);
+        UIHandlerScript.Instance.pauseMenuUI.SetActive(false);
 
         endAnimationCtr = 0.0f;
         endingGame = false;
+        Time.timeScale = 1.0f;
 
         UIHandlerScript.Instance.UpdateWaveNumber(currentWave, maxWaves);
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
@@ -133,7 +136,8 @@ public class GameManager : MonoBehaviour
     // function to go back to menu (mainly used for buttons)
     public void GoToMenu()
     {
-        Debug.Log("pretend this button works right now");
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
+        SceneManager.LoadScene("Title Screen");
     }
 
     // template function for checking whether or not there are any bonuses to be applied due to balances
@@ -153,6 +157,7 @@ public class GameManager : MonoBehaviour
         {
             SendNextWave();
         }
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
         // Debug.Log("wave active" + isWaveActive);
     }

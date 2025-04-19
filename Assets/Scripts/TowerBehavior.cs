@@ -10,4 +10,6 @@ public abstract class TowerBehavior : MonoBehaviour
     }
 
     public abstract void Fire();
+
+    public abstract void OnTier3Upgrade();
 }

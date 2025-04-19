@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIHandlerScript : MonoBehaviour
@@ -10,6 +11,7 @@ public class UIHandlerScript : MonoBehaviour
     [Header("Game UI")]
     [SerializeField] private GameObject canvas;
     public GameObject roundActiveComponent;
+    public GameObject pauseMenuUI;
     [SerializeField] private GameObject livesTextObject;
     [SerializeField] private GameObject moneyTextObject;
     [SerializeField] private GameObject roundWaveTextObject;
@@ -136,11 +138,18 @@ public class UIHandlerScript : MonoBehaviour
 
         float newX = (hiddenTowerSelection) ? -525 : 10;
         towerSelectUIBtnRT.anchoredPosition = new(newX, -225);
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
     }
 
     public void ContinueToFreeplay()
     {
         roundWinUI.SetActive(false);
         roundActiveComponent.SetActive(true);
+    }
+
+    public void GoToMenu()
+    {
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
+        SceneManager.LoadScene(0);
     }
 }
