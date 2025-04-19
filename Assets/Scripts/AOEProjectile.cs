@@ -19,10 +19,13 @@ public class AOEProjectile : MonoBehaviour
     [SerializeField] private GameObject explosion;
     public float damageScaleFactor;
     public float effectiveDamage;
+    [SerializeField] private GameObject synergyManager;
+    private float rbResonanceBuff = 1.25f;
 
     private void Awake()
     {
         remainingLifetime = speed == 0 ? 0 : range / speed;
+        synergyManager = GameObject.FindWithTag("synergy");
     }
 
     private void Update()
@@ -41,6 +44,14 @@ public class AOEProjectile : MonoBehaviour
         float fdt = Time.fixedDeltaTime;
 
         transform.position += (Vector3)(speed * fdt * direction );
+        if(synergyManager.GetComponent<Synergy>().rbSynergy && 
+            parentTower.tower.synergyType.ToString() == "Red" || 
+            parentTower.tower.synergyType.ToString() == "Blue"){
+                damageScaleFactor = rbResonanceBuff;
+        }
+        else{
+            damageScaleFactor = 1.0f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
