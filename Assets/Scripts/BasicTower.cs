@@ -18,7 +18,10 @@ public class BasicTower : TowerBehavior
         Projectile newProjectile = newBullet.GetComponent<Projectile>();
         newProjectile.direction = direction.normalized;
         newProjectile.parentTowerClass = this;
-
+        if(tower.towerUpgrade != null)
+        {
+            newProjectile.UpdateEffectiveDamage(tower.towerUpgrade.damageIncrease);
+        }
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.whooshSound);
     }
 }
