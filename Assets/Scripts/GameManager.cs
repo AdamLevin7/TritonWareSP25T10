@@ -18,9 +18,6 @@ public class GameManager : MonoBehaviour
     public int money;
     public int starterMoney;
 
-    public GameObject towerManager;
-    public GameObject enemyManager;
-
     public List<GameObject> availableTowers;
 
     public BoxCollider groundCollider;
@@ -70,7 +67,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // testing only!
-        if (Input.GetKeyUp(KeyCode.L)) lives--;
+        if (Input.GetKeyUp(KeyCode.L)) lives -= 10;
         if (Input.GetKeyUp(KeyCode.M)) money += 1000;
         if (Input.GetKeyUp(KeyCode.W)) WinGame();
 
@@ -102,6 +99,7 @@ public class GameManager : MonoBehaviour
 
         UIHandlerScript.Instance.roundActiveComponent.SetActive(false);
         UIHandlerScript.Instance.roundLossUI.SetActive(true);
+        UIHandlerScript.Instance.UpdateLossUI();
 
         AudioManager.Instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.loseSound);
@@ -117,6 +115,7 @@ public class GameManager : MonoBehaviour
         ClearTowers();
         ClearProjectiles();
         ClearEnemies();
+        EnemyManager.Instance.totalEnemiesKilled = 0;
 
         playing = true;
         currentWave = 0;
@@ -140,7 +139,6 @@ public class GameManager : MonoBehaviour
     // function to go back to menu (mainly used for buttons)
     public void GoToMenu()
     {
-        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         SceneManager.LoadScene(0);
     }
 

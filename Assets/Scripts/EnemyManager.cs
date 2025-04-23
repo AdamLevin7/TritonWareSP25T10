@@ -46,6 +46,8 @@ public class EnemyManager : MonoBehaviour
         else Instance = this;
     }
 
+    public int totalEnemiesKilled = 0;
+
     //Enemy Specific References Paired by Index
     public GameObject EnemyPrefab;
     public List<Enemy> activeEnemies = new();
@@ -122,7 +124,6 @@ public class EnemyManager : MonoBehaviour
             DummyAddMoney();
             KillEnemy(enemy);
         }
-        UIHandlerScript.Instance.UpdateSelectedTowerStats();
     }
 
     /// <summary>
@@ -326,7 +327,6 @@ public class EnemyManager : MonoBehaviour
         if(enemy.wasSlowed && enemy.slowFactor == factor)
         {
             enemy.slowDuration = duration;
-            Debug.Log("Resetting slow duration");
         }
         else if(enemy.wasSlowed)
         {
@@ -337,13 +337,11 @@ public class EnemyManager : MonoBehaviour
             float oldSpeed = enemy.moveSpeed;
             enemy.moveSpeedReduction = newReduction;
             enemy.moveSpeed = formerTotalSpeed - newReduction;
-            Debug.Log("Re-slowing from " + oldSpeed.ToString() + " to " + enemy.moveSpeed.ToString());
         }
         else 
         {
             enemy.slowFactor = factor;
             enemy.slowDuration = duration;
-            Debug.Log("Slowing for the first time!");
         }
     }
 }

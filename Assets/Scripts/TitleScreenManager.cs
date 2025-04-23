@@ -5,9 +5,6 @@ using UnityEngine.UI;
 public class TitleScreenManager : MonoBehaviour
 {
     [Header("Start Menu")]
-    [SerializeField] private Button startBtn;
-    [SerializeField] private Button creditsBtn;
-    [SerializeField] private Button quitBtn;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject credits;
     [SerializeField] private StartGame gameStarter;
@@ -22,40 +19,31 @@ public class TitleScreenManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        Time.timeScale = 1.0f;
         inputActions = new();
 
         // gameManager should be present and disabled in here (to sync settings)
         // DontDestroyOnLoad(GameManager.Instance);
 
-        UpdateVolumes();
-
         AudioManager.Instance.InitializeMusic(AudioManager.Instance.titleScreenMusic);
+
+        masterVolumeSlider.value = AudioManager.Instance.masterVolume;
+        sfxVolumeSlider.value = AudioManager.Instance.sfxVolume;
+        musicVolumeSlider.value = AudioManager.Instance.musicVolume;
     }
 
     private void OnEnable()
     {
         inputActions.Enable();
-        inputActions.Player.Interact.started += StartInteract;
         inputActions.Player.Cancel.performed += Cancel;
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Interact.started -= StartInteract;
         inputActions.Player.Cancel.performed -= Cancel;
         inputActions.Disable();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        return;
-    }
-
-    public void StartGame()
-    {
-        // should load game scene, but not linked yet
-        return;
+        UpdateVolumes();
     }
 
     public void OpenSettings()
@@ -83,14 +71,6 @@ public class TitleScreenManager : MonoBehaviour
         Application.Quit();
     }
 
-    private void StartInteract(InputAction.CallbackContext ctx)
-    {
-        if (credits.activeSelf)
-        {
-            CloseCredits();
-        }
-    }
-
     private void Cancel(InputAction.CallbackContext ctx)
     {
         if (settingsMenu.activeSelf)
@@ -104,7 +84,7 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
-    private void UpdateVolumes()
+    public void UpdateVolumes()
     {
         AudioManager.Instance.masterVolume = masterVolumeSlider.value;
         AudioManager.Instance.sfxVolume = sfxVolumeSlider.value;

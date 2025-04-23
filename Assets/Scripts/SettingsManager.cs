@@ -18,9 +18,6 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Button restartBtn;
     [SerializeField] private Button menuBtn;
 
-    private float masterVolumeSliderValue;
-    private float sfxVolumeSliderValue;
-    private float musicVolumeSliderValue;
     private InputSystem_Actions inputActions;
 
     private void Awake()
@@ -33,55 +30,34 @@ public class SettingsManager : MonoBehaviour
     void Start()
     {
         inputActions = new();
+
+        masterVolumeSlider.value = AudioManager.Instance.masterVolume;
+        sfxVolumeSlider.value = AudioManager.Instance.sfxVolume;
+        musicVolumeSlider.value = AudioManager.Instance.musicVolume;
+    }
+
+    private void OnEnable()
+    {
         inputActions.Enable();
         inputActions.Player.Cancel.performed += Cancel;
-
-        masterVolumeSliderValue = masterVolumeSlider.value;
-        sfxVolumeSliderValue = sfxVolumeSlider.value;
-        musicVolumeSliderValue = musicVolumeSlider.value;
-        UpdateVolumes();
     }
 
-    // private void OnDisable()
-    // {
-    //     inputActions.Disable();
-    //     inputActions.Player.Cancel.performed -= Cancel;
-    // }
-
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
-    }
+        inputActions.Player.Cancel.performed -= Cancel;
+        inputActions.Disable();
 
-    public void UpdateMasterVolume()
-    {
-        masterVolumeSliderValue = masterVolumeSlider.value;
-        UpdateVolumes();
-    }
-
-    public void UpdateSFXVolume()
-    {
-        sfxVolumeSliderValue = masterVolumeSlider.value;
-        UpdateVolumes();
-    }
-
-    public void UpdateMusicVolume()
-    {
-        musicVolumeSliderValue = musicVolumeSlider.value;
         UpdateVolumes();
     }
 
     public void ResumeGame()
     {
-        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         settingsUI.SetActive(false);
         Time.timeScale = (GameManager.Instance.isSpedUp) ? GameManager.Instance.waveSpeedUpFactor : 1.00f;
     }
 
     public void PauseGame()
     {
-        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         Time.timeScale = 0.0f;
         settingsUI.SetActive(true);
     }
@@ -101,11 +77,11 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    private void UpdateVolumes()
+    public void UpdateVolumes()
     {
-        AudioManager.Instance.masterVolume = masterVolumeSliderValue;
-        AudioManager.Instance.sfxVolume = sfxVolumeSliderValue;
-        AudioManager.Instance.musicVolume = musicVolumeSliderValue;
+        AudioManager.Instance.masterVolume = masterVolumeSlider.value;
+        AudioManager.Instance.sfxVolume = sfxVolumeSlider.value;
+        AudioManager.Instance.musicVolume = musicVolumeSlider.value;
     }
 
 }

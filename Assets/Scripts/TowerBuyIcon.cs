@@ -11,9 +11,20 @@ public class TowerBuyIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IPoi
     [SerializeField] private TowerData towerData;
 
     [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private Image background;
     [SerializeField] private Image icon;
 
+    [SerializeField] private Color canAffordPriceColor;
+    [SerializeField] private Color cannotAffordPriceColor;
+    [SerializeField] private Color canAffordBgColor;
+    [SerializeField] private Color cannotAffordBgColor;
+
     private void Start()
+    {
+        UpdateUI();
+    }
+
+    private void Update()
     {
         UpdateUI();
     }
@@ -22,7 +33,18 @@ public class TowerBuyIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IPoi
     {
         priceText.text = "$" + towerData.price.ToString();
         icon.sprite = towerData.icon;
-        icon.color = Color.white;
+        if (GameManager.Instance.money >= towerData.price)
+        {
+            icon.color = canAffordBgColor;
+            background.color = canAffordBgColor;
+            priceText.color = canAffordPriceColor;
+        }
+        else
+        {
+            icon.color = cannotAffordBgColor;
+            background.color = cannotAffordBgColor;
+            priceText.color = cannotAffordPriceColor;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData){

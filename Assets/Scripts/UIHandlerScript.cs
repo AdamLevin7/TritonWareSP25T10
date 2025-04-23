@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using JetBrains.Annotations;
+using TMPro;
 
 public class UIHandlerScript : MonoBehaviour
 {
@@ -25,15 +26,16 @@ public class UIHandlerScript : MonoBehaviour
     [SerializeField] private Sprite twoXSpeedSprite;
     [SerializeField] private Sprite oneXSpeedSprite;
 
-    [SerializeField] private Text upgradeNameText;
-    [SerializeField] private Text upgradeDescriptionText;
-    [SerializeField] private Text upgradePriceText;
-    [SerializeField] private Text upgradeTierText;
+    [SerializeField] private TextMeshProUGUI upgradeNameText;
+    [SerializeField] private TextMeshProUGUI upgradeDescriptionText;
+    [SerializeField] private TextMeshProUGUI upgradePriceText;
+    [SerializeField] private TextMeshProUGUI upgradeTierText;
 
     [Header("Loss UI")]
     public GameObject roundLossUI;
     [SerializeField] private GameObject loseRestartBtn;
     [SerializeField] private GameObject loseMenuBtn;
+    [SerializeField] private TextMeshProUGUI enemiesKilledText;
 
     [Header("Win UI")]
     public GameObject roundWinUI;
@@ -42,9 +44,9 @@ public class UIHandlerScript : MonoBehaviour
 
     [Header("Tower Selection UI")]
     public GameObject towerSelectionUI;
-    [SerializeField] private Text selectedTowerName;
-    [SerializeField] private Text selectedTowerDamage;
-    [SerializeField] private Text selectedTowerValue;
+    [SerializeField] private TextMeshProUGUI selectedTowerName;
+    [SerializeField] private TextMeshProUGUI selectedTowerDamage;
+    [SerializeField] private TextMeshProUGUI selectedTowerValue;
     [SerializeField] private Image selectedTowerIcon;
     [SerializeField] private GameObject synergyManager;
     [SerializeField] private GameObject currentSelectedTower;
@@ -52,9 +54,9 @@ public class UIHandlerScript : MonoBehaviour
 
     [SerializeField] private TowerData currentSelectedTowerData;
 
-    private Text livesTextComponent;
-    private Text moneyTextComponent;
-    private Text roundWaveTextComponent;
+    private TextMeshProUGUI livesTextComponent;
+    private TextMeshProUGUI moneyTextComponent;
+    private TextMeshProUGUI roundWaveTextComponent;
 
     private RectTransform towerSelectUIBtnRT;
     private bool hiddenTowerSelection = false;
@@ -65,9 +67,9 @@ public class UIHandlerScript : MonoBehaviour
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
 
-        livesTextComponent = livesTextObject.GetComponent<Text>();
-        moneyTextComponent = moneyTextObject.GetComponent<Text>();
-        roundWaveTextComponent = roundWaveTextObject.GetComponent<Text>();
+        livesTextComponent = livesTextObject.GetComponent<TextMeshProUGUI>();
+        moneyTextComponent = moneyTextObject.GetComponent<TextMeshProUGUI>();
+        roundWaveTextComponent = roundWaveTextObject.GetComponent<TextMeshProUGUI>();
         synergyManager = GameObject.FindWithTag("synergy");
         // isWaveActive = false;
 
@@ -110,8 +112,8 @@ public class UIHandlerScript : MonoBehaviour
 
     public void UpdateSelectedTowerStats()
     {
-        selectedTowerDamage.text = "Damage: " + ((int)currentSelectedTowerClass.tower.totalDamageDealt).ToString();
-        selectedTowerValue.text = "Value: " + currentSelectedTowerClass.tower.sellValue;
+        selectedTowerDamage.SetText($"Total damage dealt: {(int)currentSelectedTowerClass.tower.totalDamageDealt}");
+        selectedTowerValue.SetText($"Sell price: {currentSelectedTowerClass.tower.sellValue}");
     }
 
     // sell currently selected tower as shown in ui
@@ -168,7 +170,6 @@ public class UIHandlerScript : MonoBehaviour
 
     public void GoToMenu()
     {
-        AudioManager.Instance.PlayOneShot(AudioManager.Instance.uiClickSound);
         SceneManager.LoadScene(0);
     }
 
@@ -195,6 +196,7 @@ public class UIHandlerScript : MonoBehaviour
     public void TryUpgradeTower()
     {
         int upgradeTier = currentSelectedTowerClass.tower.currentUpgradeTier;
+        if (upgradeTier >= currentSelectedTowerClass.tower.upgrades.Count) return;
         UpgradeData nextUpgrade = currentSelectedTowerClass.tower.upgrades[upgradeTier];
 
         if (nextUpgrade.price > GameManager.Instance.money) return;
@@ -203,6 +205,10 @@ public class UIHandlerScript : MonoBehaviour
         currentSelectedTowerClass.UpgradeTower();
         UpdateSelectedTowerStats();
         UpdateUpgradeUI();
-        Debug.Log("done upgrade");
+    }
+
+    public void UpdateLossUI()
+    {
+        enemiesKilledText.text = $"You killed {EnemyManager.Instance.totalEnemiesKilled} slimes";
     }
 }
