@@ -21,7 +21,7 @@ TagManager:
   - ObstructsPlacement
   - IgnoreCollider
   - Enemy
-  - 
+  - Projectile
   - 
   - 
   - 

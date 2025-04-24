@@ -2,8 +2,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+public enum SynergyType{
+    Red,
+    Blue,
+    Green
+}
+
 public class Synergy : MonoBehaviour
 {
+    public static Synergy Instance;
     private int redTowers;
     private int blueTowers;
     private int greenTowers;
@@ -26,66 +33,42 @@ public class Synergy : MonoBehaviour
     public float globalMoneyScaleFactor;
 
     // Update is called once per frame
-    /*private void Awake(){
+    private void Awake(){
         
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
+        /*
         rbSyn.enabled = false;
         rgSyn.enabled = false;
         bgSyn.enabled = false;
         totalSyn.enabled = false;
-    } */
-    public void UpdateTowerSynergy(string type, int towersAdded)
+        */
+    }
+
+    public void UpdateTowerSynergy(SynergyType type, int towersAdded)
     {
-        if(type == "Red"){
-            redTowers += towersAdded;
-            totalTowers++;
-        }
-        if(type == "Blue"){
-            blueTowers += towersAdded;
-            totalTowers++;
-        }
-        if(type == "Green"){
-            greenTowers += towersAdded;
-            totalTowers++;
+        switch (type)
+        {
+            case SynergyType.Red:
+                redTowers += towersAdded;
+                totalTowers++;
+                break;
+            case SynergyType.Green:
+                greenTowers += towersAdded;
+                totalTowers++;
+                break;
+            case SynergyType.Blue:
+                blueTowers += towersAdded;
+                totalTowers++;
+                break;
+            default:
+                Debug.LogError("Tower has an invalid synergy type: " + type);
+                break;
         }
         CalculateSynergies();
     }
+
     public void CalculateSynergies(){
-        /*if(0.9*redTowers < blueTowers && 1.1*redTowers>blueTowers){
-            rbSynergy = true;
-            rbSyn.enabled = true;
-        }
-        else{
-            rbSynergy = false;
-            rbSyn.enabled = false;
-        }
-        
-        if(0.9*redTowers < greenTowers && 1.1*redTowers>greenTowers){
-            rgSynergy = true;
-            rgSyn.enabled = true;
-        }
-        else{
-            rgSynergy = false;
-            rgSyn.enabled = false;
-        }
-
-        if(0.9*blueTowers < greenTowers && 1.1*greenTowers>greenTowers){
-            bgSynergy = true;
-            bgSyn.enabled = true;
-        }
-        else{
-            bgSynergy = false;
-            bgSyn.enabled = false;
-        }
-
-        if(rbSynergy && rgSynergy){
-            totalSynergy = true;
-            totalSyn.enabled = true;
-        }
-        else{
-            totalSynergy = false; 
-            totalSyn.enabled = false;
-        }
-        */
         if(0.9*redTowers < blueTowers && 1.1*redTowers>blueTowers){
             rbSynergy = true;
         }

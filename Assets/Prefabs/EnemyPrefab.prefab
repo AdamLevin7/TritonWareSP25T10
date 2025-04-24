@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3619574029440374692}
   - component: {fileID: 5724369451736060982}
+  - component: {fileID: 355135868970545115}
   m_Layer: 9
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -55,6 +56,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &355135868970545115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071810789444575690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cde6ad485c17844b83d7b4915aca66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereCollider: {fileID: 5724369451736060982}
+  meshRenderer: {fileID: 4040268682560137951}
+  healthBarSlider: {fileID: 6340096133875493744}
 --- !u!1001 &424152495484933616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,7 +171,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1551880913132266127, guid: 6dda6b98cb9e54428a10fd58939e0c3b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -165,6 +182,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 473830869783354584, guid: 6dda6b98cb9e54428a10fd58939e0c3b, type: 3}
   m_PrefabInstance: {fileID: 424152495484933616}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6340096133875493744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5917289715584761472, guid: 6dda6b98cb9e54428a10fd58939e0c3b, type: 3}
+  m_PrefabInstance: {fileID: 424152495484933616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1378885275407416236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7043c0c25dcb07d47a1dd6ac05f15a7b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7043c0c25dcb07d47a1dd6ac05f15a7b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -281,3 +309,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!23 &4040268682560137951 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6110502680536477325, guid: 7043c0c25dcb07d47a1dd6ac05f15a7b, type: 3}
+  m_PrefabInstance: {fileID: 1378885275407416236}
+  m_PrefabAsset: {fileID: 0}

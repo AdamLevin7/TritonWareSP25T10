@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4636777667480818011}
   - component: {fileID: 3717839466609955439}
+  - component: {fileID: 4596941281838599163}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,17 +47,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 0
   maxLives: 100
-  currentRound: 1
-  maxRounds: 10
+  currentWave: 0
+  maxWaves: 0
   money: 0
   starterMoney: 100000
-  towerManager: {fileID: 0}
-  enemyManager: {fileID: 0}
   availableTowers: []
-  activeGameUI: {fileID: 0}
-  loseScreenUI: {fileID: 0}
   groundCollider: {fileID: 0}
   playing: 0
+  isWaveActive: 0
+  waveSpeedUpFactor: 2
+  isSpedUp: 0
+  placingTower: 0
   endingGame: 0
   endSlowdownRate: 0
   endAnimationDuration: 0
+  synergyManager: {fileID: 0}
+--- !u!114 &4596941281838599163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337977728743847909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b66d43449baae488ea1bd4b67b9c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicProjectilePrefab: {fileID: 5697273396965713051, guid: 3b9aea78919a0e34a9df388b2f8cab33, type: 3}
+  aoeProjectilePrefab: {fileID: -8034131685882588369, guid: d5b2f2b1e9123004c8c6ee7e5c3aea8c, type: 3}

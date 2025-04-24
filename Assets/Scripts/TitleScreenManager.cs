@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -25,11 +26,18 @@ public class TitleScreenManager : MonoBehaviour
         // gameManager should be present and disabled in here (to sync settings)
         // DontDestroyOnLoad(GameManager.Instance);
 
-        AudioManager.Instance.InitializeMusic(AudioManager.Instance.titleScreenMusic);
+        StartCoroutine(StartMusic());
 
         masterVolumeSlider.value = AudioManager.Instance.masterVolume;
         sfxVolumeSlider.value = AudioManager.Instance.sfxVolume;
         musicVolumeSlider.value = AudioManager.Instance.musicVolume;
+    }
+
+    private IEnumerator StartMusic()
+    {
+        if (!FMODUnity.RuntimeManager.HaveAllBanksLoaded) yield return null;
+
+        AudioManager.Instance.InitializeMusic(AudioManager.Instance.titleScreenMusic);
     }
 
     private void OnEnable()

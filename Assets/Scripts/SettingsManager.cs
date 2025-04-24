@@ -24,13 +24,13 @@ public class SettingsManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+
+        inputActions = new();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inputActions = new();
-
         masterVolumeSlider.value = AudioManager.Instance.masterVolume;
         sfxVolumeSlider.value = AudioManager.Instance.sfxVolume;
         musicVolumeSlider.value = AudioManager.Instance.musicVolume;

@@ -13,11 +13,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private LayerMask towerLayer;
     [SerializeField] private LayerMask placementObstructionLayer;
 
-    public enum SynergyType{
-        Red,
-        Blue,
-        Green
-    }
 
     public SynergyType synergyType;
     [SerializeField] private GameObject synergyManager;
@@ -106,7 +101,7 @@ public class Tower : MonoBehaviour
 
             SetTarget();
 
-            if(synergyManager.GetComponent<Synergy>().bgSynergy && (synergyType.ToString() == "Blue" || synergyType.ToString() == "Green")){
+            if(Synergy.Instance.bgSynergy && (synergyType == SynergyType.Blue || synergyType == SynergyType.Green)){
                 effectiveRange = baseRange * bgResonanceBuff;
                 // Debug.Log("bg synergy on");
             }
@@ -119,7 +114,7 @@ public class Tower : MonoBehaviour
             {
                 behavior.Fire();
 
-                if(synergyManager.GetComponent<Synergy>().rgSynergy && (synergyType.ToString() == "Red" || synergyType.ToString() == "Green")){
+                if(Synergy.Instance.rgSynergy && (synergyType == SynergyType.Red || synergyType == SynergyType.Green)){
                     timeSinceLastShoot = shootCooldown * (1-rgResonanceBuff);
                     // Debug.Log("rg synergy on");
                 }
@@ -208,7 +203,7 @@ public class Tower : MonoBehaviour
                 gameObject.layer = TOWER_LAYER_NUM;
                 isPlaced = true;
                 GameManager.Instance.placingTower = false;
-                synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(synergyType.ToString(), 1);
+                Synergy.Instance.UpdateTowerSynergy(synergyType, 1);
 
                 GameManager.Instance.money -= data.price;
                 sellValue = (int)((float)data.price * 0.75f);

@@ -121,7 +121,7 @@ public class UIHandlerScript : MonoBehaviour
     {
         // maybe have a towermanager do this in the future, but works for now
         GameManager.Instance.money += currentSelectedTowerClass.tower.sellValue;
-        synergyManager.GetComponent<Synergy>().UpdateTowerSynergy(currentSelectedTowerClass.tower.synergyType.ToString(), -1);
+        Synergy.Instance.UpdateTowerSynergy(currentSelectedTowerClass.tower.synergyType, -1);
         Destroy(currentSelectedTower);
         SetTowerSelectedUIState(false);
     }

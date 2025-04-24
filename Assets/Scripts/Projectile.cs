@@ -15,14 +15,14 @@ public class Projectile : MonoBehaviour
     public TowerBehavior parentTowerClass;
     public float damageScaleFactor;
     public float effectiveDamage;
-    [SerializeField] private GameObject synergyManager;
     private float rbResonanceBuff = 1.25f;
 
-    private void Awake()
+    public MeshRenderer meshRenderer;
+
+    public void InitializeProjectile()
     {
         damageScaleFactor = 1.0f;
         remainingLifetime = speed == 0 ? 0 : range / speed;
-        synergyManager = GameObject.FindWithTag("synergy");
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
         remainingLifetime -= dt;
         if (remainingLifetime < 0)
         {
-            Destroy(gameObject);
+            ProjectileManager.Instance.basicProjectilePool.Release(this);
         }
     }
 
@@ -42,9 +42,10 @@ public class Projectile : MonoBehaviour
 
         transform.position += (Vector3)(speed * fdt * direction );
 
-        if(synergyManager.GetComponent<Synergy>().rbSynergy && 
-            parentTowerClass.tower.synergyType.ToString() == "Red" || 
-            parentTowerClass.tower.synergyType.ToString() == "Blue"){
+        if(Synergy.Instance.rbSynergy && 
+            parentTowerClass.tower.synergyType == SynergyType.Red || 
+            parentTowerClass.tower.synergyType == SynergyType.Blue)
+        {
                 damageScaleFactor += rbResonanceBuff - 1.0f;
         }
 
@@ -58,7 +59,8 @@ public class Projectile : MonoBehaviour
             if (!pierces) 
             {
                 parentTowerClass.tower.totalDamageDealt += baseDamage * damageScaleFactor;
-                Destroy(gameObject);
+                remainingLifetime = 10f;
+                ProjectileManager.Instance.basicProjectilePool.Release(this);
             }
         }
     }

@@ -1,8 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -32,7 +33,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float endSlowdownRate;
     [SerializeField] private float endAnimationDuration;
     private float endAnimationCtr;
-    [SerializeField] public GameObject synergyManager;
     private float totalResonanceBuff = 1.25f;
 
     public InputSystem_Actions inputActions;
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         else Instance = this;
 
         inputActions = new();
-        synergyManager = GameObject.FindWithTag("synergy");
     }
 
     private void OnEnable()
@@ -66,11 +65,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // testing only!
-        if (Input.GetKeyUp(KeyCode.L)) lives -= 10;
-        if (Input.GetKeyUp(KeyCode.M)) money += 1000;
-        if (Input.GetKeyUp(KeyCode.W)) WinGame();
-
         if (lives <= 0 && !endingGame)
         {
             EndGame();
@@ -132,6 +126,13 @@ public class GameManager : MonoBehaviour
 
         UIHandlerScript.Instance.UpdateWaveNumber(currentWave, maxWaves);
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
+
+        StartCoroutine(StartMusic());
+    }
+
+    private IEnumerator StartMusic()
+    {
+        if (!FMODUnity.RuntimeManager.HaveAllBanksLoaded) yield return null;
 
         AudioManager.Instance.InitializeMusic(AudioManager.Instance.gameplayMusic);
     }
@@ -254,7 +255,7 @@ public class GameManager : MonoBehaviour
         UIHandlerScript.Instance.SwitchWaveButton(isWaveActive, Time.timeScale);
         ClearProjectiles();
         ClearEnemies();
-        if(synergyManager.GetComponent<Synergy>().totalSynergy){
+        if(Synergy.Instance.totalSynergy){
             money += (int)(100 * currentWave * totalResonanceBuff);
         }
         else{

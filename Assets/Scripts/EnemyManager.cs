@@ -1,38 +1,37 @@
 using UnityEngine;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using UnityEngine.Pool;
 
 public class Enemy
 {
-    public GameObject gameObject;
+    public EnemyContainer enemyObject;
     public float halfHeight;
     public int currentNodeIdx;
     public Vector2 direction;
     public float moveSpeed;
     public float hp;
     public float maxHealth;
-    public HealthBar healthbar;
 
     public float slowFactor;
     public uint slowDuration;
     public float moveSpeedReduction;
     public bool wasSlowed;
 
-    public Enemy(GameObject gameObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, float hp)
+    public Enemy(EnemyContainer enemyObject, float halfHeight, int currentNodeIdx, Vector2 direction, float moveSpeed, float hp)
     {
-        this.gameObject = gameObject;
+        this.enemyObject = enemyObject;
         this.halfHeight = halfHeight;
         this.currentNodeIdx = currentNodeIdx;
         this.direction = direction;
         this.moveSpeed = moveSpeed;
         this.hp = hp;
         maxHealth = hp;
-        healthbar = gameObject.GetComponentInChildren<HealthBar>();
 
-        this.slowFactor = 1;
-        this.slowDuration = 0;
-        this.moveSpeedReduction = 0;
-        this.wasSlowed = false;
+        slowFactor = 1;
+        slowDuration = 0;
+        moveSpeedReduction = 0;
+        wasSlowed = false;
     }
 }
 
@@ -44,12 +43,22 @@ public class EnemyManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+
+        enemyPool = new(
+            () => Instantiate(EnemyPrefab),
+            enemy => enemy.gameObject.SetActive(true),
+            enemy => enemy.gameObject.SetActive(false),
+            enemy => Destroy(enemy.gameObject),
+            false,
+            MAX_ENEMIES
+        );
     }
 
     public int totalEnemiesKilled = 0;
 
     //Enemy Specific References Paired by Index
-    public GameObject EnemyPrefab;
+    public EnemyContainer EnemyPrefab;
+    private ObjectPool<EnemyContainer> enemyPool;
     public List<Enemy> activeEnemies = new();
     public List<Enemy> deadEnemies = new();
     public int totalEnemiesInWave;
@@ -67,10 +76,11 @@ public class EnemyManager : MonoBehaviour
     private List<float> wavePatternsInitDelayCtrs = new();
     private List<float> wavePatternsAlreadySummonedCounts = new();
 
+    private const int MAX_ENEMIES = 128;
 
     void DummyAddMoney()
     {
-        if(GameManager.Instance.synergyManager.GetComponent<Synergy>().totalSynergy){
+        if(Synergy.Instance.totalSynergy){
             GameManager.Instance.money += 10;
         }
         else{
@@ -88,13 +98,13 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < activeEnemies.Count; i++)
         {
             Enemy enemy = activeEnemies[i];
-            if (enemy.gameObject.Equals(enemyGameObject)) return enemy;
+            if (enemy.enemyObject.gameObject.Equals(enemyGameObject)) return enemy;
         }
 
         for (int i = 0; i < deadEnemies.Count; i++)
         {
             Enemy enemy = deadEnemies[i];
-            if (enemy.gameObject.Equals(enemyGameObject))
+            if (enemy.enemyObject.gameObject.Equals(enemyGameObject))
             {
                 Debug.LogWarning("tried to get enemy + " + enemyGameObject + ", but they were dead");
                 return null;
@@ -117,7 +127,8 @@ public class EnemyManager : MonoBehaviour
         if (enemy == null) return;
 
         enemy.hp -= damageHPAmount;
-        enemy.healthbar.UpdateHealthBar(enemy.hp, enemy.maxHealth);
+
+        enemy.enemyObject.healthBarSlider.value = enemy.hp / enemy.maxHealth;
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.enemyHitSound);
         if (enemy.hp < 0)
         {
@@ -132,11 +143,13 @@ public class EnemyManager : MonoBehaviour
     /// <param name="TotalHP">The enemy's initial hp</param>
     public void CreateNewEnemy(EnemyData enemyData)
     {
-        GameObject newEnemy = Instantiate(enemyData.enemyPrefab, NodePositionList[0], Quaternion.identity);
-        float newHalfHeight = newEnemy.GetComponent<SphereCollider>().radius;
-        newEnemy.transform.position += newHalfHeight * Vector3.back;
-        newEnemy.GetComponentInChildren<MeshRenderer>().materials[0].SetColor("_BaseColor", enemyData.color);
-        activeEnemies.Add(new Enemy(newEnemy, newHalfHeight, 0, Vector2.zero, enemyData.speed, enemyData.hp));
+        EnemyContainer newEnemy = enemyPool.Get();
+        newEnemy.sphereCollider.enabled = true;
+        float halfHeight = newEnemy.sphereCollider.radius;
+        newEnemy.transform.position = NodePositionList[0] + halfHeight * Vector3.back;
+        newEnemy.meshRenderer.materials[0].SetColor("_BaseColor", enemyData.color);
+        newEnemy.healthBarSlider.value = 1.0f;
+        activeEnemies.Add(new Enemy(newEnemy, halfHeight, 0, Vector2.zero, enemyData.speed, enemyData.hp));
     }
 
     /// <summary>
@@ -149,7 +162,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < deadEnemies.Count; i++)
         {
             Enemy enemy = deadEnemies[i];
-            if (enemy.gameObject.Equals(enemyRef)) return true;
+            if (enemy.enemyObject.gameObject.Equals(enemyRef)) return true;
         }
 
         return false;
@@ -172,7 +185,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < deadEnemies.Count; ++i)
         {
             Enemy enemy = deadEnemies[i];
-            Destroy(enemy.gameObject);
+            enemyPool.Release(enemy.enemyObject);
             deadEnemies.Remove(enemy);
             enemiesKilledThisWave++;
         }
@@ -204,15 +217,15 @@ public class EnemyManager : MonoBehaviour
             {
                 enemy.direction = (NodePositionList[enemy.currentNodeIdx + 1] - NodePositionList[enemy.currentNodeIdx]).normalized;
                 Vector2 movement = enemy.moveSpeed * Time.deltaTime * enemy.direction;
-                enemy.gameObject.transform.position += (Vector3)movement;
+                enemy.enemyObject.gameObject.transform.position += (Vector3)movement;
 
-                float DistanceToNode = Vector2.Distance(enemy.gameObject.transform.position, NodePositionList[enemy.currentNodeIdx + 1]);
+                float DistanceToNode = Vector2.Distance(enemy.enemyObject.gameObject.transform.position, NodePositionList[enemy.currentNodeIdx + 1]);
 
                 // changed this to look a little smoother
                 if (DistanceToNode < movement.magnitude)
                 {
 
-                    enemy.gameObject.transform.position = NodePositionList[enemy.currentNodeIdx + 1] + enemy.halfHeight * Vector3.back;
+                    enemy.enemyObject.gameObject.transform.position = NodePositionList[enemy.currentNodeIdx + 1] + enemy.halfHeight * Vector3.back;
                     enemy.currentNodeIdx++;
 
                     // new code! -aiden
@@ -223,7 +236,7 @@ public class EnemyManager : MonoBehaviour
                         GameManager.Instance.lives -= (int)Mathf.Max(0, enemy.hp);
                         enemiesKilledThisWave++;
                         activeEnemies.Remove(enemy);
-                        Destroy(enemy.gameObject);
+                        enemyPool.Release(enemy.enemyObject);
 
                         continue;
                     }
@@ -253,7 +266,7 @@ public class EnemyManager : MonoBehaviour
     /// <param name="enemy">The enemy to kill</param>
     public void KillEnemy(Enemy enemy)
     {
-        enemy.gameObject.GetComponent<Collider>().enabled = false;
+        enemy.enemyObject.sphereCollider.enabled = false;
         activeEnemies.Remove(enemy);
         deadEnemies.Add(enemy);
 

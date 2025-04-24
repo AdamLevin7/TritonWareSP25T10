@@ -225,6 +225,5 @@ public class WaveManager : MonoBehaviour
         {
             EnemyManager.Instance.totalEnemiesInWave += wp.numberToSummon;
         }
-        Debug.Log(EnemyManager.Instance.totalEnemiesInWave);
     }
 }

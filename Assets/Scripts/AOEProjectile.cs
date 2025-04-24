@@ -19,16 +19,15 @@ public class AOEProjectile : MonoBehaviour
     [SerializeField] private GameObject explosion;
     public float damageScaleFactor;
     public float effectiveDamage;
-    [SerializeField] private GameObject synergyManager;
     private float rbResonanceBuff = 1.25f;
 
     public bool boostedExplosion;
     public bool scaledDamage;
 
-    private void Awake()
+    public void InitializeProjectile()
     {
         remainingLifetime = speed == 0 ? 0 : range / speed;
-        synergyManager = GameObject.FindWithTag("synergy");
+        alreadyExploded = false;
     }
 
     private void Update()
@@ -38,7 +37,7 @@ public class AOEProjectile : MonoBehaviour
         remainingLifetime -= dt;
         if (remainingLifetime < 0)
         {
-            Destroy(gameObject);
+            ProjectileManager.Instance.aoeProjectilePool.Release(this);
         }
     }
 
@@ -47,12 +46,14 @@ public class AOEProjectile : MonoBehaviour
         float fdt = Time.fixedDeltaTime;
 
         transform.position += (Vector3)(speed * fdt * direction );
-        if(synergyManager.GetComponent<Synergy>().rbSynergy && 
-            parentTower.tower.synergyType.ToString() == "Red" || 
-            parentTower.tower.synergyType.ToString() == "Blue"){
+        if (Synergy.Instance.rbSynergy && 
+            parentTower.tower.synergyType == SynergyType.Red || 
+            parentTower.tower.synergyType == SynergyType.Blue)
+        {
                 damageScaleFactor = rbResonanceBuff;
         }
-        else{
+        else
+        {
             damageScaleFactor = 1.0f;
         }
     }
@@ -66,7 +67,8 @@ public class AOEProjectile : MonoBehaviour
 
             if (!pierces)
             {
-                Destroy(gameObject);
+                remainingLifetime = 10f;
+                ProjectileManager.Instance.aoeProjectilePool.Release(this);
             }
             // enemy.hp -= damage;
         }

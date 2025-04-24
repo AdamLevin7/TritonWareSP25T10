@@ -3,10 +3,21 @@ using UnityEngine;
 
 public class BasicTower : TowerBehavior
 {
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform cannon;
+    [SerializeField] private Material material;
 
     private const float TRIPLE_SPREAD = (float)Math.PI / 36.0f; 
+
+    private void CreateProjectile(float angle, Vector2 direction)
+    {
+        Projectile newProjectile = ProjectileManager.Instance.basicProjectilePool.Get();
+        newProjectile.transform.position = transform.position;
+        newProjectile.transform.eulerAngles = new Vector3(0, 0, angle);
+        newProjectile.direction = direction.normalized;
+        if (upgrade1Unlocked) newProjectile.baseDamage *= 2.0f;
+        newProjectile.parentTowerClass = this;
+        newProjectile.meshRenderer.material = material;
+    }
 
     // rotation matrix: (xcostheta - ysintheta, xsintheta + ycostheta)
     public override void Fire()
@@ -16,31 +27,12 @@ public class BasicTower : TowerBehavior
 
         cannon.eulerAngles = new Vector3(0, 0, angle - 90);
 
-        GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        newBullet.transform.eulerAngles = new Vector3(0, 0, angle);
-        Projectile newProjectile = newBullet.GetComponent<Projectile>();
-        newProjectile.direction = direction.normalized;
-        if (upgrade1Unlocked) newProjectile.baseDamage *= 2.0f;
-        newProjectile.parentTowerClass = this;
+        CreateProjectile(angle, direction);
 
         if (upgrade2Unlocked)
         {
-            GameObject newBullet2 = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            GameObject newBullet3 = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
-            newBullet2.transform.eulerAngles = new Vector3(0, 0, angle);
-            newBullet3.transform.eulerAngles = new Vector3(0, 0, angle);
-            Projectile newProjectile2 = newBullet2.GetComponent<Projectile>();
-            Projectile newProjectile3 = newBullet3.GetComponent<Projectile>();
-            
-            newProjectile2.direction = MatrixRotate(direction.normalized, TRIPLE_SPREAD);
-            newProjectile3.direction = MatrixRotate(direction.normalized, -TRIPLE_SPREAD);
-
-            newProjectile2.baseDamage *= 2.0f;
-            newProjectile3.baseDamage *= 2.0f;
-
-            newProjectile2.parentTowerClass = this;
-            newProjectile3.parentTowerClass = this;
+            CreateProjectile(angle, MatrixRotate(direction.normalized, TRIPLE_SPREAD));
+            CreateProjectile(angle, MatrixRotate(direction.normalized, -TRIPLE_SPREAD));
         }
         
         AudioManager.Instance.PlayOneShot(AudioManager.Instance.whooshSound);

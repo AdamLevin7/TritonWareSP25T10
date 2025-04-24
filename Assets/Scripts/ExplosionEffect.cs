@@ -16,16 +16,9 @@ public class ExplosionEffect : MonoBehaviour
     public float damageScaleFactor = 1.0f;
     public float effectiveDamage;
 
-    [SerializeField] private GameObject synergyManager;
     private float rbResonanceBuff = 1.25f;
 
     public bool scaledDmg;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
 
     void OnEnable()
     {
@@ -36,10 +29,6 @@ public class ExplosionEffect : MonoBehaviour
         visual.localScale *= explosionRadiusScaleFactor;
     }
 
-    void Awake(){
-        synergyManager = GameObject.FindWithTag("synergy");
-    }
-
     void DoExplodeDamage()
     {
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 0.5f * explosionRadiusScaleFactor * 1.5f);
@@ -48,9 +37,9 @@ public class ExplosionEffect : MonoBehaviour
         {
             if (enemy.CompareTag("Enemy"))
             {
-                if(synergyManager.GetComponent<Synergy>().rbSynergy && 
-                    parentTower.tower.synergyType.ToString() == "Red" || 
-                    parentTower.tower.synergyType.ToString() == "Blue"){
+                if(Synergy.Instance.rbSynergy && 
+                    parentTower.tower.synergyType == SynergyType.Red || 
+                    parentTower.tower.synergyType == SynergyType.Blue){
                         damageScaleFactor *= rbResonanceBuff;
                 }
                 float damageDoneToEnemy = baseDamage *= damageScaleFactor;
